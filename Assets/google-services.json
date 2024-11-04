@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "843154896518",
+    "firebase_url": "https://projectcu2d-default-rtdb.firebaseio.com",
     "project_id": "projectcu2d",
     "storage_bucket": "projectcu2d.firebasestorage.app"
   },
