@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "843154896518",
+    "project_id": "projectcu2d",
+    "storage_bucket": "projectcu2d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843154896518:android:700b2de211166561f60307",
+        "android_client_info": {
+          "package_name": "com.SJK.ProjectCU2D"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843154896518-o6fpr1t0cpcla73c678lrbbdc40go22n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SJK.ProjectCU2D",
+            "certificate_hash": "1b73a150a99c3d428e7439e4bf5807f1a621787d"
+          }
+        },
+        {
+          "client_id": "843154896518-tdquubfsal7p3a74336675rkr1araork.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.SJK.ProjectCU2D",
+            "certificate_hash": "a9be2e448bb41690ac888950f2598bafea911f0d"
+          }
+        },
+        {
+          "client_id": "843154896518-7oquh09l8ci4uk19hkhgoco2egnhq0tp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVaooj7dGn3pRn_Jr-Cn5Afbhd2_649rQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843154896518-6ct91g3l9bgp8ej7f71477k7svi1b3qi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
