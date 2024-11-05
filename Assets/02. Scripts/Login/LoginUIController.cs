@@ -2,6 +2,7 @@ using Firebase.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +14,13 @@ public class LoginUIController : MonoBehaviour
     [SerializeField] private TMP_InputField inpNickname;
     [SerializeField] private GameObject createNickname;
     [SerializeField] private GameObject dlgNickname;
+    [SerializeField] private GameObject dlgLoginFailed;
+    [SerializeField] private GameObject dlgInvalidNickname;
     [SerializeField] private Button btnCreateDlgNickname;
     [SerializeField] private Button btnCreateNickname;
     [SerializeField] private Button btnExitCreateNickname;
+    [SerializeField] private Button btnExitInvalidNickname;
+    [SerializeField] private Button btnExit;
     [SerializeField] private Button btnStart;
 
     public TMP_InputField InpNickname => inpNickname;
@@ -25,18 +30,20 @@ public class LoginUIController : MonoBehaviour
     {
         btnCreateDlgNickname.onClick.AddListener(OnCreateDialogNickname);
         btnCreateNickname.onClick.AddListener(OnCreateNickname);
-        btnExitCreateNickname.onClick.AddListener(ExitCreateNickname);
+        btnExitCreateNickname.onClick.AddListener(OnExitCreateNickname);
+        btnExitInvalidNickname.onClick.AddListener(OnExitInvalidNickname);
         btnStart.onClick.AddListener(LoadStartScene);
+        btnExit.onClick.AddListener(OnExit);
     }
 
 
     public void SetCreateNicknameUI()
     {
         Debug.Log("LoginUIController - SetCreateNicknameUI @@@@@@@@@@@@@@@@@");
+        inpNickname.text = "";
         txtLogin.gameObject.SetActive(false);
         createNickname.SetActive(true);
     }
-
 
     public void StartGame()
     {
@@ -44,16 +51,24 @@ public class LoginUIController : MonoBehaviour
         txtLogin.text = "Touch To Start";
     }
 
-    private void OnCreateDialogNickname() // Confirm 버튼에 등록
+    public void LoginFailed()
+        => dlgLoginFailed.gameObject.SetActive(true);
+
+
+    private void OnCreateDialogNickname() // 닉네임 생성 버튼에 등록
     {
-        if (inpNickname.text == "") return;
+        if (Regex.IsMatch(inpNickname.text, Settings.regex) == false)
+        {
+            dlgInvalidNickname.SetActive(true);
+            return;
+        }
 
         dlgNickname.SetActive(true);
 
         txtNickname.text = $"Use [{inpNickname.text}] ?";
     }
 
-    private void OnCreateNickname() // 다이얼로그 버튼에 등록
+    private void OnCreateNickname() // 닉네임 확정 버튼에 등록
     {
         dlgNickname.SetActive(false);
         createNickname.SetActive(false);
@@ -62,10 +77,14 @@ public class LoginUIController : MonoBehaviour
         StartGame();
     }
 
-    private void ExitCreateNickname() // 다이얼로그 취소 버튼에 등록
-    {
-        dlgNickname.SetActive(false);
-    }
+    private void OnExitInvalidNickname() // 닉네임 재생성 버튼에 등록
+        => dlgInvalidNickname.SetActive(false);
+
+    private void OnExitCreateNickname() // 다이얼로그 취소 버튼에 등록
+        => dlgNickname.SetActive(false);
+
+    private void OnExit()
+        => Application.Quit();
 
     public void LoadStartScene() // 스타트 버튼에 등록
     {

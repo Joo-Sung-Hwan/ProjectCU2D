@@ -14,7 +14,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Firebase;
 
-public class GoogleLoginTest : MonoBehaviour
+public class FirebaseController : MonoBehaviour
 {
     [SerializeField] private LoginUIController loginUIController;
 
@@ -55,17 +55,15 @@ public class GoogleLoginTest : MonoBehaviour
                         });
                 });
             }
+            else // 로그인 성공 이외의 모든 상황
+            {
+                loginUIController.LoginFailed();
+            }
         });
     }
 
     private void HasNicknameByID()
     {
-        if (FirebaseApp.DefaultInstance == null)
-        {
-            Debug.LogError("Firebase not initialized!");
-            return;
-        }
-
         // 현재 로그인한 파이어베이스 계정의 UserId를 가져와서 Nickname 데이터가 있는지 검사
         user = auth.CurrentUser;
         DatabaseReference nameDB = FirebaseDatabase.DefaultInstance.GetReference("Nickname");
@@ -107,27 +105,24 @@ public class GoogleLoginTest : MonoBehaviour
             }
             else
             {
-                Debug.Log("GoogleLoginTest - "+task.Status);
+                Debug.Log("HasNicknameByID - " + task.Status);
             }
         });
     }
 
-    public void CreateNickname() // 다이얼로그 버튼에 등록
+    public void CreateNickname() // 닉네임 확정 버튼에 등록
     {
         DatabaseReference nameDB = FirebaseDatabase.DefaultInstance.GetReference("Nickname");
 
         // <유저아이디, 유저닉네임> 딕셔너리 : 유저의 ID마다 고유한 닉네임 밸류값으로 저장
         Dictionary<string, object> nicknameDic = new Dictionary<string, object>();
 
-        // 정규식 추가 (regex)
         string nickname = loginUIController.InpNickname.text;
         nicknameDic.Add(user.UserId, nickname);
 
         // nameDB에 nicknameDic를 추가해서 데이터 업데이트
         nameDB.UpdateChildrenAsync(nicknameDic).ContinueWithOnMainThread(task =>
         {
-            //if (task.IsFaulted || task.IsCanceled) dlgNickname.SetActive(false);
-
             if (task.IsCompleted)
             {
                 Debug.Log("GoogleLoginTest - CreateNickname @@@@@@@@@@@@@@@@@");
