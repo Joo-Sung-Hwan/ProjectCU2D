@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644ffb332eada364abe0e8895f38d2a9, type: 3}
+  m_Name: EnemyDetails_Test
+  m_EditorClassIdentifier: 
+  enemyName: TestEnemy
+  sprite: {fileID: 0}
+  spriteColor: {r: 0.6039216, g: 0.14509805, b: 0.14509805, a: 1}
+  runtimeAnimatorController: {fileID: 0}
+  speed: 3
+  chaseDistance: 2
+  contactDamageAmount: 10

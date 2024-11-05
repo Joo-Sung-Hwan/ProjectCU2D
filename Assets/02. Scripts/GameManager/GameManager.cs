@@ -12,5 +12,7 @@ using UnityEngine.Rendering.Universal;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private PlayerCtrl player;
 
+    public PlayerCtrl Player => player;
 }
