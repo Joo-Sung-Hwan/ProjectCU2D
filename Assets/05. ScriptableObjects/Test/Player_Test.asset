@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7497da3367f2f4d8e4fd48fd97d5f2, type: 3}
+  m_Name: Player_Test
+  m_EditorClassIdentifier: 
+  characterName: TestCharacter
+  runtimeAnimatorController: {fileID: 0}
+  playerSprite: {fileID: 0}
+  playerStartingWeapon: {fileID: 11400000, guid: bdcc8ad597d069b46aec5c5bb59a1a25,
+    type: 2}
+  characterStrength: 
+  characterWeakness: 
+  Hp: 100
+  HpRegen: 0
+  HpSteal: 0
+  MeleeDamage: 0

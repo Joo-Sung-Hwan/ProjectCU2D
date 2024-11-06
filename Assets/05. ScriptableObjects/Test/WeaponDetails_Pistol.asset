@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52b48b0533a49f4aa55420947dd81f5, type: 3}
+  m_Name: WeaponDetails_Pistol
+  m_EditorClassIdentifier: 
+  weaponName: Pistol
+  weaponType:
+    rid: 6166516545386708994
+  weaponSprite: {fileID: 0}
+  weaponBaseDamage: 20
+  weaponCriticChance: 10
+  weaponCriticDamage: 150
+  weaponFireRate: 2
+  weaponRange: 15
+  weaponAmmoSpeed: 6
+  weaponKnockback: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 6166516545386708994
+      type: {class: WeaponTypeGun, ns: , asm: Assembly-CSharp}
+      data:
+        projectilePrefab: {fileID: 8591970210373069456, guid: 223df250f7ed54444adfd48dc82e80c7,
+          type: 3}
+        isPiercing: 0

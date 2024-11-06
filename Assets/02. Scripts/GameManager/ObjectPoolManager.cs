@@ -69,7 +69,6 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             else            
                 // 대기중인 큐에서 오브젝트 하나 가져오기
                 obj = objectPool.inactiveObjects.Dequeue();
-            
 
             obj.SetActive(true);
             obj.transform.position = position;

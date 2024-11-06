@@ -15,10 +15,10 @@ TagManager:
   - UI
   - Player
   - Monster
-  - Stacking
-  - 
-  - 
-  - 
+  - ItemPickUp
+  - PlayerAmmo
+  - MonsterAmmo
+  - ItemPickUpCircle
   - 
   - 
   - 
