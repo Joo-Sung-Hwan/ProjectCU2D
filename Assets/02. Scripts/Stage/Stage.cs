@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Stage : MonoBehaviour
+{
+    private MonsterSpawnEvent monsterSpawnEvent;
+
+    public StageDetailsSO StageDetails { get; private set; } // 방의 정보가 담긴 SO
+    public List<WaveSpawnParameter> WaveSpawnParameter { get; private set; } // 웨이브별 스폰정보
+
+
+    private void Awake()
+    {
+        monsterSpawnEvent = GetComponent<MonsterSpawnEvent>();
+    }
+
+    public void InitializedStage(StageDetailsSO stageDetails)
+    {
+        StageDetails = stageDetails;
+        WaveSpawnParameter = stageDetails.waveSpawnParameter;
+
+        monsterSpawnEvent.CallMonsterSpawn(this); // 방 초기화가 모두 진행된 후에 스폰 이벤트 호출
+    }
+}

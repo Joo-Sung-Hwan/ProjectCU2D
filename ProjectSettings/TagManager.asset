@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 3369431217
+    locked: 0
+  - name: Instance
+    uniqueID: 964954073
+    locked: 0
+  - name: Collision
+    uniqueID: 3899536599
+    locked: 0
