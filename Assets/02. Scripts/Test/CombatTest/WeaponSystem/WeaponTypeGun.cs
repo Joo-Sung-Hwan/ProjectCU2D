@@ -21,6 +21,7 @@ public class WeaponTypeGun : WeaponType
     {
         if (weapon.DetectMonster(out Vector2 direction) == false) return; // 사거리 내의 가까운 적 찾기
 
+        Debug.Log("????");
         var projectile = ObjectPoolManager.Instance.Get("bullet", weapon.transform); // 
         projectile.GetComponent<Projectile>().SetUp(weapon.WeaponAmmoSpeed, isPiercing, direction, weapon);
         

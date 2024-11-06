@@ -45,5 +45,6 @@ public class Monster : MonoBehaviour
     public void TakeDamage(Weapon weapon)
     {
         Debug.Log($"Monster TakeDamage!!! - {weapon.WeaponDamage}");
+
     }
 }

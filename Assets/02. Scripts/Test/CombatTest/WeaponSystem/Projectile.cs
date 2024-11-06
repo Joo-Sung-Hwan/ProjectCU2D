@@ -47,19 +47,17 @@ public class Projectile : MonoBehaviour
             ObjectPoolManager.Instance.Release(this.gameObject, "bullet");
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("트리거 아무나 발동");
-        if (other.TryGetComponent(out Monster monster))
+        if (collision.TryGetComponent(out Monster monster))
         {
-            Debug.Log("트리거 엔터");
             //SoundEffectManager.Instance.PlaySoundEffect(soundEffect);
             monster.TakeDamage(weapon);
         }
 
         // 관통되는 수를 정하고 싶으면 관통되는 적의 수를 count로 세면 됨
         // 지금은 관통되는지 여부에 따라 모두 관통이거나 안되거나만 설정
-        if (!isPiercing) 
+        if (!isPiercing)
             ObjectPoolManager.Instance.Release(this.gameObject, "bullet");
     }
 }

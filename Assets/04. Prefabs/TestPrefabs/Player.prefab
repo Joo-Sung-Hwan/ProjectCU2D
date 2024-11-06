@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6023186226909846254}
   - component: {fileID: 2415334854361490930}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: ItemPickUpCircle
   m_TagString: Player
   m_Icon: {fileID: 0}
