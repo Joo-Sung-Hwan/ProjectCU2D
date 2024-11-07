@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using WebSocketSharp;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -19,15 +18,14 @@ public class WeaponTypeGun : WeaponType
 
     public override void Attack(Weapon weapon)
     {
-        if (weapon.DetectMonster(out Vector2 direction) == false) return; // 사거리 내의 가까운 적 찾기
+        if (weapon.DetectMonster(out Vector2 direction, out GameObject monster) == false)
+            return; // 사거리 내의 가까운 적 찾기
 
-        Debug.Log("????");
         var projectile = ObjectPoolManager.Instance.Get("bullet", weapon.transform); // 
         projectile.GetComponent<Projectile>().SetUp(weapon.WeaponAmmoSpeed, isPiercing, direction, weapon);
-        
-        //var socket = weapon.Player.GetTransformSocket(Settings.shootPoint);
-        //projectile.transform.position = socket.position;
-    }
 
+        float angle = UtilitieHelper.GetAngleFromVector(direction);
+        weapon.Player.WeaponTransform.RotateWeapon(weapon, angle);
+    }
 }
 

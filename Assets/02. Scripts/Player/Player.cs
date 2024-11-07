@@ -1,11 +1,14 @@
 using GooglePlayGames.BasicApi;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Transform weaponTransform;
+
     private PlayerDetailsSO playerDetails; // 캐릭터의 종류가 나뉘는지에 따라 필요여부 달라짐
     private SpriteRenderer spriteRenderer;
 
@@ -20,6 +23,13 @@ public class Player : MonoBehaviour
     #endregion
 
     public List<Weapon> WeaponList { get; private set; } // 무기 리스트
+    public WeaponTransform WeaponTransform {  get; private set; } // 무기 장착 트랜스폼
+
+
+    #region TEST
+    public WeaponDetailsSO weapon2;
+    #endregion
+
 
 
     private void Awake()
@@ -28,14 +38,24 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleRange = GetComponentInChildren<CircleCollider2D>();
         ctrl = GetComponent<PlayerCtrl>();
+        WeaponTransform = GetComponentInChildren<WeaponTransform>();
+        stat = new PlayerStat();
 
         WeaponAttackEvent = GetComponent<WeaponAttackEvent>();
-        weaponAttack = GetComponent<WeaponAttack>();
+        weaponAttack = GetComponent<WeaponAttack>();       
     }
 
     private void Start()
     {
         
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            AddWeaponToPlayer(weapon2);
+        }
     }
 
     public void InitializePlayer(PlayerDetailsSO playerDetails)
@@ -47,7 +67,7 @@ public class Player : MonoBehaviour
         WeaponList = new List<Weapon>(Settings.maxWeaponCount);
         AddWeaponToPlayer(playerDetails.playerStartingWeapon);
 
-        stat = new PlayerStat(playerDetails);
+        stat.InitializePlayerStat(playerDetails);
     }
 
     public Weapon AddWeaponToPlayer(WeaponDetailsSO weaponDetails)
@@ -63,9 +83,14 @@ public class Player : MonoBehaviour
         //playerWeapon.ChangeWeaponStat(PlayerStatType.CriticDamage, stat.criticDamage, false);
 
         WeaponList.Add(playerWeapon); // 무기 리스트에 추가
-
-        Debug.Log($"Add Weapon!! - {weaponDetails.weaponName} , {weaponDetails.weaponBaseDamage}");
+        WeaponTransform.Add(playerWeapon);
 
         return playerWeapon;
     }
+
+
+    #region TEST FUNCTION
+    public void AddWeaponTest()
+        => AddWeaponToPlayer(weapon2);
+    #endregion
 }

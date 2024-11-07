@@ -57,7 +57,7 @@ public class Weapon : MonoBehaviour
 
     /// 무기 레벨업 함수 등 구현 필요
 
-    public bool DetectMonster(out Vector2 direction)
+    public bool DetectMonster(out Vector2 direction, out GameObject monster)
     {
         var playerPosition = Player.transform.position;
         var colliders = Physics2D.OverlapCircleAll(playerPosition, WeaponRange, Settings.monsterLayer);
@@ -65,10 +65,11 @@ public class Weapon : MonoBehaviour
         if (colliders.Length == 0)
         {
             direction = Vector2.zero;
+            monster = null;
             return false;
         }
 
-        GameObject monster = null;
+        monster = null;
         float dist = Mathf.Infinity;
         for (int i = 0; i < colliders.Length; i++)
         {

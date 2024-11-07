@@ -10,25 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c52b48b0533a49f4aa55420947dd81f5, type: 3}
-  m_Name: WeaponDetails_Pistol
+  m_Name: WeaponDetails_Sickle
   m_EditorClassIdentifier: 
-  weaponName: Pistol
+  weaponName: Sickle
   weaponType:
-    rid: 6166516545386708994
-  weaponSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  weaponBaseDamage: 20
+    rid: 6166516572031025152
+  weaponSprite: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  weaponBaseDamage: 25
   weaponCriticChance: 10
   weaponCriticDamage: 150
-  weaponFireRate: 1
-  weaponRange: 15
-  weaponAmmoSpeed: 12
-  weaponKnockback: 50
+  weaponFireRate: 0.7
+  weaponRange: 3
+  weaponAmmoSpeed: 6
+  weaponKnockback: 300
   references:
     version: 2
     RefIds:
-    - rid: 6166516545386708994
-      type: {class: WeaponTypeGun, ns: , asm: Assembly-CSharp}
+    - rid: 6166516572031025152
+      type: {class: WeaponTypeMelee, ns: , asm: Assembly-CSharp}
       data:
-        projectilePrefab: {fileID: 8591970210373069456, guid: 223df250f7ed54444adfd48dc82e80c7,
-          type: 3}
+        projectilePrefab: {fileID: 0}
         isPiercing: 0

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -53,6 +52,7 @@ public class Projectile : MonoBehaviour
         {
             //SoundEffectManager.Instance.PlaySoundEffect(soundEffect);
             monster.TakeDamage(weapon);
+            monster.Rigid.AddForce(direction * weapon.WeaponKnockback);
         }
 
         // 관통되는 수를 정하고 싶으면 관통되는 적의 수를 count로 세면 됨

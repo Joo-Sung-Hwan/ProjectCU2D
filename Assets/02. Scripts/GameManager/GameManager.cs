@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private Player player;
     [SerializeField] private PlayerDetailsSO playerSO; // 임시로 직렬화. 추후에 변경해야함
+    [SerializeField] private StageDetailsSO stageSO; // 임시로 직렬화. 추후에 변경해야함
 
     public Player Player => player;
 
@@ -23,6 +24,11 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         InstantiatePlayer();
+    }
+
+    private void Start()
+    {
+        StageManager.Instance.CreateStage(stageSO);
     }
 
     private void InstantiatePlayer()

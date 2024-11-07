@@ -11,7 +11,7 @@ public class PlayerStat
     // ... 그 외 기타 스탯들
 
 
-    public PlayerStat(PlayerDetailsSO playerDetailsSO)
+    public void InitializePlayerStat(PlayerDetailsSO playerDetailsSO)
     {
         Hp = playerDetailsSO.Hp;
         HpRegen = playerDetailsSO.HpRegen;

@@ -1,25 +1,34 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.InputManagerEntry;
 
 public class Monster : MonoBehaviour
 {
     private MonsterDetailsSO enemyDetails;
+    private SpriteRenderer sprite;
     private MonsterStat stat;
-    private Transform player;
     private Rigidbody2D rigid;
     private Vector2 moveVec;
+    private Transform player;
+
+    #region MONSTER EVENT
+    private MonsterDestroyedEvent monsterDestroyedEvent;
+    #endregion
 
     public MonsterDetailsSO EnemyDetails => enemyDetails;
     public MonsterStat Stat => stat;
+    public Rigidbody2D Rigid => rigid;
 
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        monsterDestroyedEvent = GetComponent<MonsterDestroyedEvent>();
+        stat = new MonsterStat();
     }
 
     private void Start()
@@ -35,16 +44,42 @@ public class Monster : MonoBehaviour
         rigid.velocity = moveVec * 3.0f;
     }
 
-    public void InitEnemy(MonsterDetailsSO enemyDetails)
+    public void InitializeEnemy(MonsterDetailsSO enemyDetails)
     {
-        stat = new MonsterStat(enemyDetails);
+        stat.InitializeMonsterStat(enemyDetails);
 
         player = GameManager.Instance.Player.transform;
+        sprite.sprite = enemyDetails.sprite;
     }
 
     public void TakeDamage(Weapon weapon)
     {
-        Debug.Log($"Monster TakeDamage!!! - {weapon.WeaponDamage}");
+        if (stat.Hp <= 0f)
+        {
+            // 사망이벤트 처리
+            monsterDestroyedEvent.CallMonsterDestroyedEvent(this.transform.position);
+            return;
+        }
 
+        Debug.Log($"TakeDamage!!! - {weapon.WeaponName} , {weapon.WeaponDamage}");
+
+        stat.Hp -= weapon.WeaponDamage;
+        TakeDamageEffect().Forget();
+    }
+
+    private async UniTaskVoid TakeDamageEffect()
+    {
+        try
+        {
+            sprite.color = Color.red;
+
+            await UniTask.Delay(100);
+
+            sprite.color = Color.white;
+        }
+        catch (Exception ex)
+        {
+            Debug.Log($"TakeDamageEffect - {ex.Message}");
+        }
     }
 }

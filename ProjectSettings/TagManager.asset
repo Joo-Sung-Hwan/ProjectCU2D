@@ -18,7 +18,7 @@ TagManager:
   - ItemPickUp
   - PlayerAmmo
   - MonsterAmmo
-  - 
+  - Item
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
     locked: 0
   - name: Instance
     uniqueID: 964954073
+    locked: 0
+  - name: Front
+    uniqueID: 3964002549
     locked: 0
   - name: Collision
     uniqueID: 3899536599
