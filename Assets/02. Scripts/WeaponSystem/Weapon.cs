@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using WebSocketSharp;
 
 public class Weapon : MonoBehaviour
 {
+    private WeaponTypeDetailsSO upgradeType;
+
     public string WeaponName { get; private set; }
-    public WeaponType WeaponType { get; private set; }
+    public WeaponTypeDetailsSO WeaponType { get; private set; }
     public Sprite WeaponSprite { get; private set; }
-    public WeaponDetailsSO WeaponDetail { get; private set; }
+    public WeaponDetailsSO WeaponDetails { get; private set; }
     public Player Player { get; set; } // 무기를 소유한 플레이어
 
 
@@ -19,7 +22,6 @@ public class Weapon : MonoBehaviour
     public int WeaponCriticDamage { get; private set; } // 치명타 피해 (%)
     public float WeaponFireRate { get; private set; } // 공격속도
     public float WeaponRange { get; private set; } // 사거리
-    public float WeaponAmmoSpeed { get; private set; } // 탄속도 (원거리 무기만 적용)
     public float WeaponKnockback { get; private set; } // 넉백거리
 
 
@@ -34,13 +36,19 @@ public class Weapon : MonoBehaviour
             WeaponFireRateTimer -= Time.deltaTime;
         else WeaponFireRateTimer = WeaponFireRate;
 
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            UpgrageWeapon();
+        }
     }
 
     public void InitializeWeapon(WeaponDetailsSO weaponDetails) // 무기 초기화
     {
-        WeaponDetail = weaponDetails; // 소리,이펙트 등에 접근하기 위해
+        WeaponDetails = weaponDetails; // 소리,이펙트 등에 접근하기 위해
         WeaponName = weaponDetails.weaponName;
         WeaponType = weaponDetails.weaponType;
+        upgradeType = weaponDetails.upgradeType;
         WeaponSprite = weaponDetails.weaponSprite;
 
         WeaponLevel = 1;
@@ -49,7 +57,6 @@ public class Weapon : MonoBehaviour
         WeaponCriticDamage = weaponDetails.weaponCriticDamage;
         WeaponFireRate = weaponDetails.weaponFireRate;
         WeaponRange = weaponDetails.weaponRange;
-        WeaponAmmoSpeed = weaponDetails.weaponAmmoSpeed;
         WeaponKnockback = weaponDetails.weaponKnockback;
 
         WeaponFireRateTimer = weaponDetails.weaponFireRate; // 공격속도 초기화
@@ -86,4 +93,12 @@ public class Weapon : MonoBehaviour
         direction = (monster.transform.position - playerPosition).normalized;
         return true;
     }
+
+
+    #region TEST
+    public void UpgrageWeapon()
+    {
+        WeaponType = upgradeType;
+    }
+    #endregion
 }

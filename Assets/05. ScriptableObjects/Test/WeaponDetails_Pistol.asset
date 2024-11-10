@@ -13,22 +13,12 @@ MonoBehaviour:
   m_Name: WeaponDetails_Pistol
   m_EditorClassIdentifier: 
   weaponName: Pistol
-  weaponType:
-    rid: 6166516545386708994
+  weaponType: {fileID: 11400000, guid: 8740c31edc690dd40bc94dda43e2a45b, type: 2}
+  upgradeType: {fileID: 11400000, guid: 0161de8c5f36b8f45be3a0a0685528a8, type: 2}
   weaponSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   weaponBaseDamage: 20
   weaponCriticChance: 10
   weaponCriticDamage: 150
   weaponFireRate: 1
   weaponRange: 15
-  weaponAmmoSpeed: 12
   weaponKnockback: 50
-  references:
-    version: 2
-    RefIds:
-    - rid: 6166516545386708994
-      type: {class: WeaponTypeGun, ns: , asm: Assembly-CSharp}
-      data:
-        projectilePrefab: {fileID: 8591970210373069456, guid: 223df250f7ed54444adfd48dc82e80c7,
-          type: 3}
-        isPiercing: 0

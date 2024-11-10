@@ -13,21 +13,11 @@ MonoBehaviour:
   m_Name: WeaponDetails_Sickle
   m_EditorClassIdentifier: 
   weaponName: Sickle
-  weaponType:
-    rid: 6166516572031025152
+  weaponType: {fileID: 11400000, guid: 9b05487fa13732f47b19d5cb89bca9ee, type: 2}
   weaponSprite: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   weaponBaseDamage: 25
   weaponCriticChance: 10
   weaponCriticDamage: 150
-  weaponFireRate: 0.7
+  weaponFireRate: 1
   weaponRange: 3
-  weaponAmmoSpeed: 6
   weaponKnockback: 300
-  references:
-    version: 2
-    RefIds:
-    - rid: 6166516572031025152
-      type: {class: WeaponTypeMelee, ns: , asm: Assembly-CSharp}
-      data:
-        projectilePrefab: {fileID: 0}
-        isPiercing: 0

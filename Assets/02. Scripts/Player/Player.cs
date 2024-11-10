@@ -45,19 +45,6 @@ public class Player : MonoBehaviour
         weaponAttack = GetComponent<WeaponAttack>();       
     }
 
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            AddWeaponToPlayer(weapon2);
-        }
-    }
-
     public void InitializePlayer(PlayerDetailsSO playerDetails)
     {
         this.playerDetails = playerDetails;

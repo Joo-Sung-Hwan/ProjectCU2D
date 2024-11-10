@@ -40,8 +40,7 @@ public class Monster : MonoBehaviour
     {
         moveVec = (player.position - transform.position).normalized;
 
-        //rigid.velocity = moveVec * stat.Speed * Time.fixedDeltaTime;
-        rigid.velocity = moveVec * 3.0f;
+        rigid.velocity = moveVec * stat.Speed;
     }
 
     public void InitializeEnemy(MonsterDetailsSO enemyDetails)

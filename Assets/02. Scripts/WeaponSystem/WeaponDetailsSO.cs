@@ -7,7 +7,8 @@ public class WeaponDetailsSO : ScriptableObject
 {
     [Header("weapon base details")]
     public string weaponName;
-    [SerializeReference, SubclassSelector] public WeaponType weaponType; // 근거리 , 원거리
+    public WeaponTypeDetailsSO weaponType; // 근거리 , 원거리
+    public WeaponTypeDetailsSO upgradeType; // 무기의 업그레이드
     public Sprite weaponSprite;
 
     [Header("weapon base stats")]
@@ -16,7 +17,6 @@ public class WeaponDetailsSO : ScriptableObject
     public int weaponCriticDamage = 150; // 치명타 피해 (%)
     public float weaponFireRate = 0.5f; // 공격속도
     public int weaponRange = 0; // 사거리
-    public int weaponAmmoSpeed = 0; // 탄 속도
     public int weaponKnockback = 0; // 넉백거리
 
     //[Header("weapon configuration")]
