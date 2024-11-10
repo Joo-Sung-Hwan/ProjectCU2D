@@ -9,6 +9,7 @@ public class WeaponDetailsSO : ScriptableObject
     public string weaponName;
     public WeaponTypeDetailsSO weaponType; // 근거리 , 원거리
     public WeaponTypeDetailsSO upgradeType; // 무기의 업그레이드
+    public WeaponDetectorSO detectorType; // 무기 감지타입 (먼 적부터, 체력 낮은 적부터 등)
     public Sprite weaponSprite;
 
     [Header("weapon base stats")]

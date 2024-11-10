@@ -14,7 +14,7 @@ public class WeaponRanged : WeaponTypeDetailsSO
 
     public override void Attack(Weapon weapon)
     {
-        if (weapon.DetectMonster(out Vector2 direction, out GameObject monster) == false)
+        if (weapon.DetectorType.DetectMonster(weapon, out Vector2 direction, out GameObject monster) == false)
             return; // 사거리 내의 가까운 적 찾기
 
         pattern.ProjectileLaunch(projectileDetails, direction, weapon);

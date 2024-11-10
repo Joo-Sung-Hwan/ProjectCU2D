@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: TestCharacter
   runtimeAnimatorController: {fileID: 0}
   playerSprite: {fileID: 0}
-  playerStartingWeapon: {fileID: 11400000, guid: be3223ff79a64484d9b6579312d1c5ca,
+  playerStartingWeapon: {fileID: 11400000, guid: bdcc8ad597d069b46aec5c5bb59a1a25,
     type: 2}
   characterStrength: 
   characterWeakness: 

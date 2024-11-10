@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponName: Pistol
   weaponType: {fileID: 11400000, guid: 8740c31edc690dd40bc94dda43e2a45b, type: 2}
   upgradeType: {fileID: 11400000, guid: 0161de8c5f36b8f45be3a0a0685528a8, type: 2}
+  detectorType: {fileID: 11400000, guid: 4bad31c8c2c54a04a8ad485f1ec1dd7b, type: 2}
   weaponSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   weaponBaseDamage: 20
   weaponCriticChance: 10

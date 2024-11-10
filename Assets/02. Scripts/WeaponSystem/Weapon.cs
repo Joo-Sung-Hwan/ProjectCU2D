@@ -8,10 +8,11 @@ public class Weapon : MonoBehaviour
 {
     private WeaponTypeDetailsSO upgradeType;
 
+    public WeaponDetailsSO WeaponDetails { get; private set; }
     public string WeaponName { get; private set; }
     public WeaponTypeDetailsSO WeaponType { get; private set; }
+    public WeaponDetectorSO DetectorType { get; private set; }
     public Sprite WeaponSprite { get; private set; }
-    public WeaponDetailsSO WeaponDetails { get; private set; }
     public Player Player { get; set; } // 무기를 소유한 플레이어
 
 
@@ -49,6 +50,7 @@ public class Weapon : MonoBehaviour
         WeaponName = weaponDetails.weaponName;
         WeaponType = weaponDetails.weaponType;
         upgradeType = weaponDetails.upgradeType;
+        DetectorType = weaponDetails.detectorType;
         WeaponSprite = weaponDetails.weaponSprite;
 
         WeaponLevel = 1;
@@ -63,37 +65,6 @@ public class Weapon : MonoBehaviour
     }
 
     /// 무기 레벨업 함수 등 구현 필요
-
-    public bool DetectMonster(out Vector2 direction, out GameObject monster)
-    {
-        var playerPosition = Player.transform.position;
-        var colliders = Physics2D.OverlapCircleAll(playerPosition, WeaponRange, Settings.monsterLayer);
-
-        if (colliders.Length == 0)
-        {
-            direction = Vector2.zero;
-            monster = null;
-            return false;
-        }
-
-        monster = null;
-        float dist = Mathf.Infinity;
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            // 단순 거리비교이므로 계산량이 적은 sqrMagnitude 사용
-            float distance = (colliders[i].transform.position - playerPosition).sqrMagnitude;
-            if (dist > distance)
-            {
-                // 레이어 검사를 통해 무조건 몬스터이므로 GetComponent 생략
-                monster = colliders[i].gameObject;
-                dist = distance;
-            }
-        }
-
-        direction = (monster.transform.position - playerPosition).normalized;
-        return true;
-    }
-
 
     #region TEST
     public void UpgrageWeapon()
