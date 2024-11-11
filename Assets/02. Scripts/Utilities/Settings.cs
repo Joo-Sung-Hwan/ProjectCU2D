@@ -24,4 +24,13 @@ public static class Settings
     #region LAYERMASK SETTING
     public static LayerMask monsterLayer = LayerMask.GetMask("Monster"); // 몬스터 레이어
     #endregion
+
+    #region COLOR SETTING
+    public static Color32 green = new Color32(22, 135, 24, 255);
+    public static Color32 beige = new Color32(207, 182, 151, 255);
+    public static Color32 rare = new Color32(11, 110, 204, 255); // 파랑
+    public static Color32 unique = new Color32(155, 61, 217, 255); // 보라
+    public static Color32 legend = new Color32(255, 112, 120, 255); // 빨강
+    public static Color32 critical = new Color32(255, 102, 2, 255); // 주황
+    #endregion
 }

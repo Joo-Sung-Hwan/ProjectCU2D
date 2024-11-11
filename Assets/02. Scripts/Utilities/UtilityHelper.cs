@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 // 전역으로 접근가능한 각종 계산 static 클래스
@@ -33,6 +34,32 @@ public static class UtilitieHelper
     {
         int chance = Random.Range(1, 101);
         return percent >= chance; // 성공하면 true
+    }
+
+    // 등급별 색상 리턴하기 ===========================================================
+    public static Color GetGradeColor(EGrade type)
+    {
+        Color color = Color.white;
+
+        switch (type)
+        {
+            case EGrade.Normal:
+                color = Color.white;
+                break;
+            case EGrade.Rare:
+                color = Settings.rare;
+                break;
+            case EGrade.Unique:
+                color = Settings.unique;
+                break;
+            case EGrade.Legend:
+                color = Settings.legend;
+                break;
+            default:
+                break;
+        };
+
+        return color;
     }
 
     // 선형 볼륨 스케일을 데시벨로 변환 ====================================================================

@@ -1,16 +1,23 @@
 
 // Only Enum
 
-public enum DetectorType
+public enum EDetectorType
 {
     Nearest,
     Farest,
 }
 
-public enum ItemGrade
+public enum EGrade
 {
     Normal = 4,
     Rare = 8,
     Unique = 15,
     Legend = 30
+}
+
+public enum EItemType
+{
+    Exp,
+    Magnet,
+    Bomb,
 }
