@@ -680,7 +680,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1103827467}
   m_Lens:
-    FieldOfView: 100
+    FieldOfView: 70
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 500
@@ -908,7 +908,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 500
-  field of view: 100
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1300,7 +1300,7 @@ MonoBehaviour:
       type: 3}
   - name: Item
     initialSize: 10
-    prefab: {fileID: 5185627768409552567, guid: 287cf0bc9bc554940a142840048f8399,
+    prefab: {fileID: 2700208970764977922, guid: e94de283d9474c748b17cda2cbb8aa6f,
       type: 3}
 --- !u!4 &1928305095
 Transform:

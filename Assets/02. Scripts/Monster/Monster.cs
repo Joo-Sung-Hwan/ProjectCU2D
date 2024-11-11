@@ -20,6 +20,7 @@ public class Monster : MonoBehaviour
     #endregion
 
     public Transform Player { get; private set; }
+    public ItemDetailsSO DropItem { get; private set; }
     public MonsterDetailsSO EnemyDetails => enemyDetails;
     public MonsterStat Stat => stat;
     public SpriteRenderer Sprite => sprite;
@@ -63,6 +64,8 @@ public class Monster : MonoBehaviour
         sprite.sprite = enemyDetails.sprite;
         movement = enemyDetails.movementType.Clone() as MonsterMovementSO;
         movement.InitializeMonsterMovement(this);
+
+        DropItem = enemyDetails.itemDetails;
 
         List<Vector2> spritePhysicsShapePointsList = new List<Vector2>();
         sprite.sprite.GetPhysicsShape(0, spritePhysicsShapePointsList); // 스프라이트 테두리 따오기

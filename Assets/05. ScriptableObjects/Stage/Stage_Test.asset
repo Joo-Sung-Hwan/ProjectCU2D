@@ -16,26 +16,10 @@ MonoBehaviour:
     type: 3}
   roomName: TestStage
   waveSpawnParameter:
-  - batchSpawnCount: 1
+  - batchSpawnCount: 2
     monsterSpawnParameters:
     - monsterDetailsSO: {fileID: 11400000, guid: eeb2c6576d70a9a4c8147d089ffd0822,
         type: 2}
       Ratio: 1
-    isBossWave: 0
-    spawnableBossList: []
-  - batchSpawnCount: 0
-    monsterSpawnParameters: []
-    isBossWave: 0
-    spawnableBossList: []
-  - batchSpawnCount: 0
-    monsterSpawnParameters: []
-    isBossWave: 0
-    spawnableBossList: []
-  - batchSpawnCount: 0
-    monsterSpawnParameters: []
-    isBossWave: 0
-    spawnableBossList: []
-  - batchSpawnCount: 0
-    monsterSpawnParameters: []
     isBossWave: 0
     spawnableBossList: []

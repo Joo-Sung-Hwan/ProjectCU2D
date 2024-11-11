@@ -9,10 +9,12 @@ using UnityEngine;
 public class MonsterDestroyed : MonoBehaviour
 {
     private MonsterDestroyedEvent destroyedEvent;
+    private Monster monster;
 
     private void Awake()
     {
         destroyedEvent = GetComponent<MonsterDestroyedEvent>();
+        monster = GetComponent<Monster>();
     }
     private void OnEnable()
     {
@@ -26,7 +28,8 @@ public class MonsterDestroyed : MonoBehaviour
     private void DestroyedEvent_OnDestroyed(MonsterDestroyedEvent obj, MonsterDestroyedEventArgs args)
     {
         // 몬스터가 파괴된 지점에 아이템 생성
-        ObjectPoolManager.Instance.Get("Item", args.point, Quaternion.identity);
+        var item = ObjectPoolManager.Instance.Get("Item", args.point, Quaternion.identity);
+        item.GetComponent<Item>().InitializeItem(monster.DropItem);
 
         ObjectPoolManager.Instance.Release(gameObject, "Monster");
     }

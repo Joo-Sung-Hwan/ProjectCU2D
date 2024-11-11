@@ -19,7 +19,8 @@ public class MonsterDetailsSO : ScriptableObject
     public int contactDamageAmount = 10; // 플레이어 접촉 데미지
     public float maxHp = 10; // 최대체력
 
-    [Header("Material")]
+    [Header("ETC")]
+    public ItemDetailsSO itemDetails;
     public Material enemyStandardMaterial;
     public Material enemyHitMaterial;
     //public float enemyMaterializeTime;

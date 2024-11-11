@@ -35,6 +35,7 @@ public class MovementCharge : MonsterMovementSO
     private async UniTask Charge()
     {
         isCharge = true;
+        rigid.mass = 100;
 
         monster.Sprite.color = Color.blue;
 
@@ -48,6 +49,7 @@ public class MovementCharge : MonsterMovementSO
         await UniTask.Delay(1000);
 
         isCharge = false;
+        rigid.mass = 0.1f;
 
         return;
     }
