@@ -5,7 +5,7 @@ public static class Settings
 {
     #region GAME SETTING
     public static string regex = @"^(?=.*[A-Za-z])[A-Za-z0-9]{2,12}$"; // 닉네임 규칙
-    public static int spawnInterval = 2; // 스폰간격 1초
+    public static int spawnInterval = 3; // 스폰간격 1초
     public static int waveTimer = 60; // 웨이브 지속시간 60초
     public static int stageBoundary = 15; // 스테이지 +- 크기 (정사각형이므로 -15 ~ 15)
     #endregion

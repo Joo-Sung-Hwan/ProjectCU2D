@@ -6,7 +6,7 @@ public class MonsterStat
 {
     public float Hp { get; set; }
     public int Atk { get; set; }
-    public int Speed { get; set; }
+    public float Speed { get; set; }
     public float ChaseDistance { get; set; }
 
 

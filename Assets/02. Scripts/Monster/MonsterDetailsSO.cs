@@ -13,13 +13,15 @@ public class MonsterDetailsSO : ScriptableObject
     public RuntimeAnimatorController runtimeAnimatorController; // 적의 애니메이터
 
     [Header("Base Monster Stats")]
-    public int speed; // 이동속도
+    public MonsterMovementSO movementType; // 이동타입 (돌진, 랜덤, 이동)
+    public float speed = 3f;
     public float chaseDistance = 50f; // 플레이어와의 최대 간격
     public int contactDamageAmount = 10; // 플레이어 접촉 데미지
     public float maxHp = 10; // 최대체력
 
-    //[Header("Material")]
-    //public Material enemyStandardMaterial;
+    [Header("Material")]
+    public Material enemyStandardMaterial;
+    public Material enemyHitMaterial;
     //public float enemyMaterializeTime;
     //public Shader enemyMaterializeShader;
     //public Color enemyMaterializeColor;

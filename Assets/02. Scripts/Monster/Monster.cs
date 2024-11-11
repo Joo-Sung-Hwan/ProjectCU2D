@@ -9,18 +9,20 @@ public class Monster : MonoBehaviour
 {
     private MonsterDetailsSO enemyDetails;
     private SpriteRenderer sprite;
+    private MonsterMovementSO movement;
     private MonsterStat stat;
     private Rigidbody2D rigid;
     private Vector2 moveVec;
-    private Transform player;
 
     #region MONSTER EVENT
     private MonsterDestroyedEvent monsterDestroyedEvent;
     #endregion
 
+    public Transform Player { get; private set; }
     public MonsterDetailsSO EnemyDetails => enemyDetails;
     public MonsterStat Stat => stat;
     public Rigidbody2D Rigid => rigid;
+
 
 
     private void Awake()
@@ -28,31 +30,42 @@ public class Monster : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         monsterDestroyedEvent = GetComponent<MonsterDestroyedEvent>();
+        Player = GameManager.Instance.Player.transform;
         stat = new MonsterStat();
     }
 
     private void Start()
     {
-        player = GameManager.Instance.Player.transform;
+    }
+
+    private void OnDisable()
+    {
+        // 풀로 돌아갈 때 Clone된 SO 인스턴스 정리
+        if (movement != null)
+        {
+            Destroy(movement); // Clone된 SO 파괴
+            movement = null;
+        }
     }
 
     private void FixedUpdate()
     {
-        moveVec = (player.position - transform.position).normalized;
-
-        rigid.velocity = moveVec * stat.Speed;
+        movement.Move();
     }
 
     public void InitializeEnemy(MonsterDetailsSO enemyDetails)
     {
         stat.InitializeMonsterStat(enemyDetails);
 
-        player = GameManager.Instance.Player.transform;
         sprite.sprite = enemyDetails.sprite;
+        movement = enemyDetails.movementType.Clone() as MonsterMovementSO;
+        movement.InitializeMonsterMovement(this);
     }
 
     public void TakeDamage(Weapon weapon)
     {
+        stat.Hp -= weapon.WeaponDamage;
+
         if (stat.Hp <= 0f)
         {
             // 사망이벤트 처리
@@ -60,9 +73,6 @@ public class Monster : MonoBehaviour
             return;
         }
 
-        Debug.Log($"TakeDamage!!! - {weapon.WeaponName} , {weapon.WeaponDamage}");
-
-        stat.Hp -= weapon.WeaponDamage;
         TakeDamageEffect().Forget();
     }
 

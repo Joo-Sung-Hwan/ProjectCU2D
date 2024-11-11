@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class PlayerCtrl : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour, IMovement
 {
     [SerializeField] private FixedJoystick joy;
     [SerializeField] private float speed = 10f;
@@ -18,7 +18,6 @@ public class PlayerCtrl : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
-
     }
 
     private void Update()
@@ -31,13 +30,6 @@ public class PlayerCtrl : MonoBehaviour
         Move();
     }
 
-    private void Move()
-    {
-        moveVec = joy.Direction * speed;
-
-        rigid.velocity = moveVec;
-    }
-
     private void Attack()
     {
         for (int i = 0; i < player.WeaponList.Count; ++i) // 플레이어의 무기 리스트 각각 공격이벤트 호출
@@ -45,4 +37,14 @@ public class PlayerCtrl : MonoBehaviour
             player.WeaponAttackEvent.CallWeaponAttackEvent(player.WeaponList[i], i);
         }
     }
+
+
+    #region INTERFACE
+    public void Move()
+    {
+        moveVec = joy.Direction * speed;
+
+        rigid.velocity = moveVec;
+    }
+    #endregion
 }

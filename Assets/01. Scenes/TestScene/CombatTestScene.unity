@@ -680,7 +680,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1103827467}
   m_Lens:
-    FieldOfView: 70
+    FieldOfView: 100
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 500
@@ -908,7 +908,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 500
-  field of view: 70
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1295,7 +1295,7 @@ MonoBehaviour:
     prefab: {fileID: 8591970210373069456, guid: 223df250f7ed54444adfd48dc82e80c7,
       type: 3}
   - name: Monster
-    initialSize: 10
+    initialSize: 5
     prefab: {fileID: 5355460694420824825, guid: cf2f95f66e7aa0e4288f5a7c08de1c27,
       type: 3}
   - name: Item
