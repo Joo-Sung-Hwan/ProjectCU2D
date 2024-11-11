@@ -20,6 +20,6 @@ MonoBehaviour:
   weaponBaseDamage: 20
   weaponCriticChance: 10
   weaponCriticDamage: 150
-  weaponFireRate: 1
+  weaponFireRate: 100
   weaponRange: 10
   weaponKnockback: 50

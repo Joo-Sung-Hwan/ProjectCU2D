@@ -16,9 +16,9 @@ MonoBehaviour:
   sprite: {fileID: -493647738, guid: 3bcb7877229a5334da528f2f0872b5c3, type: 3}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   runtimeAnimatorController: {fileID: 0}
-  movementType: {fileID: 11400000, guid: d6e74cbb0cc1a424b81cfe7c3fa5c431, type: 2}
+  movementType: {fileID: 11400000, guid: 39c75b084eb77584993236024bd5ba4a, type: 2}
   speed: 3
-  chaseDistance: 2
+  chaseDistance: 20
   contactDamageAmount: 10
   maxHp: 30
   enemyStandardMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}

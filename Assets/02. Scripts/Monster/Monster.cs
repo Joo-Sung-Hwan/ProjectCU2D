@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour
     private MonsterMovementSO movement;
     private MonsterStat stat;
     private Rigidbody2D rigid;
+    private PolygonCollider2D hitbox;
     private Vector2 moveVec;
 
     #region MONSTER EVENT
@@ -21,6 +22,7 @@ public class Monster : MonoBehaviour
     public Transform Player { get; private set; }
     public MonsterDetailsSO EnemyDetails => enemyDetails;
     public MonsterStat Stat => stat;
+    public SpriteRenderer Sprite => sprite;
     public Rigidbody2D Rigid => rigid;
 
 
@@ -29,6 +31,7 @@ public class Monster : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        hitbox = GetComponent<PolygonCollider2D>();
         monsterDestroyedEvent = GetComponent<MonsterDestroyedEvent>();
         Player = GameManager.Instance.Player.transform;
         stat = new MonsterStat();
@@ -60,6 +63,10 @@ public class Monster : MonoBehaviour
         sprite.sprite = enemyDetails.sprite;
         movement = enemyDetails.movementType.Clone() as MonsterMovementSO;
         movement.InitializeMonsterMovement(this);
+
+        List<Vector2> spritePhysicsShapePointsList = new List<Vector2>();
+        sprite.sprite.GetPhysicsShape(0, spritePhysicsShapePointsList); // 스프라이트 테두리 따오기
+        hitbox.points = spritePhysicsShapePointsList.ToArray(); // 피격판정 충돌체 그리기
     }
 
     public void TakeDamage(Weapon weapon)
