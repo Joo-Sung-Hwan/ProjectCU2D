@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoginUIController : MonoBehaviour
@@ -88,6 +89,8 @@ public class LoginUIController : MonoBehaviour
 
     public void LoadStartScene() // 스타트 버튼에 등록
     {
+        SceneManager.LoadScene(1);
+
         // 최초 실행에 필요한 리소스 로드 (어드레서블 활용)
         //List<string> levelResources = new List<string> { "Database", "Sprites", "Prefabs" };
         //LoadingSceneManager.LoadScene("MainScene", levelResources);
