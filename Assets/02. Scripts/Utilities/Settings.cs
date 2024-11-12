@@ -16,8 +16,14 @@ public static class Settings
     #endregion
 
 
+    #region MONSTER SETTING
+    public static int monsterFireRate = 2000; // 몬스터 공격간격 (밀리세컨드)
+    public static float monsterProjectileDist = 20f; // 몬스터 투사체 사거리
+    #endregion
+
+
     #region ANIMATOR PARAMETER
-    
+
     #endregion
 
 

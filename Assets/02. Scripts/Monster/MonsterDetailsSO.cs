@@ -14,10 +14,13 @@ public class MonsterDetailsSO : ScriptableObject
 
     [Header("Base Monster Stats")]
     public MonsterMovementSO movementType; // 이동타입 (돌진, 랜덤, 이동)
+    public MonsterAttackSO attackType; // 공격타입 (투사체, 함정 등)
     public float speed = 3f;
     public float chaseDistance = 50f; // 플레이어와의 최대 간격
-    public int contactDamageAmount = 10; // 플레이어 접촉 데미지
+    public float baseDamage = 10; // 플레이어 접촉 데미지 포함 모든 데미지 (투사체,함정)
     public float maxHp = 10; // 최대체력
+    public float waveBonusHp = 1; // 웨이브마다 증가하는 최대체력
+    public float waveBonusDmg = 1; // 웨이브마다 증가하는 공격력
 
     [Header("ETC")]
     public ItemDetailsSO itemDetails;

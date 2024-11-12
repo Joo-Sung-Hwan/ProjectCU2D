@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 947240208712036089}
   - component: {fileID: 3667680885640635677}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4552901356769290055}
   - component: {fileID: 7833408294871893181}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WeaponTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4425170541747989978}
   - component: {fileID: 57256345680318838}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6965910284713573214}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: shootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7638036362883768647}
   - component: {fileID: 4761910932198379729}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,7 +619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1725626334992094844}
   - component: {fileID: 4471076269935695904}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8369264586238644516}
   - component: {fileID: 4518680753219561067}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6940251420898092931}
   - component: {fileID: 7370609523514832337}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Weapon_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

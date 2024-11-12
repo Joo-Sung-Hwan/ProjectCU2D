@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class Monster : MonoBehaviour
     private MonsterDetailsSO enemyDetails;
     private SpriteRenderer sprite;
     private MonsterMovementSO movement;
+    private MonsterAttackSO monsterAttack;
     private MonsterStat stat;
     private Rigidbody2D rigid;
     private PolygonCollider2D hitbox;
@@ -25,6 +27,9 @@ public class Monster : MonoBehaviour
     public MonsterStat Stat => stat;
     public SpriteRenderer Sprite => sprite;
     public Rigidbody2D Rigid => rigid;
+
+    // 몬스터가 비활성화되면서 이동,공격 유니태스크 취소해야함
+    public CancellationTokenSource DisableCancellation { get; private set; }
 
 
 
@@ -42,14 +47,23 @@ public class Monster : MonoBehaviour
     {
     }
 
+    private void OnEnable()
+    {
+        // 활성화 되면서 토큰 새롭게 초기화
+        DisableCancellation?.Dispose();
+        DisableCancellation = new CancellationTokenSource();
+    }
+
     private void OnDisable()
     {
-        // 풀로 돌아갈 때 Clone된 SO 인스턴스 정리
-        if (movement != null)
-        {
-            Destroy(movement); // Clone된 SO 파괴
-            movement = null;
-        }
+        // 비활성화 되면서 취소명령
+        DisableCancellation.Cancel();
+
+        // 풀로 돌아갈 때 Clone된 SO 인스턴스 정리       
+        Destroy(movement); // Clone된 SO 파괴
+        Destroy(monsterAttack); // Clone된 SO 파괴
+        movement = null;
+        monsterAttack = null;
     }
 
     private void FixedUpdate()
@@ -57,13 +71,17 @@ public class Monster : MonoBehaviour
         movement.Move();
     }
 
-    public void InitializeEnemy(MonsterDetailsSO enemyDetails)
+    public void InitializeEnemy(MonsterDetailsSO enemyDetails, int waveCount)
     {
-        stat.InitializeMonsterStat(enemyDetails);
+        stat.InitializeMonsterStat(enemyDetails, waveCount);
 
-        sprite.sprite = enemyDetails.sprite;
+        sprite.sprite = enemyDetails.sprite; 
         movement = enemyDetails.movementType.Clone() as MonsterMovementSO;
         movement.InitializeMonsterMovement(this);
+
+        monsterAttack = enemyDetails.attackType?.Clone() as MonsterAttackSO; // 공격타입은 없을수도 있음
+        monsterAttack.InitializeMonsterAttack(this);
+        monsterAttack?.Attack();
 
         DropItem = enemyDetails.itemDetails;
 

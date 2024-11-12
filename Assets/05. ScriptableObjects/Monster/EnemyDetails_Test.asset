@@ -16,11 +16,14 @@ MonoBehaviour:
   sprite: {fileID: -493647738, guid: 3bcb7877229a5334da528f2f0872b5c3, type: 3}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   runtimeAnimatorController: {fileID: 0}
-  movementType: {fileID: 11400000, guid: 39c75b084eb77584993236024bd5ba4a, type: 2}
+  movementType: {fileID: 11400000, guid: d6e74cbb0cc1a424b81cfe7c3fa5c431, type: 2}
+  attackType: {fileID: 11400000, guid: 1190cc9132d77354e99454b756d29ebd, type: 2}
   speed: 3
   chaseDistance: 20
-  contactDamageAmount: 10
+  baseDamage: 10
   maxHp: 30
+  waveBonusHp: 1
+  waveBonusDmg: 1
   itemDetails: {fileID: 11400000, guid: d2815277563e3c041bb4b485c58919f8, type: 2}
   enemyStandardMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   enemyHitMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

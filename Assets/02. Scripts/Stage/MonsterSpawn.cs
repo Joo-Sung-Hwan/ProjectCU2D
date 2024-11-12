@@ -12,6 +12,7 @@ public class MonsterSpawn : MonoBehaviour
     private List<WaveSpawnParameter> waveSpawnParameterList;
     private WaveSpawnParameter currentWaveSpawnParameter;
     private Vector2 spawnPosition;
+    private int waveCount;
 
 
     private void Awake()
@@ -40,7 +41,8 @@ public class MonsterSpawn : MonoBehaviour
     private void MonsterSpawnEvent_OnWaveStart(MonsterSpawnEvent @event, int waveCnt)
     {
         // 현재 웨이브에 해당하는 웨이브 스폰 파라미터 받아오기
-        currentWaveSpawnParameter = waveSpawnParameterList[waveCnt];
+        waveCount = waveCnt;
+        currentWaveSpawnParameter = waveSpawnParameterList[waveCount];
 
         if (currentWaveSpawnParameter.isBossWave == true) return; // 보스생성 추후에 구현
 
@@ -96,7 +98,7 @@ public class MonsterSpawn : MonoBehaviour
                 if (randomNumber < ratioSum)
                 {                   
                     var monster = ObjectPoolManager.Instance.Get("Monster", RandomSpawnPosition(), Quaternion.identity);
-                    monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO);
+                    monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);
                     break;
                 }
             }
