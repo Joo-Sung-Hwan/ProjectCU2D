@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 
 
-public class Item : MonoBehaviour  // ¾ÆÀÌÅÛ¿¡ ¿¬°áÇÒ Å¬·¡½º
+public class Item : MonoBehaviour  // ì•„ì´í…œì— ì—°ê²°í•  í´ë˜ìŠ¤
 {
     private static event Action OnMagnet;
 
@@ -17,7 +17,7 @@ public class Item : MonoBehaviour  // ¾ÆÀÌÅÛ¿¡ ¿¬°áÇÒ Å¬·¡½º
     private EItemType itemType;
     private int gainExp;
 
-    // ºñÈ°¼ºÈ­ µÇ¾îµµ À¯´ÏÅÂ½ºÅ©´Â °è¼Ó ½ÇÇàµÇ¹Ç·Î °ü¸®ÇØÁà¾ßÇÔ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // ë¹„í™œì„±í™” ë˜ì–´ë„ ìœ ë‹ˆíƒœìŠ¤í¬ëŠ” ê³„ì† ì‹¤í–‰ë˜ë¯€ë¡œ ê´€ë¦¬í•´ì¤˜ì•¼í•¨@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     private CancellationTokenSource disableCancellation = new CancellationTokenSource();
     private Player player;
     private Rigidbody2D rigid;
@@ -35,7 +35,7 @@ public class Item : MonoBehaviour  // ¾ÆÀÌÅÛ¿¡ ¿¬°áÇÒ Å¬·¡½º
 
     private void OnEnable()
     {
-        // È°¼ºÈ­ µÉ¶§¸¶´Ù ÅäÅ« »õ·Ó°Ô ÃÊ±âÈ­½ÃÄÑÁÖ±â
+        // í™œì„±í™” ë ë•Œë§ˆë‹¤ í† í° ìƒˆë¡­ê²Œ ì´ˆê¸°í™”ì‹œì¼œì£¼ê¸°
         disableCancellation?.Dispose();
         disableCancellation = new CancellationTokenSource();
 
@@ -45,7 +45,7 @@ public class Item : MonoBehaviour  // ¾ÆÀÌÅÛ¿¡ ¿¬°áÇÒ Å¬·¡½º
 
     private void OnDisable()
     {
-        // ºñÈ°¼ºÈ­ µÉ¶§ À¯´ÏÅÂ½ºÅ© Ãë¼Ò¸í·É
+        // ë¹„í™œì„±í™” ë ë•Œ ìœ ë‹ˆíƒœìŠ¤í¬ ì·¨ì†Œëª…ë ¹
         disableCancellation.Cancel();
 
         OnMagnet -= Item_OnMagnet;
@@ -61,16 +61,16 @@ public class Item : MonoBehaviour  // ¾ÆÀÌÅÛ¿¡ ¿¬°áÇÒ Å¬·¡½º
     {
         spriteRenderer.sprite = data.ItemSprite;
 
-        ParticleSystem.MainModule main = particle.main; // ÆÄÆ¼Å¬ ½Ã½ºÅÛÀÇ MainModule·Î »ö»óº¯°æ °¡´É
+        ParticleSystem.MainModule main = particle.main; // íŒŒí‹°í´ ì‹œìŠ¤í…œì˜ MainModuleë¡œ ìƒ‰ìƒë³€ê²½ ê°€ëŠ¥
         main.startColor = UtilitieHelper.GetGradeColor(data.itemGrade);
 
         itemType = data.itemType;
-        gainExp = (int)data.itemGrade; // ÇØ´ç µî±Ş¿¡ ¸Â´Â °æÇèÄ¡ È¹µæ (µî±Ş¸¶´Ù °æÇèÄ¡ Á¤ÇØÁ®ÀÖÀ½)
+        gainExp = (int)data.itemGrade; // í•´ë‹¹ ë“±ê¸‰ì— ë§ëŠ” ê²½í—˜ì¹˜ íšë“ (ë“±ê¸‰ë§ˆë‹¤ ê²½í—˜ì¹˜ ì •í•´ì ¸ìˆìŒ)
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // °æÇèÄ¡ È¹µæ ÄÚµå ±¸Çö
+        // ê²½í—˜ì¹˜ íšë“ ì½”ë“œ êµ¬í˜„
         if (!isFirstTrigger && (Settings.itemDetectorLayer & (1 << collision.gameObject.layer)) != 0)
         {
             if (itemType == EItemType.Magnet)
@@ -89,29 +89,27 @@ public class Item : MonoBehaviour  // ¾ÆÀÌÅÛ¿¡ ¿¬°áÇÒ Å¬·¡½º
     {
         isFirstTrigger = true;
         rigid.simulated = false;
-        // ÇÃ·¹ÀÌ¾î À§Ä¡·ÎºÎÅÍÀÇ ¹æÇâÁ¡
+        
+        // í”Œë ˆì´ì–´ ë°”ê¹¥ì„ í–¥í•˜ëŠ” ë°©í–¥ë²¡í„°
         var outsideDir = (transform.position - player.transform.position).normalized;
-
-        // ¹Ù±ùÂÊÀ¸·Î ÀÌµ¿ÇÒ ¸ñÇ¥ À§Ä¡ °è»ê (ÇöÀç À§Ä¡¿¡¼­ ¹æÇâ º¤ÅÍÀÇ 1.5¹è °Å¸®)
+        // ë°”ê¹¥ìª½ìœ¼ë¡œ ì´ë™í•  ëª©í‘œ ìœ„ì¹˜ ê³„ì‚° (í˜„ì¬ ìœ„ì¹˜ì—ì„œ ë°©í–¥ ë²¡í„°ì˜ 2ë°° ê±°ë¦¬)
         var outsideDesiredPos = transform.position + outsideDir * 2f;
 
-        // ¹Ù±ùÂÊÀ¸·Î ÃµÃµÈ÷ ÀÌµ¿ (0.5ÃÊ)
+        // ë°”ê¹¥ìª½ìœ¼ë¡œ ì²œì²œíˆ ì´ë™ (0.5ì´ˆ)
         transform.DOMove(outsideDesiredPos, 0.5f).SetEase(Ease.OutQuad)
             .OnComplete(() =>
             {
+                // ë‹¤ì‹œ ë¬¼ë¦¬ì¶©ëŒ í™œì„±í™” + í”Œë ˆì´ì–´ í–¥í•´ ì´ë™
                 rigid.simulated = true;
                 MoveToPlayer().Forget();
             });
-
-
-        // ½ÃÄö½º ½ÇÇà ¹× ¿Ï·á ´ë±â
-        //await sequence.Play();
     }
 
     private async UniTask MoveToPlayer()
     {
         while (true)
-        {        
+        {    
+            // 0.1ì´ˆë§ˆë‹¤ í”Œë ˆì´ì–´ ìœ„ì¹˜ ê°±ì‹ í•˜ë©´ì„œ ë¹ ë¥´ê²Œ ì´ë™
             moveVec = (player.transform.position - transform.position).normalized;
             rigid.velocity = moveVec * 13f;     
         
