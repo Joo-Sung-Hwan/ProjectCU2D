@@ -77,8 +77,6 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-        Debug.Log($"TakeDamage Player!!! - {dmg}");
-
         // 스탯에서 체력 깎이는 함수 구현 (방어,회피 계산)
 
         if (stat.Hp <= 0f)

@@ -80,7 +80,7 @@ public class Monster : MonoBehaviour
         movement.InitializeMonsterMovement(this);
 
         monsterAttack = enemyDetails.attackType?.Clone() as MonsterAttackSO; // 공격타입은 없을수도 있음
-        monsterAttack.InitializeMonsterAttack(this);
+        monsterAttack?.InitializeMonsterAttack(this);
         monsterAttack?.Attack();
 
         DropItem = enemyDetails.itemDetails;

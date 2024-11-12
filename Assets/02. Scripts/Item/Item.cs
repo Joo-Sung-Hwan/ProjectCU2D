@@ -22,6 +22,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
     private Player player;
     private Rigidbody2D rigid;
     private Vector2 moveVec;
+    private bool isFirstTrigger = false;
 
 
     private void Awake()
@@ -52,7 +53,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
 
     private void Item_OnMagnet()
     {
-        MoveToPlayer().Forget();
+        DetectItem();
     }
 
 
@@ -70,11 +71,41 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 경험치 획득 코드 구현
+        if (!isFirstTrigger && (Settings.itemDetectorLayer & (1 << collision.gameObject.layer)) != 0)
+        {
+            if (itemType == EItemType.Magnet)
+                OnMagnet.Invoke();
 
-        if (itemType == EItemType.Magnet)
-            OnMagnet.Invoke();
+            DetectItem();
+        }
 
-        ObjectPoolManager.Instance.Release(gameObject, "Item");
+        if (isFirstTrigger && (Settings.itemPickUpLayer & (1 << collision.gameObject.layer)) != 0)
+        {
+                ObjectPoolManager.Instance.Release(gameObject, "Item");
+        }
+    }
+
+    public void DetectItem()
+    {
+        isFirstTrigger = true;
+        rigid.simulated = false;
+        // 플레이어 위치로부터의 방향점
+        var outsideDir = (transform.position - player.transform.position).normalized;
+
+        // 바깥쪽으로 이동할 목표 위치 계산 (현재 위치에서 방향 벡터의 1.5배 거리)
+        var outsideDesiredPos = transform.position + outsideDir * 2f;
+
+        // 바깥쪽으로 천천히 이동 (0.5초)
+        transform.DOMove(outsideDesiredPos, 0.5f).SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                rigid.simulated = true;
+                MoveToPlayer().Forget();
+            });
+
+
+        // 시퀀스 실행 및 완료 대기
+        //await sequence.Play();
     }
 
     private async UniTask MoveToPlayer()

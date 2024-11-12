@@ -29,7 +29,10 @@ public static class Settings
 
     #region LAYERMASK SETTING
     public static LayerMask monsterLayer = LayerMask.GetMask("Monster"); // 몬스터 레이어
+    public static LayerMask itemDetectorLayer = LayerMask.GetMask("ItemDetector"); // 아이템 감지 레이어
+    public static LayerMask itemPickUpLayer = LayerMask.GetMask("ItemPickUp"); // 아이템 획득 레이어
     #endregion
+
 
     #region COLOR SETTING
     public static Color32 green = new Color32(22, 135, 24, 255);
