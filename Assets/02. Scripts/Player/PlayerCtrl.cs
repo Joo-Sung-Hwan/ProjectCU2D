@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour, IMovement, IAttack
 {
-    [SerializeField] private FixedJoystick joy;
     [SerializeField] private float speed = 10f;
 
     private Player player;
+    private FixedJoystick joy;
     private Rigidbody2D rigid;
     private Vector2 moveVec;
 
@@ -18,6 +18,8 @@ public class PlayerCtrl : MonoBehaviour, IMovement, IAttack
     {
         rigid = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
+
+        joy = GameObject.FindWithTag("GameController").GetComponent<FixedJoystick>();
     }
 
     private void Update()

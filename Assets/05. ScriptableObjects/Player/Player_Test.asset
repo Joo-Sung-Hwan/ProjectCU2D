@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Test
   m_EditorClassIdentifier: 
   characterName: TestCharacter
+  player: {fileID: 2655556846627844510, guid: 47c550af35580e14d90b601553b1a54b, type: 3}
   runtimeAnimatorController: {fileID: 0}
   playerSprite: {fileID: 0}
   playerStartingWeapon: {fileID: 11400000, guid: bdcc8ad597d069b46aec5c5bb59a1a25,

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour
 {
-    [SerializeField] Transform weaponShootPosition; // 사격 포인트
     private WeaponAttackEvent weaponAttackEvent;
     private Weapon weapon;
 

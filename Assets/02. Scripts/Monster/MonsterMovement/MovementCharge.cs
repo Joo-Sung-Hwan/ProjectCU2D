@@ -37,7 +37,7 @@ public class MovementCharge : MonsterMovementSO
         isCharge = true;
         rigid.mass = 100;
 
-        monster.Sprite.color = Color.blue;
+        monster.Sprite.color = Settings.legend;
 
         await UniTask.Delay(1000);
 

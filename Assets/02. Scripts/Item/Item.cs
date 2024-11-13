@@ -30,7 +30,6 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
         spriteRenderer = GetComponent<SpriteRenderer>();
         particle = GetComponent<ParticleSystem>();
         rigid = GetComponent<Rigidbody2D>();
-        player = GameManager.Instance.Player;
     }
 
     private void OnEnable()
@@ -60,6 +59,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
     public void InitializeItem(ItemDetailsSO data)
     {
         spriteRenderer.sprite = data.ItemSprite;
+        player = GameManager.Instance.Player;
 
         ParticleSystem.MainModule main = particle.main; // 파티클 시스템의 MainModule로 색상변경 가능
         main.startColor = UtilitieHelper.GetGradeColor(data.itemGrade);

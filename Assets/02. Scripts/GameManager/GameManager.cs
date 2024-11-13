@@ -12,27 +12,27 @@ using UnityEngine.Rendering.Universal;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private Player player;
+    public event Action OnMainGameStarted;
+
     [SerializeField] private PlayerDetailsSO playerSO; // 임시로 직렬화. 추후에 변경해야함
     [SerializeField] private StageDetailsSO stageSO; // 임시로 직렬화. 추후에 변경해야함
 
-    public Player Player => player;
+    public Player Player { get; private set; }
 
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        InstantiatePlayer();
-    }
 
     private void Start()
     {
-        StageManager.Instance.CreateStage(stageSO);
+        
     }
 
-    private void InstantiatePlayer()
+    public void CreateMainGameScene()
     {
-        player.InitializePlayer(playerSO);
+        Player = Instantiate(playerSO.player, Vector2.zero, Quaternion.identity);
+        Player.InitializePlayer(playerSO);
+
+        StageManager.Instance.CreateStage(stageSO);
+
+        OnMainGameStarted?.Invoke();
     }
 }

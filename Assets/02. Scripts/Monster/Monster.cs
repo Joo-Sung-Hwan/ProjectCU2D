@@ -39,7 +39,6 @@ public class Monster : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         hitbox = GetComponent<PolygonCollider2D>();
         monsterDestroyedEvent = GetComponent<MonsterDestroyedEvent>();
-        Player = GameManager.Instance.Player.transform;
         stat = new MonsterStat();
     }
 
@@ -73,7 +72,11 @@ public class Monster : MonoBehaviour
 
     public void InitializeEnemy(MonsterDetailsSO enemyDetails, int waveCount)
     {
+        this.enemyDetails = enemyDetails;
+
         stat.InitializeMonsterStat(enemyDetails, waveCount);
+
+        Player = GameManager.Instance.Player.transform;
 
         sprite.sprite = enemyDetails.sprite; 
         movement = enemyDetails.movementType.Clone() as MonsterMovementSO;
@@ -108,11 +111,11 @@ public class Monster : MonoBehaviour
     {
         try
         {
-            sprite.color = Color.red;
+            sprite.material = enemyDetails.enemyHitMaterial;
 
             await UniTask.Delay(100);
 
-            sprite.color = Color.white;
+            sprite.material = enemyDetails.enemyStandardMaterial;
         }
         catch (Exception ex)
         {

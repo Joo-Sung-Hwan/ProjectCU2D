@@ -1,3 +1,4 @@
+using ExitGames.Client.Photon.StructWrapping;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,10 @@ public class ProjectilePatternSO : ScriptableObject
     public void ProjectileLaunch(ProjectileDetailsSO projectileDetails, Vector2 direction, Weapon weapon)
     {
         // 발사 명령이 떨어지면 풀에서 투사체 활성화
-        projectileObject = ObjectPoolManager.Instance.Get("bullet", weapon.transform);
+
+        //weapon.Player.WeaponTransform.GetWeaponTransform(weapon, out Vector2 pos, out Quaternion rot);
+        projectileObject = ObjectPoolManager.Instance.Get("bullet", weapon.Player.WeaponTransform.GetWeaponTransform(weapon));
+        Debug.Log(projectileObject.transform.position);
         // 투사체 데이터SO랑 방향, 무기 정보 넣어서 초기화
         projectileObject.GetComponent<Projectile>().InitializeProjectile(projectileDetails, direction, weapon);
     }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerDetailsSO : ScriptableObject
 {
     public string characterName; // 캐릭터 이름
+    public Player player; // 플레이어 프리팹
     public RuntimeAnimatorController runtimeAnimatorController;
     public Sprite playerSprite;
     public WeaponDetailsSO playerStartingWeapon; // 스타팅 무기

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c52b48b0533a49f4aa55420947dd81f5, type: 3}
-  m_Name: WeaponDetails_Pistol
+  m_Name: WeaponDetails_SMG
   m_EditorClassIdentifier: 
-  weaponName: Pistol
+  weaponName: SMG
   weaponType: {fileID: 11400000, guid: 8740c31edc690dd40bc94dda43e2a45b, type: 2}
   upgradeType: {fileID: 11400000, guid: 0161de8c5f36b8f45be3a0a0685528a8, type: 2}
   detectorType: {fileID: 11400000, guid: 2f1b79271339434498c11bcb196d4c2b, type: 2}
-  weaponSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  weaponBaseDamage: 20
+  weaponSprite: {fileID: -144335857, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  weaponBaseDamage: 10
   weaponCriticChance: 10
   weaponCriticDamage: 150
-  weaponFireRate: 2
-  weaponRange: 15
+  weaponFireRate: 1
+  weaponRange: 10
   weaponKnockback: 50

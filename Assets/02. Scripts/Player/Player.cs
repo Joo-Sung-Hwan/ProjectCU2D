@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform weaponTransform;
-
     private PlayerDetailsSO playerDetails; // 캐릭터의 종류가 나뉘는지에 따라 필요여부 달라짐
     private SpriteRenderer spriteRenderer;
 
@@ -43,6 +41,11 @@ public class Player : MonoBehaviour
 
         WeaponAttackEvent = GetComponent<WeaponAttackEvent>();
         weaponAttack = GetComponent<WeaponAttack>();       
+    }
+
+    private void Start()
+    {
+        AddWeaponTest();
     }
 
     public void InitializePlayer(PlayerDetailsSO playerDetails)

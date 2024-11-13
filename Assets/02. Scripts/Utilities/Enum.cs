@@ -21,3 +21,9 @@ public enum EItemType
     Magnet,
     Bomb,
 }
+
+public enum ESceneType
+{
+    MainMenu,
+    MainGame,
+}

@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/01. Scenes/TestScene/LoginTestScene.unity
     guid: c3b7a588f45426d4ba3c60be71fea31b
   - enabled: 1
+    path: Assets/01. Scenes/LoadingScene.unity
+    guid: c7b88f5f9f414e142bd4c32b6d7fa5a4
+  - enabled: 1
+    path: Assets/01. Scenes/TestScene/TestMainMenuScene.unity
+    guid: 5f0b3aa17f18a4749bb71a0159d6f6ac
+  - enabled: 1
     path: Assets/01. Scenes/TestScene/CombatTestScene.unity
     guid: 4fa3649f9a31e734b94956f3ae9a5d74
   m_configObjects:
