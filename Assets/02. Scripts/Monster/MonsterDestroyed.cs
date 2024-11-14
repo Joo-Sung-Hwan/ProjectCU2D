@@ -1,7 +1,10 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using TMPro;
 
 
 [RequireComponent(typeof(MonsterDestroyedEvent))]
@@ -10,6 +13,9 @@ public class MonsterDestroyed : MonoBehaviour
 {
     private MonsterDestroyedEvent destroyedEvent;
     private Monster monster;
+    private Sequence moveSequence;
+    private Vector2 dir;
+
 
     private void Awake()
     {
@@ -31,6 +37,25 @@ public class MonsterDestroyed : MonoBehaviour
         var item = ObjectPoolManager.Instance.Get("Item", args.point, Quaternion.identity);
         item.GetComponent<Item>().InitializeItem(monster.DropItem);
 
-        ObjectPoolManager.Instance.Release(gameObject, "Monster");
+        MonsterRelease();
+    }
+
+    private void MonsterRelease()
+    {
+        // 플레이어 반대편을 향하는 방향벡터
+        dir = (transform.position - monster.Player.transform.position).normalized;
+
+        // 새로운 시퀀스 생성
+        moveSequence = DOTween.Sequence();
+
+        // 이동,회전,크기 변경을 동시에 실행
+        monster.Rigid.freezeRotation = false;
+        moveSequence.Join(transform.DOMove(dir*0.2f, 1f))
+                   .Join(transform.DOScale(0.2f,1f))
+                   .Join(transform.DORotate(new Vector3(0f, 0f, 360f), 1f, RotateMode.FastBeyond360)) // 360도 회전을 위한 회전모드
+                   .OnComplete(() => {
+                       moveSequence.Kill();
+                       ObjectPoolManager.Instance.Release(gameObject, "Monster");
+                   });
     }
 }

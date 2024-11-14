@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ammo_Purple_EmissionShader
-  m_Shader: {fileID: -6465566751694194690, guid: 2a9b1fe0f3a47ee489d889f6b8f1a0e1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2a9b1fe0f3a47ee489d889f6b8f1a0e1,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -43,7 +44,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _EmissionColor: {r: 1.254902, g: 0, b: 23.968628, a: 0}
+    - _EmissionColor: {r: 1.254902, g: 0, b: 23.968628, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1185231145485962781
 MonoBehaviour:

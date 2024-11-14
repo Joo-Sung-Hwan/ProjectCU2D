@@ -23,7 +23,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        
+        // TEST CODE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        CreateMainGameScene();
     }
 
     public void CreateMainGameScene()

@@ -16,7 +16,7 @@ MonoBehaviour:
     type: 3}
   roomName: TestStage
   waveSpawnParameter:
-  - batchSpawnCount: 10
+  - batchSpawnCount: 8
     monsterSpawnParameters:
     - monsterDetailsSO: {fileID: 11400000, guid: eeb2c6576d70a9a4c8147d089ffd0822,
         type: 2}

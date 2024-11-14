@@ -22,7 +22,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
     private Player player;
     private Rigidbody2D rigid;
     private Vector2 moveVec;
-    private bool isFirstTrigger = false;
+    private bool isFirstTrigger;
 
 
     private void Awake()
@@ -66,6 +66,8 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
 
         itemType = data.itemType;
         gainExp = (int)data.itemGrade; // 해당 등급에 맞는 경험치 획득 (등급마다 경험치 정해져있음)
+
+        isFirstTrigger = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -81,11 +83,11 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
 
         if (isFirstTrigger && (Settings.itemPickUpLayer & (1 << collision.gameObject.layer)) != 0)
         {
-                ObjectPoolManager.Instance.Release(gameObject, "Item");
+            ObjectPoolManager.Instance.Release(gameObject, "Item");
         }
     }
 
-    public void DetectItem()
+    private void DetectItem()
     {
         isFirstTrigger = true;
         rigid.simulated = false;

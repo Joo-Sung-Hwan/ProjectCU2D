@@ -21,7 +21,6 @@ public class ProjectilePatternSO : ScriptableObject
 
         //weapon.Player.WeaponTransform.GetWeaponTransform(weapon, out Vector2 pos, out Quaternion rot);
         projectileObject = ObjectPoolManager.Instance.Get("bullet", weapon.Player.WeaponTransform.GetWeaponTransform(weapon));
-        Debug.Log(projectileObject.transform.position);
         // 투사체 데이터SO랑 방향, 무기 정보 넣어서 초기화
         projectileObject.GetComponent<Projectile>().InitializeProjectile(projectileDetails, direction, weapon);
     }

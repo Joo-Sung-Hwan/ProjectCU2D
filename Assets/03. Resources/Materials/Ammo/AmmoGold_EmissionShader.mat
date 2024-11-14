@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AmmoGold_EmissionShader
-  m_Shader: {fileID: -6465566751694194690, guid: 2a9b1fe0f3a47ee489d889f6b8f1a0e1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2a9b1fe0f3a47ee489d889f6b8f1a0e1,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -56,5 +57,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _EmissionColor: {r: 6.025881, g: 5.7419386, b: 0.6625314, a: 0}
+    - _EmissionColor: {r: 23.968628, g: 22.839216, b: 2.6352942, a: 1}
   m_BuildTextureStacks: []

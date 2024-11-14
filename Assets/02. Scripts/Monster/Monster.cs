@@ -15,7 +15,6 @@ public class Monster : MonoBehaviour
     private MonsterStat stat;
     private Rigidbody2D rigid;
     private PolygonCollider2D hitbox;
-    private Vector2 moveVec;
 
     #region MONSTER EVENT
     private MonsterDestroyedEvent monsterDestroyedEvent;
@@ -55,30 +54,32 @@ public class Monster : MonoBehaviour
 
     private void OnDisable()
     {
-        // 비활성화 되면서 취소명령
-        DisableCancellation.Cancel();
+        //// 비활성화 되면서 취소명령
+        //DisableCancellation.Cancel();
 
-        // 풀로 돌아갈 때 Clone된 SO 인스턴스 정리       
-        Destroy(movement); // Clone된 SO 파괴
-        Destroy(monsterAttack); // Clone된 SO 파괴
-        movement = null;
-        monsterAttack = null;
+        //// 풀로 돌아갈 때 Clone된 SO 인스턴스 정리       
+        //Destroy(movement); // Clone된 SO 파괴
+        //Destroy(monsterAttack); // Clone된 SO 파괴
+        //movement = null;
+        //monsterAttack = null;
     }
 
     private void FixedUpdate()
     {
-        movement.Move();
+        movement?.Move();
     }
 
     public void InitializeEnemy(MonsterDetailsSO enemyDetails, int waveCount)
     {
+        Player = GameManager.Instance.Player.transform;
         this.enemyDetails = enemyDetails;
-
         stat.InitializeMonsterStat(enemyDetails, waveCount);
 
-        Player = GameManager.Instance.Player.transform;
+        sprite.sprite = enemyDetails.sprite;
+        rigid.freezeRotation = true;
+        transform.localScale = Vector3.one;
+        hitbox.enabled = true;
 
-        sprite.sprite = enemyDetails.sprite; 
         movement = enemyDetails.movementType.Clone() as MonsterMovementSO;
         movement.InitializeMonsterMovement(this);
 
@@ -99,6 +100,17 @@ public class Monster : MonoBehaviour
 
         if (stat.Hp <= 0f)
         {
+            // 비활성화 되면서 취소명령
+            DisableCancellation.Cancel();
+
+            // 풀로 돌아갈 때 Clone된 SO 인스턴스 정리       
+            Destroy(movement); // Clone된 SO 파괴
+            Destroy(monsterAttack); // Clone된 SO 파괴
+            movement = null;
+            monsterAttack = null;
+
+            hitbox.enabled = false;
+
             // 사망이벤트 처리
             monsterDestroyedEvent.CallMonsterDestroyedEvent(this.transform.position);
             return;
