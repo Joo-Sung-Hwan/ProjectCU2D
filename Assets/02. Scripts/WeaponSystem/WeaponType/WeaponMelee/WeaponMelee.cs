@@ -23,6 +23,10 @@ public class WeaponMelee : WeaponTypeDetailsSO
             target.TakeDamage(weapon);
             target.Rigid.AddForce(direction * weapon.WeaponKnockback);
 
+            // TEST
+            HitEffect hitEffect = ObjectPoolManager.Instance.Get(weapon.WeaponDetails.weaponParticle.name, monster.transform.position, Quaternion.identity).GetComponent<HitEffect>();
+            hitEffect.InitializeHitEffect(weapon.WeaponDetails.weaponParticle.name);
+
             foreach (var effect in bonusEffects)
             {
                 effect.Apply(target);

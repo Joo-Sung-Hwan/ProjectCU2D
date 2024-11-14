@@ -20,7 +20,8 @@ public class WeaponDetailsSO : ScriptableObject
     public int weaponRange = 0; // 사거리
     public int weaponKnockback = 0; // 넉백거리
 
-    //[Header("weapon configuration")]
+    [Header("weapon configuration")]
+    public ParticleSystem weaponParticle;
     //public List<GameObject> weaponAmmo;
     //[TextArea] public string upgradeDescription;
     //public bool isTrail; // Trail 렌더러 여부

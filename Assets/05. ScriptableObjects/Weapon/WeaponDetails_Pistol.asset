@@ -17,9 +17,11 @@ MonoBehaviour:
   upgradeType: {fileID: 11400000, guid: 0161de8c5f36b8f45be3a0a0685528a8, type: 2}
   detectorType: {fileID: 11400000, guid: 2f1b79271339434498c11bcb196d4c2b, type: 2}
   weaponSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  weaponBaseDamage: 20
+  weaponBaseDamage: 10
   weaponCriticChance: 10
   weaponCriticDamage: 150
   weaponFireRate: 1
   weaponRange: 15
   weaponKnockback: 50
+  weaponParticle: {fileID: 3249809072487309720, guid: 47096eff328e11a418ace7db2d72aa97,
+    type: 3}

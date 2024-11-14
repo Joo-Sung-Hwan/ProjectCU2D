@@ -31,7 +31,7 @@ public class MonsterTrap : MonoBehaviour
 
         hitbox.enabled = true;
 
-        await UniTask.Delay(500); // 0.5초 뒤에 함정 비활성화
+        await UniTask.Delay(100); // 0.1초 뒤에 함정 비활성화
 
         ObjectPoolManager.Instance.Release(gameObject, "MonsterTrap");
     }

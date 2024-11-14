@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 using ExitGames.Client.Photon.StructWrapping;
 
 public class MonsterSpawn : MonoBehaviour
@@ -96,13 +97,25 @@ public class MonsterSpawn : MonoBehaviour
                 // 현재 순회중인 몬스터가 난수에 포함되면 스폰당첨
                 ratioSum += monsterInfo.Ratio;
                 if (randomNumber < ratioSum)
-                {                   
-                    var monster = ObjectPoolManager.Instance.Get("Monster", RandomSpawnPosition(), Quaternion.identity);
-                    monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);
+                {
+                    Spawn(monsterInfo).Forget();
                     break;
                 }
             }
         }
+    }
+
+    private async UniTaskVoid Spawn(MonsterSpawnParameter monsterInfo)
+    {
+        // 스폰되기 직전 바닥에 스포너 오브젝트 깔아주기
+        GameObject spawner = ObjectPoolManager.Instance.Get("Spawner", RandomSpawnPosition(), Quaternion.identity);
+
+        await UniTask.Delay(1000); // 1초 이후에 스폰
+
+        ObjectPoolManager.Instance.Release(spawner, "Spawner");
+
+        var monster = ObjectPoolManager.Instance.Get("Monster", spawner.transform.position, Quaternion.identity);
+        monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);
     }
 
     private Vector2 RandomSpawnPosition()
