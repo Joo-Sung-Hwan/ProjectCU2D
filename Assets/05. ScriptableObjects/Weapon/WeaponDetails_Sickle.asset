@@ -23,5 +23,4 @@ MonoBehaviour:
   weaponFireRate: 1
   weaponRange: 4
   weaponKnockback: 300
-  weaponParticle: {fileID: 577812841044345583, guid: fcb74f28d107e284e80af037bfec14ca,
-    type: 3}
+  weaponParticle: 1

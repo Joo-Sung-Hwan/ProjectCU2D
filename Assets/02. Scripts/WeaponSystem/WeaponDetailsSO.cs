@@ -21,7 +21,7 @@ public class WeaponDetailsSO : ScriptableObject
     public int weaponKnockback = 0; // ³Ë¹é°Å¸®
 
     [Header("weapon configuration")]
-    public ParticleSystem weaponParticle;
+    public EParticleType weaponParticle;
     //public List<GameObject> weaponAmmo;
     //[TextArea] public string upgradeDescription;
     //public bool isTrail; // Trail ·»´õ·¯ ¿©ºÎ

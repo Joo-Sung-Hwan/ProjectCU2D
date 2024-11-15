@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public string WeaponName { get; private set; }
     public WeaponTypeDetailsSO WeaponType { get; private set; }
     public WeaponDetectorSO DetectorType { get; private set; }
+    public string WeaponParticle { get; private set; }
     public Sprite WeaponSprite { get; private set; }
     public Player Player { get; set; } // 무기를 소유한 플레이어
 
@@ -51,6 +52,7 @@ public class Weapon : MonoBehaviour
         WeaponType = weaponDetails.weaponType;
         upgradeType = weaponDetails.upgradeType;
         DetectorType = weaponDetails.detectorType;
+        WeaponParticle = weaponDetails.weaponParticle.ToString();
         WeaponSprite = weaponDetails.weaponSprite;
 
         WeaponLevel = 1;

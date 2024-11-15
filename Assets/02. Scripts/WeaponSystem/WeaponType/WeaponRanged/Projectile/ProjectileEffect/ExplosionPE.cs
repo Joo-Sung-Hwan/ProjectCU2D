@@ -7,6 +7,7 @@ using UnityEngine;
 public class ExplosionPE : ProjectileEffectSO
 {
     [SerializeField] private int explosionRange;
+    private HitEffect hitEffect;
 
     public override void Apply(Monster monster, Weapon weapon, Vector2 direction)
     {
@@ -17,6 +18,9 @@ public class ExplosionPE : ProjectileEffectSO
             var target = collider.GetComponent<Monster>();
             target.TakeDamage(weapon);
             target.Rigid.AddForce(direction * weapon.WeaponKnockback);
+
+            hitEffect = ObjectPoolManager.Instance.Get(weapon.WeaponParticle, target.transform.position, Quaternion.identity).GetComponent<HitEffect>();
+            hitEffect.InitializeHitEffect(weapon.WeaponParticle);
 
             foreach (var effect in bonusEffects)
             {

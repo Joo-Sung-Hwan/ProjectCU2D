@@ -8,12 +8,14 @@ public class WeaponMelee : WeaponTypeDetailsSO
 {
     [SerializeField] private List<BonusEffectSO> bonusEffects;
     [SerializeField] private int meleeRange = 3;
+    private HitEffect hitEffect;
+
 
 
     public override void Attack(Weapon weapon)
     {
         if (weapon.DetectorType.DetectMonster(weapon, out Vector2 direction, out GameObject monster) == false)
-            return; // 사거리 내의 가까운 적 찾기
+            return; // 사거리 내의 적 찾기 (탐지 기준은 무기마다 설정가능)
 
         var colliders = Physics2D.OverlapCircleAll(monster.transform.position, meleeRange, Settings.monsterLayer);
 
@@ -24,8 +26,8 @@ public class WeaponMelee : WeaponTypeDetailsSO
             target.Rigid.AddForce(direction * weapon.WeaponKnockback);
 
             // TEST
-            HitEffect hitEffect = ObjectPoolManager.Instance.Get(weapon.WeaponDetails.weaponParticle.name, monster.transform.position, Quaternion.identity).GetComponent<HitEffect>();
-            hitEffect.InitializeHitEffect(weapon.WeaponDetails.weaponParticle.name);
+            hitEffect = ObjectPoolManager.Instance.Get(weapon.WeaponParticle, target.transform.position, Quaternion.identity).GetComponent<HitEffect>();
+            hitEffect.InitializeHitEffect(weapon.WeaponParticle);
 
             foreach (var effect in bonusEffects)
             {

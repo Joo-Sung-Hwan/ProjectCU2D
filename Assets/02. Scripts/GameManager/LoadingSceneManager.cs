@@ -11,7 +11,7 @@ public class LoadingSceneManager : MonoBehaviour
     [SerializeField] private Image imgLoadingBar;
 
     private static string nextSceneName;
-    private static List<string> resourceLabelsToLoad;
+    private static string groupToLoad;
     private static ESceneType sceneTypeToLoad;
 
     private float resourceProgress;
@@ -19,10 +19,10 @@ public class LoadingSceneManager : MonoBehaviour
 
 
     // static 정적함수 : 인스턴스화하지 않고도 아무데서나 호출가능한 로딩함수
-    public static void LoadScene(string sceneName, List<string> labelsToLoad, ESceneType sceneType)
+    public static void LoadScene(string sceneName, string labelsToLoad, ESceneType sceneType)
     {
         nextSceneName = sceneName;
-        resourceLabelsToLoad = labelsToLoad;
+        groupToLoad = labelsToLoad;
         sceneTypeToLoad = sceneType;
         SceneManager.LoadScene("LoadingScene");
     }
@@ -31,7 +31,6 @@ public class LoadingSceneManager : MonoBehaviour
     {
         // 로딩씬에 진입하면 로딩 시작
         await LoadSceneAsync();
-        Debug.Log("Scene Load!!!!!!!!!!!!!!!!!!!! => "+SceneManager.GetActiveScene().name);
 
         if (sceneTypeToLoad == ESceneType.MainGame)
             GameManager.Instance.CreateMainGameScene();
@@ -42,19 +41,15 @@ public class LoadingSceneManager : MonoBehaviour
         imgLoadingBar.fillAmount = 0;
 
         // 리소스 로딩
-        //for (int i = 0; i < resourceLabelsToLoad.Count; i++)
-        //{
-        //    // AddressableManager의 LoadResources 함수를 UniTask로 호출
-        //    await AddressableManager.Instance.LoadResources(
-        //        resourceLabelsToLoad[i],
-        //        (progress) =>
-        //        {
-        //            resourceProgress = (i + progress) / resourceLabelsToLoad.Count;
-        //            UpdateLoadingProgress(resourceProgress * 0.5f); // 로딩바 절반까지만 채우기
-        //        },
-        //        () => isLoadAll = true
-        //    );
-        //}
+        // AddressableManager의 LoadResources 함수를 UniTask로 호출
+        await AddressableManager.Instance.LoadResources(
+            groupToLoad,
+            (progress) =>
+            {
+                UpdateLoadingProgress(progress * 0.5f); // 로딩바 절반까지만 채우기
+            }
+        );
+        
 
         // 씬 로딩 비동기 메소드
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(nextSceneName);

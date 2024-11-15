@@ -6,16 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WR_", menuName = "Scriptable Objects/Weapon/Ranged")]
 public class WeaponRanged : WeaponTypeDetailsSO
 {
+    [SerializeField] private ProjectilePatternSO pattern;
     [SerializeField] private ProjectileDetailsSO projectileDetails;
-
-    //[SerializeReference, SubclassSelector] 
-    public ProjectilePatternSO pattern;
 
 
     public override void Attack(Weapon weapon)
     {
         if (weapon.DetectorType.DetectMonster(weapon, out Vector2 direction, out GameObject monster) == false)
-            return; // 사거리 내의 가까운 적 찾기
+            return; // 사거리 내의 적 찾기 (탐지 기준은 무기마다 설정가능)
 
         pattern.ProjectileLaunch(projectileDetails, direction, weapon);
 

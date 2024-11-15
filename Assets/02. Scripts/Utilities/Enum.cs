@@ -27,3 +27,10 @@ public enum ESceneType
     MainMenu,
     MainGame,
 }
+
+public enum EParticleType
+{
+    BasicHit,
+    LightningHit,
+    IceHit,
+}

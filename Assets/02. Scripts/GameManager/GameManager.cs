@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
     {
         // TEST CODE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #if UNITY_EDITOR
-        CreateMainGameScene();
+        //CreateMainGameScene();
         //Time.timeScale = 0.25f;
 #endif
     }
