@@ -12,6 +12,8 @@ public class ProjectileDetailsSO : ScriptableObject
     public List<BonusEffectSO> bonusEffects;
     // 투사체 통과 여부
     public bool isPiercing;
+    // 투사체 통과 카운트
+    public int piercingCount;
     // 투사체 속도
     public int projectileSpeed = 10;
 }

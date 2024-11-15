@@ -17,9 +17,12 @@ public class PlayerDetailsSO : ScriptableObject
     [Header("Character Stat")]
     public float Hp;
     public float HpRegen;
-    public float HpSteal;
+    //public float HpSteal;
+    public int BonusDamage; 
     public int MeleeDamage;
-
-    // .. 그 외 기타 스탯들
+    public int RangeDamage;
+    public float Speed;
+    public float Dodge;
+    public float PickUpRange;
 
 }
