@@ -16,7 +16,7 @@ public class ExplosionPE : ProjectileEffectSO
         foreach (var collider in colliders)
         {
             var target = collider.GetComponent<Monster>();
-            target.TakeDamage(weapon);
+            target.TakeDamage(weapon, weapon.Player.Stat.RangeDamage);
             target.Rigid.AddForce(direction * weapon.WeaponKnockback);
 
             hitEffect = ObjectPoolManager.Instance.Get(weapon.WeaponParticle, target.transform.position, Quaternion.identity).GetComponent<HitEffect>();

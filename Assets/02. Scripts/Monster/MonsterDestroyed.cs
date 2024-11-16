@@ -51,11 +51,11 @@ public class MonsterDestroyed : MonoBehaviour
         // 이동,회전,크기 변경을 동시에 실행
         monster.Rigid.freezeRotation = false;
         moveSequence.Join(transform.DOScale(0.2f,1f))
-                   .Join(transform.DORotate(new Vector3(0f, 0f, 360f), 1f, RotateMode.FastBeyond360)) // 360도 회전을 위한 회전모드
-                   .Join(transform.DOMove(dir * 3, 1f).SetRelative()) // DOMove를 해당 '방향'으로 이동하기 위한 상대값 처리
-                   .OnComplete(() => {
-                       moveSequence.Kill();
-                       ObjectPoolManager.Instance.Release(gameObject, "Monster");
-                   });
+                    .Join(transform.DORotate(new Vector3(0f, 0f, 360f), 1f, RotateMode.FastBeyond360)) // 360도 회전을 위한 회전모드
+                    .Join(transform.DOMove(dir * 3, 1f).SetRelative()) // DOMove를 해당 '방향'으로 이동하기 위한 상대값 처리
+                    .OnComplete(() => {
+                        moveSequence.Kill();
+                        ObjectPoolManager.Instance.Release(gameObject, "Monster");
+                    });
     }
 }

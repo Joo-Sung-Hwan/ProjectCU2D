@@ -2,6 +2,7 @@ using GooglePlayGames.BasicApi;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,8 +21,11 @@ public class Player : MonoBehaviour
     private WeaponAttack weaponAttack;
     #endregion
 
+    public PlayerStat Stat => stat;
+    public HealthBarUI HealthBar {  get; private set; }
     public List<Weapon> WeaponList { get; private set; } // 무기 리스트
     public WeaponTransform WeaponTransform {  get; private set; } // 무기 장착 트랜스폼
+    public CancellationTokenSource DisableCancellation { get; private set; }
 
 
     #region TEST
@@ -37,15 +41,29 @@ public class Player : MonoBehaviour
         circleRange = GetComponentInChildren<CircleCollider2D>();
         ctrl = GetComponent<PlayerCtrl>();
         WeaponTransform = GetComponentInChildren<WeaponTransform>();
+        HealthBar = GetComponent<HealthBarUI>();
         stat = new PlayerStat();
 
         WeaponAttackEvent = GetComponent<WeaponAttackEvent>();
         weaponAttack = GetComponent<WeaponAttack>();       
     }
 
+    private void OnEnable()
+    {
+        // 활성화 되면서 토큰 새롭게 초기화
+        DisableCancellation?.Dispose();
+        DisableCancellation = new CancellationTokenSource();
+    }
+    private void OnDisable()
+    {
+        // 비활성화 되면서 취소명령
+        DisableCancellation.Cancel();
+        DisableCancellation.Dispose();
+    }
+
     private void Start()
     {
-        AddWeaponTest();
+        //AddWeaponTest();
     }
 
     public void InitializePlayer(PlayerDetailsSO playerDetails)
@@ -57,7 +75,7 @@ public class Player : MonoBehaviour
         WeaponList = new List<Weapon>(Settings.maxWeaponCount);
         AddWeaponToPlayer(playerDetails.playerStartingWeapon);
 
-        stat.InitializePlayerStat(playerDetails);
+        stat.InitializePlayerStat(playerDetails, this);
     }
 
     public Weapon AddWeaponToPlayer(WeaponDetailsSO weaponDetails)
@@ -81,6 +99,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         // 스탯에서 체력 깎이는 함수 구현 (방어,회피 계산)
+        stat.TakeDamage(dmg);
 
         if (stat.Hp <= 0f)
         {

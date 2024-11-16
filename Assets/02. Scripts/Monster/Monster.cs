@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using ExitGames.Client.Photon.StructWrapping;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,7 +49,6 @@ public class Monster : MonoBehaviour
     private void OnEnable()
     {
         // 활성화 되면서 토큰 새롭게 초기화
-        DisableCancellation?.Dispose();
         DisableCancellation = new CancellationTokenSource();
     }
 
@@ -94,14 +94,15 @@ public class Monster : MonoBehaviour
         hitbox.points = spritePhysicsShapePointsList.ToArray(); // 피격판정 충돌체 그리기
     }
 
-    public void TakeDamage(Weapon weapon)
+    public void TakeDamage(Weapon weapon, int bonusDamage = 0)
     {
-        stat.Hp -= weapon.WeaponDamage;
+        stat.Hp -= GetDamage(weapon, bonusDamage);
 
         if (stat.Hp <= 0f)
         {
             // 비활성화 되면서 취소명령
             DisableCancellation.Cancel();
+            DisableCancellation.Dispose();
 
             // 풀로 돌아갈 때 Clone된 SO 인스턴스 정리       
             Destroy(movement); // Clone된 SO 파괴
@@ -117,6 +118,27 @@ public class Monster : MonoBehaviour
         }
 
         TakeDamageEffect().Forget();
+    }
+
+    private int GetDamage(Weapon weapon, int bonusDamage)
+    {
+        int damage = UtilitieHelper.IncreaseByPercent(weapon.WeaponDamage + bonusDamage, weapon.Player.Stat.BonusDamage);
+
+        // 치명타 성공
+        if (UtilitieHelper.isSuccess(weapon.WeaponCriticChance))
+        {
+            damage = UtilitieHelper.IncreaseByPercent(damage, weapon.WeaponCriticDamage);
+
+            HitText hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitText>();
+            hitText.InitializeHitText(damage, true);
+        }
+        else
+        {
+            HitText hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitText>();
+            hitText.InitializeHitText(damage);
+        }
+
+        return damage;
     }
 
     private async UniTaskVoid TakeDamageEffect()

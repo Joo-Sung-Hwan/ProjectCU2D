@@ -35,6 +35,28 @@ public static class UtilitieHelper
         return percent >= chance; // 성공하면 true
     }
 
+    // 퍼센트 % 계산하기  ===========================================================
+    public static int IncreaseByPercent(int value, float percent)
+    {
+        float increase = value * (percent / 100);
+        return value + (int)increase;
+    }
+    public static float IncreaseByPercent(float value, float percent)
+    {
+        float increase = value * (percent / 100);
+        return value + increase;
+    }
+    public static int DecreaseByPercent(int value, float percent)
+    {
+        float increase = value * (percent / 100);
+        return Mathf.RoundToInt(value - increase);
+    }
+    public static float DecreaseByPercent(float value, float percent)
+    {
+        float increase = value * (percent / 100);
+        return value - increase;
+    }
+
     // 등급별 색상 리턴하기 ===========================================================
     public static Color GetGradeColor(EGrade type)
     {

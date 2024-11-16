@@ -22,7 +22,7 @@ public class WeaponMelee : WeaponTypeDetailsSO
         foreach (var collider in colliders)
         {
             var target = collider.GetComponent<Monster>();
-            target.TakeDamage(weapon);
+            target.TakeDamage(weapon, weapon.Player.Stat.MeleeDamage);
             target.Rigid.AddForce(direction * weapon.WeaponKnockback);
 
             // TEST

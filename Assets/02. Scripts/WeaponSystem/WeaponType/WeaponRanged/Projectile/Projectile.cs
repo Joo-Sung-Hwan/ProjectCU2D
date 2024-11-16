@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
@@ -25,22 +26,10 @@ public class Projectile : MonoBehaviour
     private Vector2 distanceVector;
 
 
-    public void InitializeProjectile(ProjectileDetailsSO projectileDetails, Vector2 direction, Weapon weapon)
-    {
-        //soundEffect = weapon.weaponFiringSoundEffect;
-        this.projectileEffect = projectileDetails.projectileEffect;
-        projectileEffect.InitializePE(projectileDetails.bonusEffects);
-        this.speed = projectileDetails.projectileSpeed;
-        this.isPiercing = projectileDetails.isPiercing;
-        this.direction = direction; // 투사체 방향벡터
-        this.weapon = weapon;
-        distance = weapon.WeaponRange;
-        currentDistance = 0f;
-    }
-
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -52,6 +41,21 @@ public class Projectile : MonoBehaviour
 
         if (currentDistance > distance)
             ObjectPoolManager.Instance.Release(this.gameObject, "bullet");
+    }
+
+    public void InitializeProjectile(ProjectileDetailsSO projectileDetails, Vector2 direction, Weapon weapon)
+    {
+        spriteRenderer.sprite = projectileDetails.sprite;
+
+        //soundEffect = weapon.weaponFiringSoundEffect;
+        this.projectileEffect = projectileDetails.projectileEffect;
+        projectileEffect.InitializePE(projectileDetails.bonusEffects);
+        this.speed = projectileDetails.projectileSpeed;
+        this.isPiercing = projectileDetails.isPiercing;
+        this.direction = direction; // 투사체 방향벡터
+        this.weapon = weapon;
+        distance = weapon.WeaponRange;
+        currentDistance = 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

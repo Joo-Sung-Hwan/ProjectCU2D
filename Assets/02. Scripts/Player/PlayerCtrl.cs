@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour, IMovement, IAttack
 {
-    [SerializeField] private float speed = 10f;
-
     private Player player;
     private FixedJoystick joy;
     private Rigidbody2D rigid;
@@ -45,7 +43,7 @@ public class PlayerCtrl : MonoBehaviour, IMovement, IAttack
 
     public void Move()
     {
-        moveVec = joy.Direction * speed;
+        moveVec = joy.Direction * player.Stat.Speed;
 
         rigid.velocity = moveVec;
     }

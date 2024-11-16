@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     public int WeaponCriticDamage { get; private set; } // 치명타 피해 (%)
     public float WeaponFireRate { get; private set; } // 공격속도
     public float WeaponRange { get; private set; } // 사거리
-    public float WeaponKnockback { get; private set; } // 넉백거리
+    public int WeaponKnockback { get; private set; } // 넉백거리
 
 
     // 실시간으로 인게임에서 사격하면서 바뀌는 변수

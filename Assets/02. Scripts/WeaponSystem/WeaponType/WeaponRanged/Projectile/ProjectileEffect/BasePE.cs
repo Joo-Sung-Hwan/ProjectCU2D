@@ -11,7 +11,7 @@ public class BasePE : ProjectileEffectSO
 
     public override void Apply(Monster monster, Weapon weapon, Vector2 direction)
     {
-        monster.TakeDamage(weapon);
+        monster.TakeDamage(weapon, weapon.Player.Stat.RangeDamage);
         monster.Rigid.AddForce(direction * weapon.WeaponKnockback);
 
         hitEffect = ObjectPoolManager.Instance.Get(weapon.WeaponParticle, monster.transform.position, Quaternion.identity).GetComponent<HitEffect>();

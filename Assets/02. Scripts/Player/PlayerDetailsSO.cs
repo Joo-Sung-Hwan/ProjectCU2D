@@ -22,7 +22,7 @@ public class PlayerDetailsSO : ScriptableObject
     public int MeleeDamage;
     public int RangeDamage;
     public float Speed;
-    public float Dodge;
+    public int Dodge;
     public float PickUpRange;
 
 }

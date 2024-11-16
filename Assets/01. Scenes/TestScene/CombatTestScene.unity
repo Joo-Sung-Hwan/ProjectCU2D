@@ -533,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &738610005
 Transform:
   m_ObjectHideFlags: 0
@@ -779,7 +779,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4095
+    m_Bits: 3839
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -1179,6 +1179,10 @@ MonoBehaviour:
   - name: BasicHit
     initialSize: 10
     prefab: {fileID: 3463157229188906966, guid: 47096eff328e11a418ace7db2d72aa97,
+      type: 3}
+  - name: HitText
+    initialSize: 20
+    prefab: {fileID: 8955924460218970929, guid: 29ac04afc7230a14086a0dcd9775f51c,
       type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
