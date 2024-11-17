@@ -27,7 +27,7 @@ public class LoadingSceneManager : MonoBehaviour
         SceneManager.LoadScene("LoadingScene");
     }
 
-    private async void Start()
+    private async void Awake()
     {
         // 로딩씬에 진입하면 로딩 시작
         await LoadSceneAsync();
@@ -42,13 +42,13 @@ public class LoadingSceneManager : MonoBehaviour
 
         // 리소스 로딩
         // AddressableManager의 LoadResources 함수를 UniTask로 호출
-        await AddressableManager.Instance.LoadResources(
-            groupToLoad,
-            (progress) =>
-            {
-                UpdateLoadingProgress(progress * 0.5f); // 로딩바 절반까지만 채우기
-            }
-        );
+        //await AddressableManager.Instance.LoadResources(
+        //    groupToLoad,
+        //    (progress) =>
+        //    {
+        //        UpdateLoadingProgress(progress * 0.5f); // 로딩바 절반까지만 채우기
+        //    }
+        //);
         
 
         // 씬 로딩 비동기 메소드

@@ -21,11 +21,11 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    private void Start()
+    private void OnEnable()
     {
         // TEST CODE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #if UNITY_EDITOR
-        CreateMainGameScene();
+        //CreateMainGameScene();
         //Time.timeScale = 0.25f;
 #endif
     }
@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
     {
         Player = Instantiate(playerSO.player, Vector2.zero, Quaternion.identity);
         Player.InitializePlayer(playerSO);
+
+        Debug.Log($"gamemanager - {Player == null}");
 
         StageManager.Instance.CreateStage(stageSO);
 

@@ -18,6 +18,7 @@ public class HealthBarUI : MonoBehaviour
 
     public void SetHealthBar(float ratio)
     {
+        ratio = Mathf.Clamp01(ratio);
         healthBar.transform.localScale = new Vector3(ratio, 1f, 1f);
     }
 }

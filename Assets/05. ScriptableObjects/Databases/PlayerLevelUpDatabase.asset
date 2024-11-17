@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615afc995b0df74ab2628fb9218740a, type: 3}
+  m_Name: PlayerLevelUpDatabase
+  m_EditorClassIdentifier: 
+  database:
+  - {fileID: 11400000, guid: 848d000e7c460ee4784f0dddcc26e5a7, type: 2}
+  - {fileID: 11400000, guid: a00242bdab2cb1547b11bc300d99d70c, type: 2}

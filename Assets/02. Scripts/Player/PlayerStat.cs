@@ -1,13 +1,45 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerStat
 {
+    public event Action<PlayerStat, float> OnExpChanged;
+    public event Action<PlayerStat, int> OnLevelChanged;
+
+
     private Player player;
 
+
+    #region LEVEL & EXP
+    private int currentExp;
+
+    public int Level { get; private set; }
+    public int Exp { get; private set; }
+    public int CurrentExp
+    {
+        get => currentExp;
+        set
+        {
+            currentExp = value;
+
+            if (currentExp >= Exp)
+            {
+                Level++;
+                OnLevelChanged?.Invoke(this, Level);
+                currentExp -= Exp;
+                Exp = Exp + (int)(Exp * 0.1f);
+            }
+
+            OnExpChanged?.Invoke(this, (float)currentExp / (float)Exp);
+        }
+    }
+    #endregion
+
+
+    #region STAT
     public float MaxHp { get; private set; }
     public float Hp { get; private set; }
     public float HpRegen { get; private set; }
@@ -19,11 +51,16 @@ public class PlayerStat
     public int Dodge { get; private set; }
     public float PickUpRange { get; private set; }
     // ... 그 외 기타 스탯들
+    #endregion
 
 
     public void InitializePlayerStat(PlayerDetailsSO playerDetailsSO, Player player)
     {
         this.player = player;
+
+        Level = 1;
+        Exp = Settings.startExp;
+        CurrentExp = 0;
 
         MaxHp = playerDetailsSO.Hp;
         Hp = MaxHp;

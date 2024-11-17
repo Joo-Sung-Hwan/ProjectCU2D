@@ -8,6 +8,6 @@ public class MainMenuTest : MonoBehaviour
     {
         LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
 
-        AddressableManager.Instance.ReleaseGroup("TestA");
+        //AddressableManager.Instance.ReleaseGroup("TestA");
     }
 }
