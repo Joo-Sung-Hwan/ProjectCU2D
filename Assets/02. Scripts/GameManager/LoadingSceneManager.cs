@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 
 public class LoadingSceneManager : MonoBehaviour
@@ -15,7 +16,6 @@ public class LoadingSceneManager : MonoBehaviour
     private static ESceneType sceneTypeToLoad;
 
     private float resourceProgress;
-    private bool isLoadAll;
 
 
     // static 정적함수 : 인스턴스화하지 않고도 아무데서나 호출가능한 로딩함수
@@ -42,11 +42,11 @@ public class LoadingSceneManager : MonoBehaviour
 
         // 리소스 로딩
         // AddressableManager의 LoadResources 함수를 UniTask로 호출
-        //await AddressableManager.Instance.LoadResources(
+        //await AddressableManager.Instance.LoadResourcesAsync(
         //    groupToLoad,
         //    (progress) =>
         //    {
-        //        UpdateLoadingProgress(progress * 0.5f); // 로딩바 절반까지만 채우기
+        //        UpdateLoadingProgress(progress);
         //    }
         //);
         
@@ -59,7 +59,6 @@ public class LoadingSceneManager : MonoBehaviour
         while (!asyncLoad.isDone)
         {
             float sceneProgress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-            UpdateLoadingProgress(0.5f + (sceneProgress * 0.5f)); // 로딩바 나머지 절반 채우기
 
             // 씬 로딩이 90% 이상이면 allowSceneActivation을 true로 변경하여 씬 변경하기
             if (asyncLoad.progress >= 0.9f)
@@ -67,13 +66,11 @@ public class LoadingSceneManager : MonoBehaviour
                 asyncLoad.allowSceneActivation = true;
             }
             // 프레임 대기 (UniTask.DelayFrame()을 이용하여 한 프레임 대기)
-            await UniTask.Yield(PlayerLoopTiming.Update);
+            await UniTask.Yield();
         }
     }
 
 
     private void UpdateLoadingProgress(float progress)
-    {
-        imgLoadingBar.fillAmount = progress;
-    }
+        => imgLoadingBar.fillAmount = progress;
 }

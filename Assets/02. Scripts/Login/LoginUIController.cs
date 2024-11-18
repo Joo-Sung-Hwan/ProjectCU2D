@@ -40,7 +40,6 @@ public class LoginUIController : MonoBehaviour
 
     public void SetCreateNicknameUI()
     {
-        Debug.Log("LoginUIController - SetCreateNicknameUI @@@@@@@@@@@@@@@@@");
         inpNickname.text = "";
         txtLogin.gameObject.SetActive(false);
         createNickname.SetActive(true);
@@ -86,6 +85,7 @@ public class LoginUIController : MonoBehaviour
 
     private void OnExit()
         => Application.Quit();
+
 
     public void LoadStartScene() // 스타트 버튼에 등록
     {

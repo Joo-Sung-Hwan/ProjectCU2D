@@ -10,6 +10,7 @@ using System.Threading;
 
 public class Item : MonoBehaviour  // 아이템에 연결할 클래스
 {
+    // 자석 이벤트가 호출되면 전역의 모든 아이템이 반응해야함
     private static event Action OnMagnet;
 
     private SpriteRenderer spriteRenderer;
@@ -52,7 +53,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
 
     private void Item_OnMagnet()
     {
-        DetectItem();
+        MoveToOutsideDir();
     }
 
 
@@ -72,24 +73,20 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 경험치 획득 코드 구현
+        // 최초 충돌 + 플레이어 자석범위와 충돌
         if (!isFirstTrigger && (Settings.itemDetectorLayer & (1 << collision.gameObject.layer)) != 0)
-        {
-            if (itemType == EItemType.Magnet)
-                OnMagnet.Invoke();
+            MoveToOutsideDir();
 
-            DetectItem();
-        }
-
+        // 두번째 충돌 + 플레이어와 충돌
         if (isFirstTrigger && (Settings.itemPickUpLayer & (1 << collision.gameObject.layer)) != 0)
-        {
-            player.Stat.CurrentExp += gainExp;
+        {            
+            ItemAcquire();
 
             ObjectPoolManager.Instance.Release(gameObject, "Item");
         }
     }
 
-    private void DetectItem()
+    private void MoveToOutsideDir()
     {
         isFirstTrigger = true;
         rigid.simulated = false;
@@ -115,9 +112,22 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
         {    
             // 0.1초마다 플레이어 위치 갱신하면서 빠르게 이동
             moveVec = (player.transform.position - transform.position).normalized;
-            rigid.velocity = moveVec * 13f;     
+            rigid.velocity = moveVec * 15f;     
         
             await UniTask.Delay(100, cancellationToken:disableCancellation.Token);
+        }
+    }
+
+    private void ItemAcquire()
+    {
+        switch (itemType)
+        {
+            case EItemType.Magnet:
+                OnMagnet.Invoke(); // 자석 아이템이면 모든 아이템들이 움직이기 시작
+                break;
+            case EItemType.Exp:
+                player.Stat.CurrentExp += gainExp;
+                break;
         }
     }
 }

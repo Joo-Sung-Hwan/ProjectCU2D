@@ -16,8 +16,6 @@ public class LevelUpController : MonoBehaviour
         {
             btnLevelUp.BtnLevelUpChoice.onClick.AddListener(() => gameObject.SetActive(false));
         }
-
-        Debug.Log(btnLevelUps.Count);
     }
 
     private void OnEnable()

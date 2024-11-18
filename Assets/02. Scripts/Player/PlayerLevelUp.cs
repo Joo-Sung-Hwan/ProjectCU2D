@@ -36,9 +36,10 @@ public class PlayerLevelUp : MonoBehaviour
         // 선택지 4개
         for (int i = 0; i < 4;)
         {
+            // 플레이어,무기 중에서 어떤걸 업그레이드할지 랜덤선택
             int chose = Random.Range(0, levelUpIndex);
 
-            if (chose == 0)
+            if (chose == 0) // 플레이어 선택지
             {
                 PlayerLevelUpData data = GetRandomData(playerDB.database);
 
@@ -49,10 +50,10 @@ public class PlayerLevelUp : MonoBehaviour
                 GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
                         data,
                         player.SpriteRenderer.sprite,
-                        i
+                        i // 선택지 위치
                     );
             }
-            else
+            else // 무기 선택지
             {
                 WeaponLevelUpData data = GetRandomData(weaponDB.database);
 
@@ -63,7 +64,7 @@ public class PlayerLevelUp : MonoBehaviour
                 GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
                         data,
                         player.WeaponList[chose-1].WeaponSprite,
-                        chose,
+                        chose, // 플레이어 무기 중 몇번째인지
                         i
                     );
             }
@@ -77,6 +78,9 @@ public class PlayerLevelUp : MonoBehaviour
 
     private bool IsValidChoice(int chose, ILevelUpData data)
     {
+        // 이미 같은 스탯타입이 선택되었는지 검사
+        // 동일한 스탯이 중복으로 뜨는 것을 방지
+
         if (validChoice.TryGetValue(chose, out var prevDatas))
         {
             if (prevDatas.Contains(data.GetStatType()))
@@ -92,6 +96,9 @@ public class PlayerLevelUp : MonoBehaviour
 
     private T GetRandomData<T>(List<T> database) where T : ILevelUpData
     {
+        // ILevelUpData를 상속받은 플레이어/무기 레벨업 데이터에서 랜덤으로 가져오기
+        // 각 레벨업 데이터는 정해진 확률이 있고 확률대로 나옴
+
         int totalRatio = database.Sum(x => x.GetRatio());
         int randomNumber = Random.Range(0, totalRatio);
         int ratioSum = 0;

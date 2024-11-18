@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSprite: {fileID: 21300000, guid: a459aabebfea2d14a8d02592648edb37, type: 3}
   itemGrade: 8
-  itemType: 0
+  itemType: 1

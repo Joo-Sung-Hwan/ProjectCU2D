@@ -46,8 +46,6 @@ public class FirebaseController : MonoBehaviour
                         {
                             if (task.IsCompleted)
                             {
-                                Debug.Log("GoogleLoginTest - Start @@@@@@@@@@@@@@@@@");
-
                                 HasNicknameByID(); // 로그인에 성공하면 계정 있는지 검사
                             }
 
@@ -68,8 +66,6 @@ public class FirebaseController : MonoBehaviour
         user = auth.CurrentUser;
         DatabaseReference nameDB = FirebaseDatabase.DefaultInstance.GetReference("Nickname");
 
-        Debug.Log($"nameDB is null? : {(nameDB == null)} ");
-
         nameDB.OrderByKey().EqualTo(user.UserId).GetValueAsync().ContinueWithOnMainThread(task => {
             if (task.IsFaulted)
             {
@@ -78,8 +74,6 @@ public class FirebaseController : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                Debug.Log("GoogleLoginTest - HasNicknameByID $#####################");
-
                 DataSnapshot snapshot = task.Result;
                 if (snapshot.Exists) // 데이터가 존재하는 경우 (Exists = 존재하다)
                 {
@@ -97,10 +91,7 @@ public class FirebaseController : MonoBehaviour
                 else
                 {
                     // 데이터가 존재하지 않는 경우
-                    Debug.Log("GoogleLoginTest - HasNicknameByID @@@@@@@@@@@@@@@@@");
-
                     loginUIController.SetCreateNicknameUI();
-
                 }
             }
             else
@@ -125,7 +116,6 @@ public class FirebaseController : MonoBehaviour
         {
             if (task.IsCompleted)
             {
-                Debug.Log("GoogleLoginTest - CreateNickname @@@@@@@@@@@@@@@@@");
                 PlayerPrefs.SetString("Nickname", nickname);
                 PlayerPrefs.Save();
             }
