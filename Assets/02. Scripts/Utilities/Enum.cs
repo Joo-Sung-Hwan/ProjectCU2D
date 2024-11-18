@@ -34,3 +34,33 @@ public enum EParticleType
     LightningHit,
     IceHit,
 }
+
+public enum EStatType
+{
+    Hp,
+    HpRegen,
+    BonusDamage,
+    MeleeDamage,
+    RangeDamage,
+    Speed,
+    Dodge,
+    PickUpRange,
+}
+
+public enum EWeaponStatType
+{
+    WeaponDamage,
+    WeaponCriticChance,
+    WeaponCriticDamage,
+    WeaponFireRate,
+    WeaponRange,
+    WeaponKnockback,
+}
+
+public enum ELevelUpGrade
+{
+    Normal = 60,
+    Rare = 30,
+    Unique = 7,
+    Legend = 3,
+}

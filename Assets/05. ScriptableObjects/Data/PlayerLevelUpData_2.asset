@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   description: Damage +15%
-  EStatType: 1
+  statType: 2
   value: 15
-  ratio: 4
+  ratio: 30

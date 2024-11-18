@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb16bb51eda4990499a020e4c8ca37f5, type: 3}
-  m_Name: PlayerLevelUpData_1
+  m_Name: PlayerLevelUpData_3
   m_EditorClassIdentifier: 
-  id: 0
-  description: HP +10
-  statType: 0
-  value: 10
-  ratio: 60
+  id: 2
+  description: Speed +3
+  statType: 5
+  value: 3
+  ratio: 7

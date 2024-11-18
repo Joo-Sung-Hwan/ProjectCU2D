@@ -84,7 +84,6 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
         if (isFirstTrigger && (Settings.itemPickUpLayer & (1 << collision.gameObject.layer)) != 0)
         {
             player.Stat.CurrentExp += gainExp;
-            Debug.Log($"{gainExp} , {player.Stat.CurrentExp}");
 
             ObjectPoolManager.Instance.Release(gameObject, "Item");
         }

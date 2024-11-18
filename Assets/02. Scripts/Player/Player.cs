@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private WeaponAttack weaponAttack;
     #endregion
 
+    public SpriteRenderer SpriteRenderer => spriteRenderer;
     public PlayerStat Stat => stat;
     public HealthBarUI HealthBar {  get; private set; }
     public List<Weapon> WeaponList { get; private set; } // 무기 리스트
@@ -63,14 +64,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //AddWeaponTest();
+        AddWeaponTest();
     }
 
     public void InitializePlayer(PlayerDetailsSO playerDetails)
     {
         this.playerDetails = playerDetails;
 
-        // spriteRenderer.sprite = playerDetails.playerSprite; // 아직 캐릭터 스프라이트가 준비안됨
+        spriteRenderer.sprite = playerDetails.playerSprite; // 아직 캐릭터 스프라이트가 준비안됨
         //animator.runtimeAnimatorController = playerDetails.runtimeAnimatorController;
         WeaponList = new List<Weapon>(Settings.maxWeaponCount);
         AddWeaponToPlayer(playerDetails.playerStartingWeapon);

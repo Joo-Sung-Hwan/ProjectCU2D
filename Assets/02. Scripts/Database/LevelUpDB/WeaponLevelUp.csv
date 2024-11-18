@@ -1,3 +1,5 @@
-id,description,EWeaponStatType,value,ratio
-0,FireRate +20%,FireRate,20,6
-1,Range +15%,Range,15,7
+id,description,statType,value,ratio
+0,FireRate +20%,WeaponFireRate,20,Normal
+1,Range +15%,WeaponRange,15,Rare
+2,Damage +5,WeaponDamage,5,Unique
+3,Critic Chance +10%,WeaponCriticChance,10,Legend

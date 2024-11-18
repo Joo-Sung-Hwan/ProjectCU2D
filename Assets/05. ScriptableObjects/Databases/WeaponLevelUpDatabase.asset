@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8d02a270a370e44b113881936f671d, type: 3}
+  m_Name: WeaponLevelUpDatabase
+  m_EditorClassIdentifier: 
+  database:
+  - {fileID: 11400000, guid: 83a13311ef67d4642a6bfe3030916c46, type: 2}
+  - {fileID: 11400000, guid: 671b45a58fdcc8e449cc007253ef7bf2, type: 2}
+  - {fileID: 11400000, guid: b4e3d755bcf6787489f02eef1596ed49, type: 2}
+  - {fileID: 11400000, guid: 80606719bfc272840a8f2895e09b2a30, type: 2}

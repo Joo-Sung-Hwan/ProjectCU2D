@@ -19,6 +19,7 @@ public class PlayerCtrl : MonoBehaviour, IMovement, IAttack
 
         joy = GameObject.FindWithTag("GameController").GetComponent<FixedJoystick>();
     }
+    
 
     private void Update()
     {

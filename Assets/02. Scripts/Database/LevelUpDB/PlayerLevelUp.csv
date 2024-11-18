@@ -1,3 +1,5 @@
-id,description,EStatType,value,ratio
-0,HP +10,MaxHp,10,3
-1,Damage +15%,Damage,15,4
+id,description,statType,value,ratio
+0,HP +10,Hp,10,Normal
+1,Damage +15%,BonusDamage,15,Rare
+2,Speed +3,Speed,3,Unique
+3,Dodge +2,Dodge,2,Legend

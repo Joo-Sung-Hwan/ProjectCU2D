@@ -2,11 +2,11 @@ using UnityEngine;
 
 
 
-public class PlayerLevelUpData : ScriptableObject, ILevelUpData
+public class WeaponLevelUpData : ScriptableObject, ILevelUpData
 {
     public int id;
     public string description;
-    public EStatType statType;  // enum
+    public EWeaponStatType statType;  // enum
     public int value;
     public ELevelUpGrade ratio;
 
@@ -14,7 +14,5 @@ public class PlayerLevelUpData : ScriptableObject, ILevelUpData
         => (int)ratio;
 
     public int GetStatType()
-        => (int)statType;
+    => (int)statType;
 }
-
-
