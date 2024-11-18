@@ -30,7 +30,7 @@ public class PlayerStat
                 Level++;
                 OnLevelChanged?.Invoke(this, Level);
                 currentExp -= Exp;
-                Exp = Exp + (int)(Exp * 0.1f);
+                Exp = Exp + (int)(Exp * Settings.expPerLevel);
             }
 
             OnExpChanged?.Invoke(this, (float)currentExp / (float)Exp);
@@ -82,7 +82,7 @@ public class PlayerStat
         // 회피 검사
         if (UtilitieHelper.isSuccess(Dodge))
         {
-            HitText hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(player.transform.position.x, player.transform.position.y + 1f), Quaternion.identity).GetComponent<HitText>();
+            HitTextUI hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(player.transform.position.x, player.transform.position.y + 1f), Quaternion.identity).GetComponent<HitTextUI>();
             hitText.InitializeHitText(0,false,true);
 
             return;
@@ -94,6 +94,7 @@ public class PlayerStat
 
     public async UniTaskVoid HPRegenRoutine()
     {
+        // 1초마다 체력재생
         while (true)
         {
             Hp = Mathf.Clamp(Hp+HpRegen, 0, MaxHp);

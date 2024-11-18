@@ -23,6 +23,7 @@ public class AttackTrap : MonsterAttackSO
         {
             for (int i = 0; i < count; i++)
             {
+                // 플레이어 위치 기준 x,y +-5 위치에 함정 생성
                 float dx = Random.Range(-5.0f, 5.0f);
                 float dy = Random.Range(-5.0f, 5.0f);
                 trapPos.x = monster.Player.position.x + dx;
@@ -37,9 +38,9 @@ public class AttackTrap : MonsterAttackSO
 
     private void CreateTrap()
     {
-        // 발사 명령이 떨어지면 풀에서 투사체 활성화
+        // 랜덤으로 지정한 위치에 트랩 활성화
         trap = ObjectPoolManager.Instance.Get("MonsterTrap", trapPos, Quaternion.identity);
-        // 속도, 방향, 데미지 넣어서 초기화
+        // 데미지 넣어서 초기화
         trap.GetComponent<MonsterTrap>().InitializeMonsterTrap(monster.Stat.Atk);
     }
 }

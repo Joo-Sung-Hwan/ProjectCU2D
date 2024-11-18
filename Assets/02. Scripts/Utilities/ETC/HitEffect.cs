@@ -16,6 +16,8 @@ public class HitEffect : MonoBehaviour
 
     private async UniTask ReleaseEffect()
     {
+        // 피격 이펙트 : 1초뒤에 비활성화
+
         await UniTask.Delay(1000);
 
 

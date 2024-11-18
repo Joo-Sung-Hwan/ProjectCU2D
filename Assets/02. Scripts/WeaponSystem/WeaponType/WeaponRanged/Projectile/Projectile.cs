@@ -10,7 +10,6 @@ using static UnityEngine.ParticleSystem;
 public class Projectile : MonoBehaviour
 {
     private ProjectileEffectSO projectileEffect;
-    //private List<BonusEffectSO> bonusEffects = new List<BonusEffectSO>();
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;

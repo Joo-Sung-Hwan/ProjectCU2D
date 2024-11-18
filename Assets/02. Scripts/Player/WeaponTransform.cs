@@ -60,26 +60,7 @@ public class WeaponTransform : MonoBehaviour
         }
     }
 
-    //public void GetWeaponTransform(Weapon weapon, out Vector2 pos, out Quaternion rot)
-    //{
-    //    pos = Vector2.zero;
-    //    rot = Quaternion.identity;
-
-    //    if (weaponTransform.TryGetValue(weapon, out SpriteRenderer sprite))
-    //    {
-    //        if (sprite.flipX) {
-    //            pos = sprite.transform.localPosition;
-    //            pos.x -= 0.8f;
-    //        } else
-    //        {
-    //            pos = sprite.transform.localPosition;
-    //            pos.x += 0.8f;
-    //        }
-
-    //        rot = sprite.transform.rotation;
-    //    }
-    //}
-    
+    // 원거리 무기 발사시 투사체의 발사위치 (고정적으로 정해져 있음)
     public Transform GetWeaponTransform(Weapon weapon)
     {
         if (weaponTransform.TryGetValue(weapon, out SpriteRenderer sprite))

@@ -55,7 +55,7 @@ public class MonsterSpawn : MonoBehaviour
         try
         {
             // 첫 1초 대기
-            await UniTask.Delay(TimeSpan.FromSeconds(1f));
+            await UniTask.Delay(1000);
 
             float elapsedTime = 1f;
 

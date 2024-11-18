@@ -10,8 +10,9 @@ public class MovementBase : MonsterMovementSO
     {
         base.Move(); // 플레이어와의 거리 구하기
 
-        if ((int)dist == (int)monster.Stat.ChaseDistance)
+        if ((int)dist == (int)monster.Stat.ChaseDistance) 
         {
+            // 추적 거리에 도달시 멈추기
             rigid.velocity = Vector2.zero;
             return;
         }

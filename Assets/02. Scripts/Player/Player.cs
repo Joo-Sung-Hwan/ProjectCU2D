@@ -52,7 +52,6 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         // 활성화 되면서 토큰 새롭게 초기화
-        DisableCancellation?.Dispose();
         DisableCancellation = new CancellationTokenSource();
     }
     private void OnDisable()
@@ -71,7 +70,7 @@ public class Player : MonoBehaviour
     {
         this.playerDetails = playerDetails;
 
-        spriteRenderer.sprite = playerDetails.playerSprite; // 아직 캐릭터 스프라이트가 준비안됨
+        spriteRenderer.sprite = playerDetails.playerSprite; 
         //animator.runtimeAnimatorController = playerDetails.runtimeAnimatorController;
         WeaponList = new List<Weapon>(Settings.maxWeaponCount);
         AddWeaponToPlayer(playerDetails.playerStartingWeapon);

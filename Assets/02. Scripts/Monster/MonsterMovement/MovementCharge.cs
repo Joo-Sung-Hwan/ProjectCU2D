@@ -35,9 +35,9 @@ public class MovementCharge : MonsterMovementSO
     private async UniTask Charge()
     {
         isCharge = true;
-        rigid.mass = 100;
+        rigid.mass = 100; // 돌진 준비중일때 넉백 X
 
-        monster.Sprite.color = Settings.legend;
+        monster.Sprite.color = Settings.legend; // 돌진 준비중일때 색 변화
 
         await UniTask.Delay(1000);
 

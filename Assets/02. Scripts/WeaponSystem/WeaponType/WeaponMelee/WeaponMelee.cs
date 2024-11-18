@@ -35,6 +35,7 @@ public class WeaponMelee : WeaponTypeDetailsSO
             }
         }
 
+        // 근접무기 : 몬스터 위치를 향해 회전 후 찌르기 모션(이동)
         float angle = UtilitieHelper.GetAngleFromVector(direction);
         weapon.Player.WeaponTransform.RotateWeapon(weapon, angle);
         weapon.Player.WeaponTransform.MoveWeapon(weapon, direction);

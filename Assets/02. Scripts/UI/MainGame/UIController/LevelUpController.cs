@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class LevelUpController : MonoBehaviour
 {
-    private List<BtnLevelUp> btnLevelUps;
+    private List<BtnLevelUpUI> btnLevelUps;
 
 
     private void Awake()
     {
-        btnLevelUps = GetComponentsInChildren<BtnLevelUp>().ToList();
+        btnLevelUps = GetComponentsInChildren<BtnLevelUpUI>().ToList();
 
+
+        // 임시. 추후에 레벨업 버튼 클릭시 레벨업 적용 기능 구독해야함
         foreach (var btnLevelUp in btnLevelUps)
         {
-            btnLevelUp.BtnLevelUpChoice.onClick.AddListener(() => gameObject.SetActive(false));
+            btnLevelUp.BtnLevelUp.onClick.AddListener(() => gameObject.SetActive(false));
         }
     }
 

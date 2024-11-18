@@ -12,8 +12,9 @@ public static class Settings
 
 
     #region PLAYER SETTING
-    public static int maxWeaponCount = 6; // 무기 최대 보유수 6
+    public static int maxWeaponCount = 4; // 무기 최대 보유수 4
     public static int startExp = 25; // 1레벨 최대 경험치
+    public static float expPerLevel = 0.1f; // 레벨당 증가 경험치
     #endregion
 
 

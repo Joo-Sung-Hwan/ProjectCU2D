@@ -54,14 +54,6 @@ public class Monster : MonoBehaviour
 
     private void OnDisable()
     {
-        //// 비활성화 되면서 취소명령
-        //DisableCancellation.Cancel();
-
-        //// 풀로 돌아갈 때 Clone된 SO 인스턴스 정리       
-        //Destroy(movement); // Clone된 SO 파괴
-        //Destroy(monsterAttack); // Clone된 SO 파괴
-        //movement = null;
-        //monsterAttack = null;
     }
 
     private void FixedUpdate()
@@ -73,7 +65,7 @@ public class Monster : MonoBehaviour
     {
         Player = GameManager.Instance.Player.transform;
         this.enemyDetails = enemyDetails;
-        stat.InitializeMonsterStat(enemyDetails, waveCount);
+        stat.InitializeMonsterStat(enemyDetails, waveCount); // 현재 웨이브에 맞추어 스탯초기화
 
         sprite.sprite = enemyDetails.sprite;
         rigid.freezeRotation = true;
@@ -85,7 +77,7 @@ public class Monster : MonoBehaviour
 
         monsterAttack = enemyDetails.attackType?.Clone() as MonsterAttackSO; // 공격타입은 없을수도 있음
         monsterAttack?.InitializeMonsterAttack(this);
-        monsterAttack?.Attack();
+        monsterAttack?.Attack(); // 몬스터 활성화되면서 공격시작
 
         DropItem = enemyDetails.itemDetails;
 
@@ -122,6 +114,7 @@ public class Monster : MonoBehaviour
 
     private int GetDamage(Weapon weapon, int bonusDamage)
     {
+        // 플레이어의 근/원거리 데미지와 추가데미지% 계산
         int damage = UtilitieHelper.IncreaseByPercent(weapon.WeaponDamage + bonusDamage, weapon.Player.Stat.BonusDamage);
 
         // 치명타 성공
@@ -129,12 +122,12 @@ public class Monster : MonoBehaviour
         {
             damage = UtilitieHelper.IncreaseByPercent(damage, weapon.WeaponCriticDamage);
 
-            HitText hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitText>();
+            HitTextUI hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitTextUI>();
             hitText.InitializeHitText(damage, true);
         }
         else
         {
-            HitText hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitText>();
+            HitTextUI hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitTextUI>();
             hitText.InitializeHitText(damage);
         }
 
@@ -145,6 +138,7 @@ public class Monster : MonoBehaviour
     {
         try
         {
+            // 피격시 0.1초 동안 흰색 머테리얼로 변경
             sprite.material = enemyDetails.enemyHitMaterial;
 
             await UniTask.Delay(100);
