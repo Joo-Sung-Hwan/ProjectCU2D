@@ -17,8 +17,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        // OnSettingNickName(PlayerPrefs.GetString("Nickname"));
-        OnSettingNickName("123");
+        OnSettingNickName(PlayerPrefs.GetString("Nickname"));
+        // OnSettingNickName("123");
         Debug.Log(PhotonNetwork.NickName); // 닉네임 테스트
     }
 
@@ -109,7 +109,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("1명이 부족합니다.");
-            LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
         }
     }
 
