@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Player_", menuName = "Scriptable Objects/Player/Player")]
-public class PlayerDetailsSO : ScriptableObject
+public class PlayerDetailsSO : IdentifiedObject
 {
     public string characterName; // 캐릭터 이름
     public Player player; // 플레이어 프리팹

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "ItemDetails_", menuName = "Scriptable Objects/Item/Item Details")]
-public class ItemDetailsSO : ScriptableObject
+public class ItemDetailsSO : IdentifiedObject
 {
     public Sprite ItemSprite; // 아이템 스프라이트
     public EGrade itemGrade; // 등급

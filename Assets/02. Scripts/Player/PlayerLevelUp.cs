@@ -7,6 +7,7 @@ public class PlayerLevelUp : MonoBehaviour
 {
     [SerializeField] private PlayerLevelUpDatabase playerDB;
     [SerializeField] private WeaponLevelUpDatabase weaponDB;
+    [SerializeField] private Database weaponDetailsDB;
 
     private Player player;
     private PlayerStat playerStat;
@@ -24,6 +25,22 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void PlayerStat_OnLevelChanged(PlayerStat stat, int level)
     {
+        int options = 4; // 선택지 4개
+
+        // 0. 플레이어 무기가 4개 미만이라면 첫 선택지는 무조건 랜덤무기
+        if (player.WeaponList.Count < 4)
+        {
+            options--; // 무기가 나오므로 선택지 하나 감소
+
+            WeaponDetailsSO weaponData = GetRandomWeapon();
+
+            GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
+                weaponData,
+                weaponData.weaponSprite,
+                options // 선택지 위치
+            );
+        }
+
         /// 1. 플레이어,무기 포함 어떤걸 레벨업할지 선택 (int 난수)
         /// 2. if문으로 검사 후 해당 타입에 맞는 랜덤so 가져오기
         /// 3. 딕셔너리에 1번에서 고른 난수와 해당 so의 type 검사하고 없으면 삽입
@@ -33,8 +50,8 @@ public class PlayerLevelUp : MonoBehaviour
 
         int levelUpIndex = player.WeaponList.Count + 1;
 
-        // 선택지 4개
-        for (int i = 0; i < 4;)
+        // 선택지만큼 반복
+        for (int i = 0; i < options;)
         {
             // 플레이어,무기 중에서 어떤걸 업그레이드할지 랜덤선택
             int chose = Random.Range(0, levelUpIndex);
@@ -72,6 +89,22 @@ public class PlayerLevelUp : MonoBehaviour
 
         GameManager.Instance.UIController.LevelUpController.gameObject.SetActive( true);
         validChoice.Clear();
+    }
+
+    private WeaponDetailsSO GetRandomWeapon()
+    {
+        // 이미 보유한 무기의 ID 리스트 받아오기
+        List<int> hasWeapon = player.WeaponList.Select((weapon) => weapon.WeaponDetails.ID).ToList();
+        int weaponID;
+
+        do
+        {
+            weaponID = Random.Range(0, weaponDetailsDB.Count);
+
+        } while (hasWeapon.Contains(weaponID));
+
+
+        return weaponDetailsDB.GetDataByID<WeaponDetailsSO>(weaponID);
     }
 
     private bool IsValidChoice(int chose, ILevelUpData data)

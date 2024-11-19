@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponDetails_", menuName = "Scriptable Objects/Weapon/Weapon")]
-public class WeaponDetailsSO : ScriptableObject
+public class WeaponDetailsSO : IdentifiedObject
 {
     [Header("weapon base details")]
     public string weaponName;
@@ -11,6 +11,7 @@ public class WeaponDetailsSO : ScriptableObject
     public WeaponTypeDetailsSO upgradeType; // 무기의 업그레이드
     public WeaponDetectorSO detectorType; // 무기 감지타입 (먼 적부터, 체력 낮은 적부터 등)
     public Sprite weaponSprite;
+    public string description;
 
     [Header("weapon base stats")]
     public int weaponBaseDamage = 20;   // 기본데미지

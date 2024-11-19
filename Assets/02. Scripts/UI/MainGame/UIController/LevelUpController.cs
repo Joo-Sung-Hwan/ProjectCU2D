@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,5 +37,9 @@ public class LevelUpController : MonoBehaviour
     public void InitializeLevelUpUI(WeaponLevelUpData data, Sprite sprite, int weaponIndex, int index)
     {
         btnLevelUps[index].InitializeBtnLevelUp(sprite, data.description);
+    }
+    public void InitializeLevelUpUI(WeaponDetailsSO weaponDetailsSO, Sprite sprite, int index)
+    {
+        btnLevelUps[index].InitializeBtnLevelUp(sprite, weaponDetailsSO.description);
     }
 }

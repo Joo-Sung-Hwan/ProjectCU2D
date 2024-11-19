@@ -963,6 +963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDB: {fileID: 11400000, guid: 3194eb29bd2ed274a84ca1bc6b2b715d, type: 2}
   weaponDB: {fileID: 11400000, guid: 84229d8574dd2cf40b5c411762ff99a6, type: 2}
+  weaponDetailsDB: {fileID: 11400000, guid: 7ae96582ed1ae634888a87362a8c710d, type: 2}
 --- !u!1 &4979336971182848679
 GameObject:
   m_ObjectHideFlags: 0
