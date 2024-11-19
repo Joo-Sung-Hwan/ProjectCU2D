@@ -28,8 +28,10 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         public Queue<GameObject> inactiveObjects = new Queue<GameObject>();
     }
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         objPoolTransform = this.gameObject.transform;
         for (int i = 0; i < poolArray.Count; ++i)        
             CreatePool(poolArray[i].prefab, poolArray[i].initialSize, poolArray[i].name);        
