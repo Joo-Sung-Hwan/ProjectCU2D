@@ -22,9 +22,11 @@ MonoBehaviour:
   characterWeakness: 
   Hp: 100
   HpRegen: 2
+  Defense: 100
   BonusDamage: 10
   MeleeDamage: 5
   RangeDamage: 10
   Speed: 8
   Dodge: 0
   PickUpRange: 0
+  ExpBonus: 50

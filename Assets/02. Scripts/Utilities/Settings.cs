@@ -6,7 +6,8 @@ public static class Settings
     #region GAME SETTING
     public static string regex = @"^(?=.*[A-Za-z])[A-Za-z0-9]{2,12}$"; // 닉네임 규칙
     public static int spawnInterval = 10; // 스폰간격 1초
-    public static int waveTimer = 60; // 웨이브 지속시간 60초
+    public static int waveTimer = 20; // 웨이브 지속시간 20초
+    public static int extraTimePerWave = 5; // 웨이브당 지속시간 5초씩 증가
     public static int stageBoundary = 15; // 스테이지 +- 크기 (정사각형이므로 -15 ~ 15)
     #endregion
 
@@ -15,6 +16,7 @@ public static class Settings
     public static int maxWeaponCount = 4; // 무기 최대 보유수 4
     public static int startExp = 25; // 1레벨 최대 경험치
     public static float expPerLevel = 0.1f; // 레벨당 증가 경험치
+    public static int combatScalingConstant = 100;
     #endregion
 
 

@@ -18,11 +18,13 @@ public class PlayerDetailsSO : ScriptableObject
     public float Hp;
     public float HpRegen;
     //public float HpSteal;
+    public int Defense;
     public int BonusDamage; 
     public int MeleeDamage;
     public int RangeDamage;
     public float Speed;
     public int Dodge;
     public float PickUpRange;
+    public int ExpBonus;
 
 }

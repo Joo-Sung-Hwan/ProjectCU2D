@@ -14,6 +14,11 @@ public class MonsterSpawn : MonoBehaviour
     private WaveSpawnParameter currentWaveSpawnParameter;
     private Vector2 spawnPosition;
     private int waveCount;
+    private int waveTimer;
+
+    public int WaveCount => waveCount;
+    public int WaveTimer => waveTimer;
+
 
 
     private void Awake()
@@ -24,11 +29,13 @@ public class MonsterSpawn : MonoBehaviour
     {
         monsterSpawnEvent.OnMonsterSpawn += MonsterSpawnEvent_OnMonsterSpawn;
         monsterSpawnEvent.OnWaveStart += MonsterSpawnEvent_OnWaveStart;
-    }                                       
+        monsterSpawnEvent.OnWaveFinish += MonsterSpawnEvent_OnWaveFinish;
+    }
     private void OnDisable()                
     {                                       
         monsterSpawnEvent.OnMonsterSpawn -= MonsterSpawnEvent_OnMonsterSpawn;
         monsterSpawnEvent.OnWaveStart -= MonsterSpawnEvent_OnWaveStart;
+        monsterSpawnEvent.OnWaveFinish -= MonsterSpawnEvent_OnWaveFinish;
     }
 
 
@@ -45,11 +52,22 @@ public class MonsterSpawn : MonoBehaviour
         waveCount = waveCnt;
         currentWaveSpawnParameter = waveSpawnParameterList[waveCount];
 
+        // 웨이브 지속시간 : 20+5(wave) ~ 60 사이
+        waveTimer = Mathf.Clamp(waveTimer, Settings.waveTimer + (Settings.extraTimePerWave * waveCount), 60);
+        Debug.Log(WaveTimer);
+
         if (currentWaveSpawnParameter.isBossWave == true) return; // 보스생성 추후에 구현
 
         WaveMonsterSpawn().Forget(); // UniTask 호출
     }
 
+    private void MonsterSpawnEvent_OnWaveFinish(MonsterSpawnEvent @event, int waveCnt)
+    {
+        Debug.Log($"Wave Finish!!! - {waveCount}");
+    }
+
+
+    #region SPAWN FUNCTION
     private async UniTaskVoid WaveMonsterSpawn()
     {
         try
@@ -59,8 +77,8 @@ public class MonsterSpawn : MonoBehaviour
 
             float elapsedTime = 1f;
 
-            // 60초 동안 반복
-            while (elapsedTime <= Settings.waveTimer)
+            // waveTimer초 동안 반복
+            while (elapsedTime < waveTimer)
             {
                 RandomSpawn();
 
@@ -69,6 +87,8 @@ public class MonsterSpawn : MonoBehaviour
 
                 elapsedTime += Settings.spawnInterval; // 스폰 간격만큼 시간 더해주기
             }
+
+            monsterSpawnEvent.CallWaveFinish(waveCount); // 웨이브 종료
         }
         catch (OperationCanceledException)
         {
@@ -125,4 +145,5 @@ public class MonsterSpawn : MonoBehaviour
         spawnPosition.y = UnityEngine.Random.Range(-Settings.stageBoundary, Settings.stageBoundary);
         return spawnPosition;
     }
+    #endregion
 }

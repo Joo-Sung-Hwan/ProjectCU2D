@@ -46,7 +46,6 @@ public class PlayerLevelUp : MonoBehaviour
                 if (IsValidChoice(chose, data) == false)
                     continue;
 
-                Debug.Log($"{chose}. {data.description} : +{data.value}");
                 GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
                         data,
                         player.SpriteRenderer.sprite,
@@ -60,7 +59,6 @@ public class PlayerLevelUp : MonoBehaviour
                 if (IsValidChoice(chose, data) == false)
                     continue;
 
-                Debug.Log($"{chose}. {data.description} : +{data.value}");
                 GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
                         data,
                         player.WeaponList[chose-1].WeaponSprite,

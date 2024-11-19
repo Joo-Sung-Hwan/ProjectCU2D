@@ -57,6 +57,16 @@ public static class UtilitieHelper
         return value - increase;
     }
 
+    // 방어율 계산하기  ===========================================================
+    public static int CombatScaling(int value)
+    {
+        // 방어력 100 -> 50% (이후 효율이 감소하는 커브)
+        float f_value = value;
+        int scale = (int)(f_value / (f_value + Settings.combatScalingConstant) * 100f);
+
+        return scale;
+    }
+
     // 등급별 색상 리턴하기 ===========================================================
     public static Color GetGradeColor(EGrade type)
     {

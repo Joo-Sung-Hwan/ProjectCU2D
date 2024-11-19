@@ -43,6 +43,7 @@ public class PlayerStat
     public float MaxHp { get; private set; }
     public float Hp { get; private set; }
     public float HpRegen { get; private set; }
+    public int Defense {  get; private set; }
     //public float HpSteal { get; private set; }
     public int BonusDamage { get; private set; }
     public int MeleeDamage { get; private set; }
@@ -50,7 +51,7 @@ public class PlayerStat
     public float Speed { get; private set; }
     public int Dodge { get; private set; }
     public float PickUpRange { get; private set; }
-    // ... 그 외 기타 스탯들
+    public int ExpBonus {  get; private set; }
     #endregion
 
 
@@ -66,12 +67,14 @@ public class PlayerStat
         Hp = MaxHp;
         HpRegen = playerDetailsSO.HpRegen;
         //HpSteal = playerDetailsSO.HpSteal;
+        Defense = playerDetailsSO.Defense;
         BonusDamage = playerDetailsSO.BonusDamage;
         MeleeDamage = playerDetailsSO.MeleeDamage;
         RangeDamage = playerDetailsSO.RangeDamage;
         Speed = playerDetailsSO.Speed;
         Dodge = playerDetailsSO.Dodge;
         PickUpRange = playerDetailsSO.PickUpRange;
+        ExpBonus = playerDetailsSO.ExpBonus;
 
         HPRegenRoutine().Forget();
     }
@@ -87,6 +90,9 @@ public class PlayerStat
 
             return;
         }
+
+        int def = UtilitieHelper.CombatScaling(Defense);
+        damage = UtilitieHelper.DecreaseByPercent(damage, def);
 
         Hp -= damage;
         player.HealthBar.SetHealthBar(Hp / MaxHp);

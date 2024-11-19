@@ -39,12 +39,14 @@ public enum EStatType
 {
     Hp,
     HpRegen,
+    Defense,
     BonusDamage,
     MeleeDamage,
     RangeDamage,
     Speed,
     Dodge,
     PickUpRange,
+    ExpBonus,
 }
 
 public enum EWeaponStatType

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stage : MonoBehaviour
 {
     public MonsterSpawnEvent MonsterSpawnEvent { get; private set; }
+    public MonsterSpawn MonsterSpawner { get; private set; }
     public StageDetailsSO StageDetails { get; private set; } // 방의 정보가 담긴 SO
     public List<WaveSpawnParameter> WaveSpawnParameter { get; private set; } // 웨이브별 스폰정보
 
@@ -12,6 +13,7 @@ public class Stage : MonoBehaviour
     private void Awake()
     {
         MonsterSpawnEvent = GetComponent<MonsterSpawnEvent>();
+        MonsterSpawner = GetComponent<MonsterSpawn>();
     }
 
     public void InitializedStage(StageDetailsSO stageDetails)

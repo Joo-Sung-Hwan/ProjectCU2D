@@ -126,7 +126,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
                 OnMagnet.Invoke(); // 자석 아이템이면 모든 아이템들이 움직이기 시작
                 break;
             case EItemType.Exp:
-                player.Stat.CurrentExp += gainExp;
+                player.Stat.CurrentExp += (gainExp + player.Stat.ExpBonus);
                 break;
         }
     }
