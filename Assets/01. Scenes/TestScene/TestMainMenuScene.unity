@@ -606,9 +606,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 597918097}
-        m_TargetAssemblyTypeName: MainMenuTest, Assembly-CSharp
-        m_MethodName: BtnTest
+      - m_Target: {fileID: 1463879563}
+        m_TargetAssemblyTypeName: PhotonManager, Assembly-CSharp
+        m_MethodName: Connect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
