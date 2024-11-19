@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement; // 실시간 처리를 위한 라이브러리
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     string gameVersion = "0.0.1";
-    int maxPlayer = 2;
-
+    
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
