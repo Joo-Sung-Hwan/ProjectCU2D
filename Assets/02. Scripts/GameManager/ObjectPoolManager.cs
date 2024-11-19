@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Photon.Pun;
+using Photon.Realtime;
+
 
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
@@ -40,16 +43,17 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         ObjectPool objectPool = new ObjectPool();
         for (int i = 0; i < size; ++i)
         {
-            GameObject obj = CreateNewObject(prefab, poolContainer.transform);
+            GameObject obj = CreateNewObject(prefab, poolContainer.transform.position, poolContainer.transform.rotation, name);
+            obj.transform.SetParent(poolContainer.transform);
             // 처음 생성된 오브젝트들은 대기큐에 들어가서 대기
             objectPool.inactiveObjects.Enqueue(obj);
         }
         poolDic.Add(name, objectPool);
     }
 
-    private GameObject CreateNewObject(GameObject prefab, Transform parent)
+    private GameObject CreateNewObject(GameObject prefab, Vector3 pos, Quaternion rot, string name)
     {
-        GameObject obj = Instantiate(prefab, parent);
+        GameObject obj = PhotonNetwork.Instantiate(name, pos, rot);
         obj.SetActive(false);
         return obj;
     }
@@ -64,7 +68,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             {
                 // 풀의 모든 오브젝트가 활성화되었을 때 풀 확장
                 GameObject prefab = poolArray.Find(p => p.name == name).prefab;
-                obj = CreateNewObject(prefab, objPoolTransform.Find(name));
+                obj = CreateNewObject(prefab, position, rotation, name);
             }
             else            
                 // 대기중인 큐에서 오브젝트 하나 가져오기
