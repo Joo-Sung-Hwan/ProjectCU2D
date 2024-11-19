@@ -9,7 +9,6 @@ using DG.Tweening;
 using Cinemachine;
 using Firebase.Database;
 using UnityEngine.Rendering.Universal;
-using static UnityEngine.InputManagerEntry;
 
 public class GameManager : Singleton<GameManager>
 {

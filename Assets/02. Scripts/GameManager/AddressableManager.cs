@@ -9,7 +9,6 @@ using System.Threading;
 
 using Object = UnityEngine.Object;
 using System.CodeDom;
-using UnityEditor.VersionControl;
 public class AddressableManager : Singleton<AddressableManager>
 {    
     // 메모리에 올려둔 리소스가 저장된 딕셔너리
