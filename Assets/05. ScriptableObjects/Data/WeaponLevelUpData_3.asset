@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 2
   description: Damage +5
   statType: 0
-  value: 5
+  value: 50
   ratio: 7

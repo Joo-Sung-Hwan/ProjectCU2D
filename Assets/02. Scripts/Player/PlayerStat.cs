@@ -109,4 +109,52 @@ public class PlayerStat
             await UniTask.Delay(1000, cancellationToken: player.DisableCancellation.Token);
         }
     }
+
+    public void PlayerStatChanged(PlayerLevelUpData data)
+    {
+        Debug.Log($"{data.statType} : + {data.value}");
+
+        switch (data.statType)
+        {
+            case EStatType.Hp:
+                // HP 包访 贸府
+                MaxHp += data.value;
+                break;
+            case EStatType.HpRegen:
+                // HP 犁积 包访 贸府
+                HpRegen += data.value;
+                break;
+            case EStatType.Defense:
+                // 规绢仿 包访 贸府
+                Defense += data.value;
+                break;
+            case EStatType.BonusDamage:
+                // 眠啊 单固瘤 包访 贸府
+                BonusDamage += data.value;
+                break;
+            case EStatType.MeleeDamage:
+                // 辟立 单固瘤 包访 贸府
+                MeleeDamage += data.value;
+                break;
+            case EStatType.RangeDamage:
+                // 盔芭府 单固瘤 包访 贸府
+                RangeDamage += data.value;
+                break;
+            case EStatType.Speed:
+                // 捞悼加档 包访 贸府
+                Speed = UtilitieHelper.IncreaseByPercent(Speed, data.value);
+                break;
+            case EStatType.PickUpRange:
+                // 裙垫 裹困 包访 贸府
+                PickUpRange += data.value;
+                player.CircleRange.radius = UtilitieHelper.IncreaseByPercent(player.CircleRange.radius, data.value);
+                break;
+            case EStatType.ExpBonus:
+                // 版氰摹 焊呈胶 包访 贸府
+                ExpBonus += data.value;
+                break;
+            default:
+                break;
+        }
+    } 
 }

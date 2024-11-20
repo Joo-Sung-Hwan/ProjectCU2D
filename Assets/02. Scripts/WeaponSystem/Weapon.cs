@@ -66,12 +66,52 @@ public class Weapon : MonoBehaviour
         WeaponFireRateTimer = weaponDetails.weaponFireRate; // 공격속도 초기화
     }
 
-    /// 무기 레벨업 함수 등 구현 필요
 
-    #region TEST
+    /// 무기 레벨업 함수 구현
+    #region WEAPON LEVEL UP
     public void UpgrageWeapon()
     {
+        // 무기의 레벨 상승
+        WeaponLevel++;
+
         WeaponType = upgradeType;
     }
+
+    public void WeaponStatChanged(WeaponLevelUpData data)
+    {
+        // 무기의 레벨 상승
+        WeaponLevel++;
+
+        switch (data.statType)
+        {
+            case EWeaponStatType.WeaponDamage:
+                // 무기 기본 데미지 처리
+                WeaponDamage = UtilitieHelper.IncreaseByPercent(WeaponDamage, data.value);
+                break;
+            case EWeaponStatType.WeaponCriticChance:
+                // 치명타 확률 처리
+                WeaponCriticChance += data.value;
+                break;
+            case EWeaponStatType.WeaponCriticDamage:
+                // 치명타 데미지 처리
+                WeaponCriticDamage += data.value;
+                break;
+            case EWeaponStatType.WeaponFireRate:
+                // 공격 속도 처리
+                WeaponFireRate = UtilitieHelper.DecreaseByPercent(WeaponFireRate, data.value);
+                break;
+            case EWeaponStatType.WeaponRange:
+                // 무기 사정거리 처리
+                WeaponRange = UtilitieHelper.IncreaseByPercent(WeaponRange, data.value);
+                break;
+            case EWeaponStatType.WeaponKnockback:
+                // 넉백 효과 처리
+                WeaponKnockback += data.value;
+                break;
+            default:
+                // 기본 처리
+                break;
+        }
+    } 
     #endregion
 }

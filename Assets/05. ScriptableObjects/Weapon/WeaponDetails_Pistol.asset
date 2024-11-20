@@ -19,6 +19,7 @@ MonoBehaviour:
   detectorType: {fileID: 11400000, guid: 2f1b79271339434498c11bcb196d4c2b, type: 2}
   weaponSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   description: "\uAE30\uBCF8\uC801\uC778 \uAD8C\uCD1D\uC785\uB2C8\uB2E4."
+  upgradeDesc: "\uAD11\uC5ED\uC73C\uB85C \uC801\uC744 \uAE30\uC808\uC2DC\uD0B5\uB2C8\uB2E4."
   weaponBaseDamage: 20
   weaponCriticChance: 10
   weaponCriticDamage: 100

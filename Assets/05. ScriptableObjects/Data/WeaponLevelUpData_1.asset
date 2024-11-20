@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 0
   description: FireRate +20%
   statType: 3
-  value: 20
+  value: 50
   ratio: 60

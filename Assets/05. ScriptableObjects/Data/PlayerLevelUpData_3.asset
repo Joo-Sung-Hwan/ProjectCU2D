@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   description: Speed +3
-  statType: 5
+  statType: 6
   value: 3
   ratio: 7

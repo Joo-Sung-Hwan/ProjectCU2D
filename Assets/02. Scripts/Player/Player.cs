@@ -12,17 +12,16 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Animator animator;
-    private CircleCollider2D circleRange; // 자석범위
     private PlayerStat stat; // 캐릭터 스탯
     private PlayerCtrl ctrl; // 캐릭터 컨트롤러
 
     #region PLAYER EVENT
     public WeaponAttackEvent WeaponAttackEvent { get; private set; }
-    private WeaponAttack weaponAttack;
     #endregion
 
     public SpriteRenderer SpriteRenderer => spriteRenderer;
     public PlayerStat Stat => stat;
+    public CircleCollider2D CircleRange { get; private set; } // 자석범위
     public HealthBarUI HealthBar {  get; private set; }
     public List<Weapon> WeaponList { get; private set; } // 무기 리스트
     public WeaponTransform WeaponTransform {  get; private set; } // 무기 장착 트랜스폼
@@ -39,14 +38,13 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        circleRange = GetComponentInChildren<CircleCollider2D>();
+        CircleRange = GetComponentInChildren<CircleCollider2D>();
         ctrl = GetComponent<PlayerCtrl>();
         WeaponTransform = GetComponentInChildren<WeaponTransform>();
         HealthBar = GetComponent<HealthBarUI>();
         stat = new PlayerStat();
 
         WeaponAttackEvent = GetComponent<WeaponAttackEvent>();
-        weaponAttack = GetComponent<WeaponAttack>();       
     }
 
     private void OnEnable()

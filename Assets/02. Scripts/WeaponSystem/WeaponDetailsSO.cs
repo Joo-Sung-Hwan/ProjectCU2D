@@ -11,7 +11,8 @@ public class WeaponDetailsSO : IdentifiedObject
     public WeaponTypeDetailsSO upgradeType; // 무기의 업그레이드
     public WeaponDetectorSO detectorType; // 무기 감지타입 (먼 적부터, 체력 낮은 적부터 등)
     public Sprite weaponSprite;
-    public string description;
+    public string description; // 무기 기본설명
+    public string upgradeDesc; // 무기 업그레이드 설명
 
     [Header("weapon base stats")]
     public int weaponBaseDamage = 20;   // 기본데미지

@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 3
   description: Critic Chance +10%
   statType: 1
-  value: 10
+  value: 50
   ratio: 3

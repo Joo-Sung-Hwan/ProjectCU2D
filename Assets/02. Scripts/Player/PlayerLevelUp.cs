@@ -25,6 +25,8 @@ public class PlayerLevelUp : MonoBehaviour
 
     private void PlayerStat_OnLevelChanged(PlayerStat stat, int level)
     {
+        GameManager.Instance.UIController.LevelUpController.gameObject.SetActive(true);
+
         int options = 4; // 선택지 4개
 
         // 0. 플레이어 무기가 4개 미만이라면 첫 선택지는 무조건 랜덤무기
@@ -36,7 +38,6 @@ public class PlayerLevelUp : MonoBehaviour
 
             GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
                 weaponData,
-                weaponData.weaponSprite,
                 options // 선택지 위치
             );
         }
@@ -63,31 +64,53 @@ public class PlayerLevelUp : MonoBehaviour
                 if (IsValidChoice(chose, data) == false)
                     continue;
 
+                // 플레이어의 레벨업 선택지 보내기
                 GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
-                        data,
-                        player.SpriteRenderer.sprite,
-                        i // 선택지 위치
-                    );
+                    data,
+                    player.SpriteRenderer.sprite,
+                    i // 선택지 위치
+                );
             }
             else // 무기 선택지
             {
-                WeaponLevelUpData data = GetRandomData(weaponDB.database);
+                Weapon weapon = player.WeaponList[chose - 1];
 
-                if (IsValidChoice(chose, data) == false)
-                    continue;
+                if (weapon.WeaponLevel == 2) // 무기 레벨이 업그레이드 타이밍이라면
+                {
 
-                GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
+                    Debug.Log("Weapon Level 2 !!!!! "+ validChoice.ContainsKey(chose));
+                    // 업그레이드 해야하는 무기라면 선택지에 하나만 나오기
+                    if (validChoice.TryGetValue(chose, out _) == false)
+                    {
+                        // 무기의 업그레이드 선택지 보내기
+                        GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
+                            weapon,
+                            i
+                        );
+
+                        validChoice[chose] = new List<int>();
+                    }
+                    else continue;
+                }
+                else
+                {
+                    WeaponLevelUpData data = GetRandomData(weaponDB.database);
+
+                    if (IsValidChoice(chose, data) == false)
+                        continue;
+
+                    // 무기의 레벨업 선택지 보내기
+                    GameManager.Instance.UIController.LevelUpController.InitializeLevelUpUI(
+                        weapon, // 플레이어 
                         data,
-                        player.WeaponList[chose-1].WeaponSprite,
-                        chose, // 플레이어 무기 중 몇번째인지
                         i
                     );
+                }
             }
 
             ++i;
         }
 
-        GameManager.Instance.UIController.LevelUpController.gameObject.SetActive( true);
         validChoice.Clear();
     }
 

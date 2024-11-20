@@ -30,4 +30,4 @@ MonoBehaviour:
   Speed: 8
   Dodge: 0
   PickUpRange: 0
-  ExpBonus: 0
+  ExpBonus: 10
