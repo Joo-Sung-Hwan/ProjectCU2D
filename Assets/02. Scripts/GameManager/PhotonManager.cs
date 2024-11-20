@@ -26,7 +26,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (string.IsNullOrEmpty(PhotonNetwork.NickName))
         {
             Debug.Log("닉네임 설정");
-            return;
+            //return;
         }
 
         if (PhotonNetwork.IsConnected)
@@ -73,6 +73,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"방 참가 성공! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
+
+#if UNITY_EDITOR
+        LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+#endif
+
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {

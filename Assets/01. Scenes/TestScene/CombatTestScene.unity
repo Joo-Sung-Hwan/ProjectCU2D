@@ -2146,33 +2146,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1210000898343053890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7568906959032906005}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1341449769346172338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6934236009383962149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60319a3b339e69349ac96a5f9ca00b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2780590340974083053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,28 +2283,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c072b1157b9c9b4c82af578c9040c50, type: 3}
---- !u!114 &3588366746826895723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6934236009383962149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &3892343347891621757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,42 +2323,6 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!1 &6934236009383962149
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7949879395513369264}
-  - component: {fileID: 1341449769346172338}
-  - component: {fileID: 3588366746826895723}
-  m_Layer: 0
-  m_Name: StageManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &7568906959032906005
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1210000898343053890}
-  - component: {fileID: 9157637636803365343}
-  - component: {fileID: 8038252798138326461}
-  m_Layer: 0
-  m_Name: PoolManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &7851453382992637109
 Transform:
   m_ObjectHideFlags: 0
@@ -2423,92 +2338,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &7949879395513369264
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6934236009383962149}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8038252798138326461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7568906959032906005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 990
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &9157637636803365343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7568906959032906005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3d48d4ea2a41914e87113398333ca13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolArray:
-  - name: Item
-    initialSize: 10
-    prefab: {fileID: 2700208970764977922, guid: e94de283d9474c748b17cda2cbb8aa6f,
-      type: 3}
-  - name: PlayerProjectile
-    initialSize: 20
-    prefab: {fileID: 8591970210373069456, guid: 223df250f7ed54444adfd48dc82e80c7,
-      type: 3}
-  - name: Monster
-    initialSize: 10
-    prefab: {fileID: 5355460694420824825, guid: cf2f95f66e7aa0e4288f5a7c08de1c27,
-      type: 3}
-  - name: MonsterBullet
-    initialSize: 10
-    prefab: {fileID: 1898109817497575432, guid: d058cfa6485315e41a1f47f05bd39e3f,
-      type: 3}
-  - name: MonsterTrap
-    initialSize: 20
-    prefab: {fileID: 1898109817497575432, guid: 9a044e5269a933b41b22add4d49fa063,
-      type: 3}
-  - name: Spawner
-    initialSize: 20
-    prefab: {fileID: 1282961082944785208, guid: 16e3a5b046fa2324080d92366fb093c1,
-      type: 3}
-  - name: LightningHit
-    initialSize: 10
-    prefab: {fileID: 5933602760919840800, guid: fcb74f28d107e284e80af037bfec14ca,
-      type: 3}
-  - name: BasicHit
-    initialSize: 10
-    prefab: {fileID: 3463157229188906966, guid: 47096eff328e11a418ace7db2d72aa97,
-      type: 3}
-  - name: HitText
-    initialSize: 20
-    prefab: {fileID: 8955924460218970929, guid: 29ac04afc7230a14086a0dcd9775f51c,
-      type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2518,7 +2347,5 @@ SceneRoots:
   - {fileID: 1987186309}
   - {fileID: 661796386}
   - {fileID: 1421807295}
-  - {fileID: 1210000898343053890}
   - {fileID: 7851453382992637109}
-  - {fileID: 7949879395513369264}
   - {fileID: 1638410452}
