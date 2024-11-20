@@ -18,7 +18,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         OnSettingNickName(PlayerPrefs.GetString("Nickname"));
         // OnSettingNickName("123");
-        Debug.Log(PhotonNetwork.NickName); // 닉네임 테스트
+        Debug.Log(PhotonNetwork.LocalPlayer.NickName); // 닉네임 테스트
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void OnSettingNickName(string name)
     {
-        PhotonNetwork.NickName = name;
+        PhotonNetwork.LocalPlayer.NickName = name;
     }
 
     /// <summary>
@@ -99,8 +99,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.CurrentRoom);
+        Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
         // 게임플레이 씬 호출, 로드씬
         // PhotonNetwork.LoadLevel("");
+        /*
         if(PhotonNetwork.CountOfPlayersInRooms == 2)
         {
             LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
@@ -108,6 +110,24 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log("1명이 부족합니다.");
+        }
+        */
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        for (int i = 0; i < roomList.Count; i++)
+        {
+            if(roomList[i].PlayerCount == 2)
+            {
+                Debug.Log("게임 시작");
+                LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+            }
+            else
+            {
+                Debug.Log("1명이 부족합니다.");
+                return;
+            }
         }
     }
 
