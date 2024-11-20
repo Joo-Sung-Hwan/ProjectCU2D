@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using Photon.Pun;
+using Photon.Realtime;
 
 
 public class LoadingSceneManager : MonoBehaviour
@@ -24,7 +26,9 @@ public class LoadingSceneManager : MonoBehaviour
         nextSceneName = sceneName;
         groupToLoad = labelsToLoad;
         sceneTypeToLoad = sceneType;
-        SceneManager.LoadScene("LoadingScene");
+
+        PhotonNetwork.LoadLevel("LoadingScene");
+        //SceneManager.LoadScene("LoadingScene");
     }
 
     private async void Awake()

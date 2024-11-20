@@ -75,10 +75,8 @@ public class PlayerLevelUp : MonoBehaviour
             {
                 Weapon weapon = player.WeaponList[chose - 1];
 
-                if (weapon.WeaponLevel == 2) // 무기 레벨이 업그레이드 타이밍이라면
+                if (weapon.WeaponLevel == Settings.weaponUpgradeLevel) // 무기 레벨이 업그레이드 타이밍이라면
                 {
-
-                    Debug.Log("Weapon Level 2 !!!!! "+ validChoice.ContainsKey(chose));
                     // 업그레이드 해야하는 무기라면 선택지에 하나만 나오기
                     if (validChoice.TryGetValue(chose, out _) == false)
                     {

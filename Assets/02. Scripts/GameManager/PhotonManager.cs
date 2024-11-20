@@ -1,146 +1,98 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun; // Photon Unity Network
+using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.SceneManagement; // 실시간 처리를 위한 라이브러리
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
-    string gameVersion = "0.0.1";
-    
+    private string gameVersion = "0.0.1";
+    private bool isConnecting = false;
+
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         OnSettingNickName(PlayerPrefs.GetString("Nickname"));
-        // OnSettingNickName("123");
-        Debug.Log(PhotonNetwork.LocalPlayer.NickName); // 닉네임 테스트
+        Debug.Log(PhotonNetwork.NickName); // 닉네임 테스트
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    /// <summary>
-    /// 포톤 연결 함수
-    /// </summary>
     public void Connect()
     {
+
+        if (isConnecting) return;
+
         if (string.IsNullOrEmpty(PhotonNetwork.NickName))
         {
             Debug.Log("닉네임 설정");
             return;
         }
-        // 접속이 되었을 때
+
         if (PhotonNetwork.IsConnected)
         {
-            // PhotonNetwork.JoinRandomRoom();
-            Debug.Log("접속");
+            PhotonNetwork.JoinRandomOrCreateRoom(
+                expectedMaxPlayers: 2,
+                roomOptions: new RoomOptions { MaxPlayers = 2 }
+            );
         }
         else
         {
-            // 게임버전과 포톤버전을 맞추고 접속
-            // Debug.LogFormat("Connect : {0}", gameVersion);
-            // PhotonNetwork.GameVersion = gameVersion;
-            // OnConnectedToMaster 호출
+            isConnecting = true;
             PhotonNetwork.ConnectUsingSettings();
         }
     }
 
     public void OnSettingNickName(string name)
     {
-        PhotonNetwork.LocalPlayer.NickName = name;
+        PhotonNetwork.NickName = name;
     }
 
-    /// <summary>
-    /// 접속 성공했을 때
-    /// </summary>
+    // 여기서부터 MonoBehaviourPunCallbacks의 override 메서드들
     public override void OnConnected()
     {
         Debug.Log("연결 성공");
-        // 로비 입장을 해야 방에 입장 가능
-        // PhotonNetwork.JoinLobby();
     }
 
-    /// <summary>
-    /// 마스터 서버에 접속
-    /// </summary>
     public override void OnConnectedToMaster()
     {
-        Debug.LogFormat("Connected to Master: {0}", PhotonNetwork.NickName);
-        PhotonNetwork.JoinRandomOrCreateRoom(expectedMaxPlayers: 2, roomOptions: new RoomOptions() { MaxPlayers = 2 });
+        Debug.LogFormat("마스터 서버 접속: {0}", PhotonNetwork.NickName);
+        isConnecting = false;
+        PhotonNetwork.JoinRandomOrCreateRoom(
+            expectedMaxPlayers: 2,
+            roomOptions: new RoomOptions { MaxPlayers = 2 }
+        );
     }
 
-    /// <summary>
-    /// 접속 끊겼을 때
-    /// </summary>
-    /// <param name="cause"></param>
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.LogWarningFormat("Disconnected: {0}", cause);
+        Debug.LogWarningFormat("연결 끊김: {0}", cause);
+        isConnecting = false;
     }
 
-    /// <summary>
-    /// 로비 접속
-    /// </summary>
-    public override void OnJoinedLobby()
-    {
-        Debug.Log("로비 접속");
-    }
-    /// <summary>
-    /// 방 참가 시 자동으로 호출
-    /// </summary>
     public override void OnJoinedRoom()
     {
-        Debug.Log(PhotonNetwork.CurrentRoom);
-        Debug.Log(PhotonNetwork.CountOfPlayersInRooms);
-        // 게임플레이 씬 호출, 로드씬
-        // PhotonNetwork.LoadLevel("");
-        /*
-        if(PhotonNetwork.CountOfPlayersInRooms == 2)
+        Debug.Log($"방 참가 성공! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
+
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
         }
-        else
-        {
-            Debug.Log("1명이 부족합니다.");
-        }
-        */
     }
 
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
-        for (int i = 0; i < roomList.Count; i++)
+        Debug.Log($"다른 플레이어 입장! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
+
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            if(roomList[i].PlayerCount == 2)
-            {
-                Debug.Log("게임 시작");
-                LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
-            }
-            else
-            {
-                Debug.Log("1명이 부족합니다.");
-                return;
-            }
+            LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
         }
     }
 
-    /// <summary>
-    /// 랜덤 매칭(방 입장) 실패
-    /// </summary>
-    /// <param name="returnCode"></param>
-    /// <param name="message"></param>
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.LogErrorFormat("JoinRandomFailed({0}): {1}", returnCode, message);
+        Debug.LogErrorFormat("랜덤 매칭 실패({0}): {1}", returnCode, message);
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 2 });
     }
-
-
 }
-

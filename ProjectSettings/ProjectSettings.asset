@@ -915,7 +915,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -935,10 +941,10 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 397afae3-f270-43d5-9f41-8295f44f1321
+  cloudProjectId: 08c5e42a-f907-422b-85a1-e4b145b57ba3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: DarkAbyssHero
+  projectName: ProjectCU2D
   organizationId: syjsh081930
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
