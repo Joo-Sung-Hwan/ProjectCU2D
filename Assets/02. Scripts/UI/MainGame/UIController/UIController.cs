@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private LevelUpController levelUpController;
     private ExpController expController;
     private StageInfoController stageInfoController;
+    private WaveFinishController waveFinishController;
 
     public LevelUpController LevelUpController => levelUpController;
 
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
     {
         expController = GetComponent<ExpController>();
         stageInfoController = GetComponent<StageInfoController>();
+        waveFinishController = GetComponent<WaveFinishController>();
     }
 
     public void InitializeUIController()
