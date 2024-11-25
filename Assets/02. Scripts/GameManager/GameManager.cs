@@ -9,6 +9,7 @@ using DG.Tweening;
 using Cinemachine;
 using Firebase.Database;
 using UnityEngine.Rendering.Universal;
+using Photon.Pun;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -34,10 +35,10 @@ public class GameManager : Singleton<GameManager>
 
     public void CreateMainGameScene()
     {
-        //Player = Instantiate(playerSO.player, Vector2.zero, Quaternion.identity);
-        //Player.InitializePlayer(playerSO);
+        Player = PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity).GetComponent<Player>();
+        Player.InitializePlayer(playerSO);
 
-        //StageManager.Instance.CreateStage(stageSO);
+        StageManager.Instance.CreateStage(stageSO);
 
         UIController = GameObject.FindWithTag("UIController").GetComponent<UIController>();
         UIController.InitializeUIController();

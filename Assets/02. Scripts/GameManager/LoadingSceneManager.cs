@@ -46,13 +46,15 @@ public class LoadingSceneManager : MonoBehaviour
 
         // 리소스 로딩
         // AddressableManager의 LoadResources 함수를 UniTask로 호출
-        //await AddressableManager.Instance.LoadResourcesAsync(
-        //    groupToLoad,
-        //    (progress) =>
-        //    {
-        //        UpdateLoadingProgress(progress);
-        //    }
-        //);
+        /*
+        await AddressableManager.Instance.LoadResourcesAsync(
+            groupToLoad,
+            (progress) =>
+            {
+                UpdateLoadingProgress(progress);
+            }
+        );
+        */
         
 
         // 씬 로딩 비동기 메소드

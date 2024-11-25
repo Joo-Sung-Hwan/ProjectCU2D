@@ -1,12 +1,12 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Pun.Demo.PunBasics;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "0.0.1";
     private bool isConnecting = false;
-
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -14,6 +14,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        //OnSettingNickName("123");
         OnSettingNickName(PlayerPrefs.GetString("Nickname"));
         Debug.Log(PhotonNetwork.NickName); // 닉네임 테스트
     }
@@ -73,9 +74,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log($"방 참가 성공! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
-
 #if UNITY_EDITOR
-        LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+        //LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
 #endif
 
 
