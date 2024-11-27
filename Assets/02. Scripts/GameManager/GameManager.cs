@@ -10,6 +10,8 @@ using Cinemachine;
 using Firebase.Database;
 using UnityEngine.Rendering.Universal;
 using Photon.Pun;
+using Photon.Realtime;
+using GooglePlayGames.BasicApi;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -20,7 +22,8 @@ public class GameManager : Singleton<GameManager>
 
 
     public Player Player { get; private set; }
-    public UIController UIController { get; private set; }
+    public UIController UIController;
+
 
 
 
@@ -36,14 +39,22 @@ public class GameManager : Singleton<GameManager>
     public void CreateMainGameScene()
     {
         Player = PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity).GetComponent<Player>();
-        Player.InitializePlayer(playerSO);
+        // 플레이어 자기자신 init
+        if (Player.GetComponent<PhotonView>().IsMine)
+        {
+            Player.InitializePlayer(playerSO);
+        }
+        // 마스터가 스테이지 생성, 초기화
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StageManager.Instance.CreateStage(stageSO);
+        }
 
-        StageManager.Instance.CreateStage(stageSO);
-
-        UIController = GameObject.FindWithTag("UIController").GetComponent<UIController>();
+        //UIController = GameObject.FindWithTag("UIController").GetComponent<UIController>();
         UIController.InitializeUIController();
 
         // VCameraSetUp -> 카메라 셋업에서 필요
         OnMainGameStarted?.Invoke();
     }
+
 }

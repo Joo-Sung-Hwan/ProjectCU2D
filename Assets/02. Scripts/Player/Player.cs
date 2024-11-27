@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Player : MonoBehaviour
 {
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
         //AddWeaponTest();
     }
 
+    
     public void InitializePlayer(PlayerDetailsSO playerDetails)
     {
         this.playerDetails = playerDetails;

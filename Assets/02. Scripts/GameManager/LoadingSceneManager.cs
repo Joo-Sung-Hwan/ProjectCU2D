@@ -20,6 +20,7 @@ public class LoadingSceneManager : MonoBehaviour
     private float resourceProgress;
 
 
+    [PunRPC]
     // static 정적함수 : 인스턴스화하지 않고도 아무데서나 호출가능한 로딩함수
     public static void LoadScene(string sceneName, string labelsToLoad, ESceneType sceneType)
     {

@@ -76,22 +76,26 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log($"방 참가 성공! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
 #if UNITY_EDITOR
         //LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+        //PhotonNetwork.LoadLevel("CombatTestScene");
 #endif
-
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+            //PhotonNetwork.LoadLevel("CombatTestScene");
         }
     }
+
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         Debug.Log($"다른 플레이어 입장! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
 
+
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
             LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+            //PhotonNetwork.LoadLevel("CombatTestScene");
         }
     }
 
