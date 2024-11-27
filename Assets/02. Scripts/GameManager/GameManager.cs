@@ -13,11 +13,12 @@ using Photon.Pun;
 using Photon.Realtime;
 using GooglePlayGames.BasicApi;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviourPunCallbacks
 {
+    public static GameManager Instance;
     public event Action OnMainGameStarted;
 
-    [SerializeField] private PlayerDetailsSO playerSO; // 임시로 직렬화. 추후에 변경해야함
+    public PlayerDetailsSO playerSO; // 임시로 직렬화. 추후에 변경해야함
     [SerializeField] private StageDetailsSO stageSO; // 임시로 직렬화. 추후에 변경해야함
 
 
@@ -26,11 +27,16 @@ public class GameManager : Singleton<GameManager>
 
     PhotonView pv;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         pv = GetComponent<PhotonView>();
         CreateMainGameScene();
     }
+    /*
     private void OnEnable()
     {
         // TEST CODE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -38,17 +44,12 @@ public class GameManager : Singleton<GameManager>
         
         //Time.timeScale = 0.25f;
 #endif
-    }
+    }*/
 
     public void CreateMainGameScene()
     {
-        Player = PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity).GetComponent<Player>();
-        // 플레이어 자기자신 init
-        if (Player.GetComponent<PhotonView>().IsMine)
-        {
-            pv.RPC("SetPlayer", RpcTarget.All, Player, playerSO);
-            //Player.InitializePlayer(playerSO);
-        }
+        Player = PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity).GetComponent<Player>(); Player.InitializePlayer(playerSO);
+        //Player.InitializePlayer(playerSO);
         // 마스터가 스테이지 생성, 초기화
         if (PhotonNetwork.IsMasterClient)
         {
@@ -62,8 +63,4 @@ public class GameManager : Singleton<GameManager>
         OnMainGameStarted?.Invoke();
     }
 
-    public void SetPlayer(Player player, PlayerDetailsSO playerDetail)
-    {
-        player.InitializePlayer(playerDetail);
-    }
 }

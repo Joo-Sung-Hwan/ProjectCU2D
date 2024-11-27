@@ -47,12 +47,15 @@ public class Player : MonoBehaviour
         stat = new PlayerStat();
 
         WeaponAttackEvent = GetComponent<WeaponAttackEvent>();
+        playerDetails = GameManager.Instance.playerSO;
+        DisableCancellation = new CancellationTokenSource();
+        InitializePlayer(playerDetails);
     }
 
     private void OnEnable()
     {
         // 활성화 되면서 토큰 새롭게 초기화
-        DisableCancellation = new CancellationTokenSource();
+        
     }
     private void OnDisable()
     {

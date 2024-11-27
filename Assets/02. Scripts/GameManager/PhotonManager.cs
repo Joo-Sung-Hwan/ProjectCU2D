@@ -81,8 +81,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
-            //PhotonNetwork.LoadLevel("CombatTestScene");
+            //LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+            PhotonNetwork.LoadLevel("CombatTestScene");
         }
     }
 
@@ -94,8 +94,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
-            //PhotonNetwork.LoadLevel("CombatTestScene");
+            //LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
+            PhotonNetwork.LoadLevel("CombatTestScene");
         }
     }
 
