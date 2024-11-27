@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2095135140171080709}
   - component: {fileID: 1206552518147297023}
   - component: {fileID: 758528686579412383}
+  - component: {fileID: 7466845059085945306}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -107,3 +108,15 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7466845059085945306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282961082944785208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd029a569071d5c409aa2859d0738ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -941,11 +941,11 @@ PlayerSettings:
   apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 324e7a88-fe2a-44b3-a891-f9e8f7e8116e
+  cloudProjectId: 08c5e42a-f907-422b-85a1-e4b145b57ba3
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: ProjectCU2D (1)
-  organizationId: tony8655
+  projectName: ProjectCU2D
+  organizationId: syjsh081930
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

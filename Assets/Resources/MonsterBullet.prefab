@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7495482098510966404}
   - component: {fileID: 8723710858508216649}
   - component: {fileID: 1788002946281857818}
+  - component: {fileID: -5847074619396863872}
   m_Layer: 10
   m_Name: MonsterBullet
   m_TagString: Untagged
@@ -202,3 +203,15 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-5847074619396863872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898109817497575432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd029a569071d5c409aa2859d0738ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -76,7 +76,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         Debug.Log($"방 참가 성공! 현재 인원: {PhotonNetwork.CurrentRoom.PlayerCount}");
 #if UNITY_EDITOR
         //LoadingSceneManager.LoadScene("CombatTestScene", "TestB", ESceneType.MainGame);
-        //PhotonNetwork.LoadLevel("CombatTestScene");
+        PhotonNetwork.LoadLevel("CombatTestScene");
 #endif
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)

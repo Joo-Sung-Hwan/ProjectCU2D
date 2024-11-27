@@ -37,7 +37,7 @@ public class MonsterProjectile : MonoBehaviour
         rigidBody.velocity = distanceVector;
 
         if (currentDistance > Settings.monsterProjectileDist)
-            ObjectPoolManager.Instance.Release(this.gameObject, "MonsterBullet");
+            ObjectPoolManager.Instance.Release(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,6 +47,6 @@ public class MonsterProjectile : MonoBehaviour
             player.TakeDamage(dmg);
         }
 
-        ObjectPoolManager.Instance.Release(this.gameObject, "MonsterBullet");
+        ObjectPoolManager.Instance.Release(this.gameObject);
     }
 }

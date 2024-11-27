@@ -55,7 +55,7 @@ public class MonsterDestroyed : MonoBehaviour
                     .Join(transform.DOMove(dir * 3, 1f).SetRelative()) // DOMove를 해당 '방향'으로 이동하기 위한 상대값 처리
                     .OnComplete(() => {
                         moveSequence.Kill();
-                        ObjectPoolManager.Instance.Release(gameObject, "Monster");
+                        ObjectPoolManager.Instance.Release(gameObject);
                     });
     }
 }

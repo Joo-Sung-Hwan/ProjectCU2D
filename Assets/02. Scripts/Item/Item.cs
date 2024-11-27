@@ -82,7 +82,7 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
         {            
             ItemAcquire();
 
-            ObjectPoolManager.Instance.Release(gameObject, "Item");
+            ObjectPoolManager.Instance.Release(gameObject);
         }
     }
 

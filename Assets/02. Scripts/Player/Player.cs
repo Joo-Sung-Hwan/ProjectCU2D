@@ -89,11 +89,6 @@ public class Player : MonoBehaviour
         playerWeapon.InitializeWeapon(weaponDetails);
         playerWeapon.Player = this;
 
-        // 무기 추가되면서 캐릭터 스탯 반영
-        //playerWeapon.ChangeWeaponStat(PlayerStatType.BaseDamage, stat.baseDamage, false);
-        //playerWeapon.ChangeWeaponStat(PlayerStatType.CriticChance, stat.criticChance, false);
-        //playerWeapon.ChangeWeaponStat(PlayerStatType.CriticDamage, stat.criticDamage, false);
-
         WeaponList.Add(playerWeapon); // 무기 리스트에 추가
         WeaponTransform.Add(playerWeapon);
 

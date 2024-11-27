@@ -22,6 +22,6 @@ public class HitEffect : MonoBehaviour
 
 
         if (this.gameObject.activeSelf)
-            ObjectPoolManager.Instance.Release(gameObject, effectName);
+            ObjectPoolManager.Instance.Release(gameObject);
     }
 }

@@ -14705,6 +14705,7 @@ GameObject:
   - component: {fileID: 5114901041107047426}
   - component: {fileID: -6685911536049918138}
   - component: {fileID: -3218324658744993194}
+  - component: {fileID: 2194533024891639012}
   m_Layer: 0
   m_Name: LightningHit
   m_TagString: Untagged
@@ -19678,3 +19679,15 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &2194533024891639012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933602760919840800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd029a569071d5c409aa2859d0738ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

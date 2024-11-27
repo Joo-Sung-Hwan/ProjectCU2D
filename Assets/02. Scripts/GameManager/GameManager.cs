@@ -20,12 +20,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public PlayerDetailsSO playerSO; // 임시로 직렬화. 추후에 변경해야함
     [SerializeField] private StageDetailsSO stageSO; // 임시로 직렬화. 추후에 변경해야함
+    [SerializeField] private CinemachineVirtualCamera vcam;
 
 
     public Player Player { get; private set; }
     public UIController UIController;
 
-    PhotonView pv;
 
     private void Awake()
     {
@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     private void Start()
     {
-        pv = GetComponent<PhotonView>();
         CreateMainGameScene();
     }
     /*
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void CreateMainGameScene()
     {
-        Player = PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity).GetComponent<Player>(); Player.InitializePlayer(playerSO);
+        Player = PhotonNetwork.Instantiate("Player", Vector2.zero, Quaternion.identity).GetComponent<Player>();
         //Player.InitializePlayer(playerSO);
         // 마스터가 스테이지 생성, 초기화
         if (PhotonNetwork.IsMasterClient)
@@ -60,7 +59,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         UIController.InitializeUIController();
 
         // VCameraSetUp -> 카메라 셋업에서 필요
-        OnMainGameStarted?.Invoke();
+        //OnMainGameStarted?.Invoke();
+        vcam.Follow = Player.transform;
     }
 
 }

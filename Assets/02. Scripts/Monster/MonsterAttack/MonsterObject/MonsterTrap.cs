@@ -33,7 +33,7 @@ public class MonsterTrap : MonoBehaviour
 
         await UniTask.Delay(100); // 0.1초 뒤에 함정 비활성화
 
-        ObjectPoolManager.Instance.Release(gameObject, "MonsterTrap");
+        ObjectPoolManager.Instance.Release(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

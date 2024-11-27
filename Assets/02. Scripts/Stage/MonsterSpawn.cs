@@ -132,7 +132,7 @@ public class MonsterSpawn : MonoBehaviour
 
         await UniTask.Delay(1000); // 1초 이후에 스폰
 
-        ObjectPoolManager.Instance.Release(spawner, "Spawner");
+        ObjectPoolManager.Instance.Release(spawner);
 
         var monster = ObjectPoolManager.Instance.Get("Monster", spawner.transform.position, Quaternion.identity);
         monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);

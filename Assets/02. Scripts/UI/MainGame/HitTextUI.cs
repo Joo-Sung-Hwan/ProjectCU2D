@@ -41,6 +41,6 @@ public class HitTextUI : MonoBehaviour
         txtDamage.fontSize = fontSize;
 
         trans.DOMoveY(yPos, yPos).SetEase(Ease.InOutQuad).SetRelative()
-            .OnComplete(() => ObjectPoolManager.Instance.Release(gameObject, "HitText"));
+            .OnComplete(() => ObjectPoolManager.Instance.Release(gameObject));
     }
 }

@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour
         rigidBody.velocity = distanceVector;
 
         if (currentDistance > distance)
-            ObjectPoolManager.Instance.Release(this.gameObject, "PlayerProjectile");
+            ObjectPoolManager.Instance.Release(this.gameObject);
     }
 
     public void InitializeProjectile(ProjectileDetailsSO projectileDetails, Vector2 direction, Weapon weapon)
@@ -68,6 +68,6 @@ public class Projectile : MonoBehaviour
         // 관통되는 수를 정하고 싶으면 관통되는 적의 수를 count로 세면 됨
         // 지금은 관통되는지 여부에 따라 모두 관통이거나 안되거나만 설정
         if (!isPiercing)
-            ObjectPoolManager.Instance.Release(this.gameObject, "PlayerProjectile");
+            ObjectPoolManager.Instance.Release(this.gameObject);
     }
 }
