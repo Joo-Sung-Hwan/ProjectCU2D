@@ -7,7 +7,12 @@ using Photon.Pun;
 public class StageManager : MonoBehaviourPunCallbacks
 {
     public Stage CurrentStage {  get; private set; }
+    public static StageManager Instance;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     public void CreateStage(StageDetailsSO stageDetails) // 스테이지 생성
