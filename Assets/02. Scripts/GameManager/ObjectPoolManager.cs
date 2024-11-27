@@ -5,9 +5,10 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-public class ObjectPoolManager : Singleton<ObjectPoolManager>
+public class ObjectPoolManager : MonoBehaviourPunCallbacks
 {
     // 인스펙터에서 등록할 Pool
+    public static ObjectPoolManager Instance;
     [SerializeField] private List<Pool> poolArray = new List<Pool>();
     private Dictionary<string, ObjectPool> poolDic = new Dictionary<string, ObjectPool>();
     private Transform objPoolTransform;
@@ -27,14 +28,30 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         // 비활성화 되어있는 대기중인 오브젝트들 큐
         public Queue<GameObject> inactiveObjects = new Queue<GameObject>();
     }
-
+    private void Awake()
+    {
+        Instance = this;
+    }
+    /*
     protected override void Awake()
     {
         base.Awake();
 
+        
         objPoolTransform = this.gameObject.transform;
         for (int i = 0; i < poolArray.Count; ++i)        
-            CreatePool(poolArray[i].prefab, poolArray[i].initialSize, poolArray[i].name);        
+            CreatePool(poolArray[i].prefab, poolArray[i].initialSize, poolArray[i].name);     
+        
+    }
+    */
+    private void Start()
+    {
+        objPoolTransform = this.gameObject.transform;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < poolArray.Count; ++i)
+                CreatePool(poolArray[i].prefab, poolArray[i].initialSize, poolArray[i].name);
+        }
     }
 
     private void CreatePool(GameObject prefab, int size, string name)

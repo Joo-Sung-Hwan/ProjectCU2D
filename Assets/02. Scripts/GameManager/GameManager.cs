@@ -26,12 +26,15 @@ public class GameManager : Singleton<GameManager>
 
 
 
-
+    private void Start()
+    {
+        CreateMainGameScene();
+    }
     private void OnEnable()
     {
         // TEST CODE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #if UNITY_EDITOR
-        //CreateMainGameScene();
+        
         //Time.timeScale = 0.25f;
 #endif
     }
