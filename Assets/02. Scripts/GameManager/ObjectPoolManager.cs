@@ -52,6 +52,10 @@ public class ObjectPoolManager : MonoBehaviourPunCallbacks
             for (int i = 0; i < poolArray.Count; ++i)
                 CreatePool(poolArray[i].prefab, poolArray[i].initialSize, poolArray[i].name);
         }
+        else
+        {
+            return;
+        }
     }
 
     private void CreatePool(GameObject prefab, int size, string name)

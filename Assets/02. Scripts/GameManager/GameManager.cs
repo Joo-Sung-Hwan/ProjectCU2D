@@ -24,10 +24,11 @@ public class GameManager : Singleton<GameManager>
     public Player Player { get; private set; }
     public UIController UIController;
 
-
+    PhotonView pv;
 
     private void Start()
     {
+        pv = GetComponent<PhotonView>();
         CreateMainGameScene();
     }
     private void OnEnable()
@@ -45,7 +46,8 @@ public class GameManager : Singleton<GameManager>
         // 플레이어 자기자신 init
         if (Player.GetComponent<PhotonView>().IsMine)
         {
-            Player.InitializePlayer(playerSO);
+            pv.RPC("SetPlayer", RpcTarget.All, Player, playerSO);
+            //Player.InitializePlayer(playerSO);
         }
         // 마스터가 스테이지 생성, 초기화
         if (PhotonNetwork.IsMasterClient)
@@ -60,4 +62,8 @@ public class GameManager : Singleton<GameManager>
         OnMainGameStarted?.Invoke();
     }
 
+    public void SetPlayer(Player player, PlayerDetailsSO playerDetail)
+    {
+        player.InitializePlayer(playerDetail);
+    }
 }
