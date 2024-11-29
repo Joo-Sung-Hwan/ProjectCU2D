@@ -6,12 +6,15 @@ using UnityEngine;
 using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using Photon.Pun;
 
 
-public class Item : MonoBehaviour  // 아이템에 연결할 클래스
+public class Item : MonoBehaviourPun  // 아이템에 연결할 클래스
 {
     // 자석 이벤트가 호출되면 전역의 모든 아이템이 반응해야함
     private static event Action OnMagnet;
+
+    [SerializeField] private Database itemDB;
 
     private SpriteRenderer spriteRenderer;
     private ParticleSystem particle;
@@ -57,8 +60,11 @@ public class Item : MonoBehaviour  // 아이템에 연결할 클래스
     }
 
 
-    public void InitializeItem(ItemDetailsSO data)
+    [PunRPC]
+    public void InitializeItem(int id)
     {
+        ItemDetailsSO data = itemDB.GetDataByID<ItemDetailsSO>(id);
+
         spriteRenderer.sprite = data.ItemSprite;
         player = GameManager.Instance.Player;
 

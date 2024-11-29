@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using Photon.Pun;
 
 
 [RequireComponent(typeof(MonsterDestroyedEvent))]
@@ -35,7 +36,8 @@ public class MonsterDestroyed : MonoBehaviour
     {
         // 몬스터가 파괴된 지점에 아이템 생성
         var item = ObjectPoolManager.Instance.Get("Item", args.point, Quaternion.identity);
-        item.GetComponent<Item>().InitializeItem(monster.DropItem);
+        //item.GetComponent<Item>().InitializeItem(monster.DropItem);
+        item.GetComponent<PhotonView>().RPC("InitializeItem", RpcTarget.All, monster.DropItem);
 
         MonsterRelease();
     }

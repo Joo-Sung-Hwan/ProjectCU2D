@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fb482384d98b0f428b4228ee472941e, type: 3}
   m_Name: ItemDetails_Rare
   m_EditorClassIdentifier: 
-  id: -1
+  id: 1
   ItemSprite: {fileID: 21300000, guid: a459aabebfea2d14a8d02592648edb37, type: 3}
   itemGrade: 8
   itemType: 0

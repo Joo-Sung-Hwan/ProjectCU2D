@@ -2599,16 +2599,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   datas:
   - name: Item
-    initialSize: 100
+    initialSize: 6
     prefab: {fileID: 2700208970764977922, guid: e94de283d9474c748b17cda2cbb8aa6f,
+      type: 3}
+  - name: Monster
+    initialSize: 6
+    prefab: {fileID: 5355460694420824825, guid: cf2f95f66e7aa0e4288f5a7c08de1c27,
       type: 3}
   - name: PlayerProjectile
     initialSize: 30
     prefab: {fileID: 8591970210373069456, guid: 223df250f7ed54444adfd48dc82e80c7,
-      type: 3}
-  - name: Monster
-    initialSize: 100
-    prefab: {fileID: 5355460694420824825, guid: cf2f95f66e7aa0e4288f5a7c08de1c27,
       type: 3}
   - name: MonsterBullet
     initialSize: 50

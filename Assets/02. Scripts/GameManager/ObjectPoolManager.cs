@@ -34,6 +34,7 @@ public class ObjectPoolManager : MonoBehaviourPun
     private void Start()  //오브젝트 미리 생성하는 과정.
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        if (!PhotonNetwork.IsMasterClient) return;
         foreach (Pool data in datas)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
