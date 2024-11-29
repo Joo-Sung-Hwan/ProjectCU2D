@@ -903,6 +903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bd05549334a7a4d9da7e58c6844467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDB: {fileID: 11400000, guid: 6ed5f9073c87fc04086be22dcc89739d, type: 2}
   weapon2: {fileID: 11400000, guid: 19a3fa918cbad6547a5b2dfb7090f95b, type: 2}
 --- !u!114 &1502585863812435679
 MonoBehaviour:
@@ -988,6 +989,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -7989620738182024848}
+  - {fileID: -3929489876204821511}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

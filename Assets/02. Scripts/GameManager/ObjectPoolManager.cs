@@ -51,12 +51,6 @@ public class ObjectPoolManager : MonoBehaviourPun
 
     public GameObject Get(string name, Vector3 position, Quaternion rotation) //오브젝트를 꺼내쓰는것.
     {
-        if (!poolDictionary.ContainsKey(name))
-        {
-            Debug.LogWarning($"Pool with tag {tag} doesn't excist.");
-            return null;
-        }
-
         GameObject obj = poolDictionary[name].Dequeue();
         obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, true);
         obj.transform.position = position;

@@ -67,8 +67,6 @@ public class Monster : MonoBehaviourPun
     [PunRPC]
     public void InitializeMonster(int id, int waveCount)
     {
-        Debug.Log("InitializeMonster!!!!!!!!!!!!!!!!!!!!!!!!!!!  " + id +" , "+ waveCount);
-
         MonsterDetailsSO enemyDetails = monsterDB.GetDataByID<MonsterDetailsSO>(id);
 
         Player = GameManager.Instance.Player.transform;
@@ -130,13 +128,15 @@ public class Monster : MonoBehaviourPun
         {
             damage = UtilitieHelper.IncreaseByPercent(damage, weapon.WeaponCriticDamage);
 
-            HitTextUI hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitTextUI>();
-            hitText.InitializeHitText(damage, true);
+            var hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
+            //hitText.InitializeHitText(damage, true);
+            hitText.GetComponent<PhotonView>().RPC("InitializeHitText", RpcTarget.All, damage,true,false);
         }
         else
         {
-            HitTextUI hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity).GetComponent<HitTextUI>();
-            hitText.InitializeHitText(damage);
+            var hitText = ObjectPoolManager.Instance.Get("HitText", new Vector2(transform.position.x, transform.position.y + 0.75f), Quaternion.identity);
+            hitText.GetComponent<PhotonView>().RPC("InitializeHitText", RpcTarget.All, damage,false,false);
+            //hitText.InitializeHitText(damage);
         }
 
         return damage;

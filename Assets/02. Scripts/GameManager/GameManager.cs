@@ -12,6 +12,8 @@ using UnityEngine.Rendering.Universal;
 using Photon.Pun;
 using Photon.Realtime;
 using GooglePlayGames.BasicApi;
+using static UnityEditor.Progress;
+using System.Threading;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -52,7 +54,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         // 마스터가 스테이지 생성, 초기화
         if (PhotonNetwork.IsMasterClient)
         {
+            Player.GetComponent<PhotonView>().RPC("InitializePlayer", RpcTarget.All, 0);
             StageManager.Instance.CreateStage(stageSO);
+        }
+        else
+        {
+            Player.GetComponent<PhotonView>().RPC("InitializePlayer", RpcTarget.All, 1);
         }
 
         //UIController = GameObject.FindWithTag("UIController").GetComponent<UIController>();

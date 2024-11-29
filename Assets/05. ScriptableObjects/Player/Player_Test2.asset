@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c7497da3367f2f4d8e4fd48fd97d5f2, type: 3}
-  m_Name: Player_Test
+  m_Name: Player_Test2
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   characterName: TestCharacter
   player: {fileID: 2655556846627844510, guid: 47c550af35580e14d90b601553b1a54b, type: 3}
   runtimeAnimatorController: {fileID: 0}
-  playerSprite: {fileID: -1413294825, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
-  playerStartingWeapon: {fileID: 11400000, guid: be3223ff79a64484d9b6579312d1c5ca,
+  playerSprite: {fileID: 1363809998, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
+  playerStartingWeapon: {fileID: 11400000, guid: bdcc8ad597d069b46aec5c5bb59a1a25,
     type: 2}
   characterStrength: 
   characterWeakness: 
@@ -27,7 +27,7 @@ MonoBehaviour:
   BonusDamage: 0
   MeleeDamage: 0
   RangeDamage: 0
-  Speed: 8
+  Speed: 4
   Dodge: 0
   PickUpRange: 0
   ExpBonus: 0

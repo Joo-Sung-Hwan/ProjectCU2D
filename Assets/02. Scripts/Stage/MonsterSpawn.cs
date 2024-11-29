@@ -139,8 +139,6 @@ public class MonsterSpawn : MonoBehaviour
         var monster = ObjectPoolManager.Instance.Get("Monster", spawner.transform.position, Quaternion.identity);
         //monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);
         monster.GetComponent<PhotonView>().RPC("InitializeMonster", RpcTarget.All, monsterInfo.monsterDetailsSO.ID, waveCount);
-
-        Debug.Log("Spawn!!!!!!!!!!!!!!!!!!!!!!!!!!!  "+waveCount);
     }
 
     private Vector2 RandomSpawnPosition()

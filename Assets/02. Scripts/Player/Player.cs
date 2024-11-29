@@ -10,6 +10,8 @@ using Photon.Realtime;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Database playerDB;
+
     private PlayerDetailsSO playerDetails; // 캐릭터의 종류가 나뉘는지에 따라 필요여부 달라짐
     private SpriteRenderer spriteRenderer;
 
@@ -47,9 +49,9 @@ public class Player : MonoBehaviour
         stat = new PlayerStat();
 
         WeaponAttackEvent = GetComponent<WeaponAttackEvent>();
-        playerDetails = GameManager.Instance.playerSO;
+        //playerDetails = GameManager.Instance.playerSO;
         DisableCancellation = new CancellationTokenSource();
-        InitializePlayer(playerDetails);
+        //InitializePlayer(playerDetails);
     }
 
     private void OnEnable()
@@ -69,10 +71,10 @@ public class Player : MonoBehaviour
         //AddWeaponTest();
     }
 
-    
-    public void InitializePlayer(PlayerDetailsSO playerDetails)
+    [PunRPC]
+    public void InitializePlayer(int id)
     {
-        this.playerDetails = playerDetails;
+        this.playerDetails = playerDB.GetDataByID<PlayerDetailsSO>(id);
 
         spriteRenderer.sprite = playerDetails.playerSprite; 
         //animator.runtimeAnimatorController = playerDetails.runtimeAnimatorController;
