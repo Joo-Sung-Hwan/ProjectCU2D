@@ -51,13 +51,17 @@ public class ObjectPoolManager : MonoBehaviourPun
 
     public GameObject Get(string name, Vector3 position, Quaternion rotation) //오브젝트를 꺼내쓰는것.
     {
-        GameObject obj = poolDictionary[name].Dequeue();
-        obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, true);
-        obj.transform.position = position;
-        obj.transform.rotation = rotation;
-        poolDictionary[name].Enqueue(obj);
-
-        return obj;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject obj = poolDictionary[name].Dequeue();
+            obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, name, position, rotation, true);
+            poolDictionary[name].Enqueue(obj);
+            return obj;
+        }
+        else
+        {
+            return null;
+        }
     }
     public GameObject Get(string name, Transform tranform)
         => Get(name, tranform.position, tranform.rotation);
