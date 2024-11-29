@@ -27,6 +27,7 @@ public class ObjectPoolManager : MonoBehaviourPun
     private void Awake()
     {
         Instance = this;
+        objPoolTransform = GetComponent<Transform>();
     }
 
 
@@ -39,6 +40,7 @@ public class ObjectPoolManager : MonoBehaviourPun
             for (int i = 0; i < data.initialSize; i++)
             {
                 GameObject obj = PhotonNetwork.Instantiate(data.name, Vector3.zero, Quaternion.identity);
+                obj.transform.SetParent(objPoolTransform, false);
                 obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, false);
                 objectPool.Enqueue(obj);
             }

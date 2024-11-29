@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8723710858508216649}
   - component: {fileID: 1788002946281857818}
   - component: {fileID: -5847074619396863872}
+  - component: {fileID: -6057969854515276657}
   m_Layer: 10
   m_Name: MonsterBullet
   m_TagString: Untagged
@@ -184,6 +185,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1788002946281857818}
+  - {fileID: -6057969854515276657}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -215,3 +217,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd029a569071d5c409aa2859d0738ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6057969854515276657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898109817497575432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
