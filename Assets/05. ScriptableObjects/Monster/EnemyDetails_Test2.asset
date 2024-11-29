@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644ffb332eada364abe0e8895f38d2a9, type: 3}
   m_Name: EnemyDetails_Test2
   m_EditorClassIdentifier: 
+  id: 1
   enemyName: TestEnemy2
   sprite: {fileID: 1782705385, guid: d33598d781682e049a53a0a13104ef29, type: 3}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}

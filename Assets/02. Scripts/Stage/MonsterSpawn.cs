@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using ExitGames.Client.Photon.StructWrapping;
+using Photon.Pun;
+using static UnityEditor.Progress;
 
 public class MonsterSpawn : MonoBehaviour
 {
@@ -135,7 +137,8 @@ public class MonsterSpawn : MonoBehaviour
         ObjectPoolManager.Instance.Release(spawner);
 
         var monster = ObjectPoolManager.Instance.Get("Monster", spawner.transform.position, Quaternion.identity);
-        monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);
+        //monster.GetComponent<Monster>().InitializeEnemy(monsterInfo.monsterDetailsSO, waveCount);
+        monster.GetComponent<PhotonView>().RPC("InitializeMonster", RpcTarget.All, monsterInfo.monsterDetailsSO.ID, waveCount);
     }
 
     private Vector2 RandomSpawnPosition()

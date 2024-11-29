@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "MonsterDetails_", menuName = "Scriptable Objects/Monster/Monster Details")]
-public class MonsterDetailsSO : ScriptableObject
+public class MonsterDetailsSO : IdentifiedObject
 {
     [Header("Base Monster Details")]
     public string enemyName;

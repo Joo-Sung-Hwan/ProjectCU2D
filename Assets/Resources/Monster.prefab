@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785b49a36fa88404683c7a61a771435c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterDB: {fileID: 11400000, guid: a131b82058e48e048958c77931c4c4a5, type: 2}
 --- !u!114 &8854623783325350477
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using ExitGames.Client.Photon.StructWrapping;
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviourPun
 {
+    [SerializeField] private Database monsterDB;
+
     private MonsterDetailsSO enemyDetails;
     private SpriteRenderer sprite;
     private MonsterMovementSO movement;
@@ -61,8 +64,11 @@ public class Monster : MonoBehaviour
         movement?.Move();
     }
 
-    public void InitializeEnemy(MonsterDetailsSO enemyDetails, int waveCount)
+    [PunRPC]
+    public void InitializeEnemy(int id, int waveCount)
     {
+        MonsterDetailsSO enemyDetails = monsterDB.GetDataByID<MonsterDetailsSO>(id);
+
         Player = GameManager.Instance.Player.transform;
         this.enemyDetails = enemyDetails;
         stat.InitializeMonsterStat(enemyDetails, waveCount); // 현재 웨이브에 맞추어 스탯초기화
