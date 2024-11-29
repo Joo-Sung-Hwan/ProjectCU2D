@@ -42,7 +42,7 @@ public class ObjectPoolManager : MonoBehaviourPun
             {
                 GameObject obj = PhotonNetwork.Instantiate(data.name, Vector3.zero, Quaternion.identity);
                 obj.transform.SetParent(objPoolTransform, false);
-                obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, false);
+                obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All,Vector3.zero, Quaternion.identity, false);
                 objectPool.Enqueue(obj);
             }
             poolDictionary.Add(data.name, objectPool);
@@ -54,7 +54,7 @@ public class ObjectPoolManager : MonoBehaviourPun
         if (PhotonNetwork.IsMasterClient)
         {
             GameObject obj = poolDictionary[name].Dequeue();
-            obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, name, position, rotation, true);
+            obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, position, rotation, true);
             poolDictionary[name].Enqueue(obj);
             return obj;
         }
@@ -68,6 +68,6 @@ public class ObjectPoolManager : MonoBehaviourPun
 
     public void Release(GameObject obj) //오브젝트 비활성화 하는 함수.
     {
-        obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, false);
+        obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, obj.transform.position, obj.transform.rotation, false);
     }
 }

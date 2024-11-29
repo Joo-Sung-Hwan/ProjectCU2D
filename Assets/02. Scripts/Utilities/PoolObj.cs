@@ -7,9 +7,9 @@ public class PoolObj : MonoBehaviour
 {
 
     [PunRPC]
-    public void SetActiveRPC(string name, Vector3 position, Quaternion rotation, bool isActive)
+    public void SetActiveRPC(Vector3 position, Quaternion rotation, bool isActive)
     {
-        GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, true);
+        //GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All, true);
         transform.position = position;
         transform.rotation = rotation;
         this.gameObject.SetActive(isActive);
