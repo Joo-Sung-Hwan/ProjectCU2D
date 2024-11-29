@@ -65,8 +65,10 @@ public class Monster : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void InitializeEnemy(int id, int waveCount)
+    public void InitializeMonster(int id, int waveCount)
     {
+        Debug.Log("InitializeMonster!!!!!!!!!!!!!!!!!!!!!!!!!!!  " + id +" , "+ waveCount);
+
         MonsterDetailsSO enemyDetails = monsterDB.GetDataByID<MonsterDetailsSO>(id);
 
         Player = GameManager.Instance.Player.transform;
