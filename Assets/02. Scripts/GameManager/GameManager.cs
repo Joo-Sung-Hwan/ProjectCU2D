@@ -12,8 +12,6 @@ using UnityEngine.Rendering.Universal;
 using Photon.Pun;
 using Photon.Realtime;
 using GooglePlayGames.BasicApi;
-using static UnityEditor.Progress;
-using System.Threading;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {

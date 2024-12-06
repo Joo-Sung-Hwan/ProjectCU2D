@@ -41,6 +41,7 @@ public class ObjectPoolManager : MonoBehaviourPun
             for (int i = 0; i < data.initialSize; i++)
             {
                 GameObject obj = PhotonNetwork.Instantiate(data.name, Vector3.zero, Quaternion.identity);
+                //obj.GetComponent<PhotonView>().RPC("SetParentRPC", RpcTarget.All, objPoolTransform);
                 obj.transform.SetParent(objPoolTransform, false);
                 obj.GetComponent<PhotonView>().RPC("SetActiveRPC", RpcTarget.All,Vector3.zero, Quaternion.identity, false);
                 objectPool.Enqueue(obj);

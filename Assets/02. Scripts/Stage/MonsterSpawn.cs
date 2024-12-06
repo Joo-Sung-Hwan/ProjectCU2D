@@ -7,7 +7,6 @@ using UnityEngine;
 using DG.Tweening;
 using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
-using static UnityEditor.Progress;
 
 public class MonsterSpawn : MonoBehaviour
 {
